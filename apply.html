@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claim a seat — Marketplace of startups · Squad Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#FF6B57;
+  --sky:#52C4FF;--amber:#FFB54A;--pink:#FF7FB6;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:-.01em}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;cursor:pointer;border:none;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute);transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
+
+/* hero */
+.ahero{background:var(--ink);color:var(--bone);padding:64px 0 56px}
+.ahero h1{font-size:clamp(34px,5vw,58px);color:#fff;font-weight:700;margin:18px 0 0;max-width:15em}
+.ahero p{font-size:clamp(16px,1.4vw,18px);color:var(--mute-d);max-width:34em;margin-top:18px;line-height:1.55}
+.chips{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bone);background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:30px;padding:7px 14px;display:inline-flex;align-items:center;gap:8px}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--lime)}
+
+/* form layout */
+.formsec{padding:72px 0 90px}
+.formgrid{display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start}
+
+.card{background:#fff;border:1px solid var(--line-l);border-radius:var(--r);padding:36px}
+.fgroup{margin-bottom:26px}
+.fgroup:last-child{margin-bottom:0}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:block;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14.5px;margin-bottom:8px}
+label .req{color:var(--coral)}
+label .opt{color:var(--mute);font-weight:400;font-size:12.5px}
+input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{
+  width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:var(--ink);
+  background:var(--bone);border:1.5px solid var(--line-l);border-radius:10px;
+  padding:12px 14px;transition:border-color .15s, box-shadow .15s;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(110,86,248,.14)}
+textarea{min-height:120px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6A75' stroke-width='1.8' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.hint{font-size:12.5px;color:var(--mute);margin-top:6px}
+.err{display:none;font-size:12.5px;color:var(--coral);margin-top:6px;font-weight:500}
+.fgroup.invalid .err{display:block}
+.fgroup.invalid input,.fgroup.invalid select,.fgroup.invalid textarea{border-color:var(--coral)}
+.fset{border:none;margin-bottom:26px}
+.fset legend{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--violet);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:12px;width:100%}
+.consent{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:var(--mute);line-height:1.5}
+.consent input{width:auto;margin-top:3px;accent-color:var(--violet)}
+.consent a{color:var(--violet);text-decoration:underline}
+.submit-row{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.submit-note{font-size:12.5px;color:var(--mute)}
+
+/* success panel */
+.success{display:none;background:#fff;border:1px solid var(--line-l);border-radius:var(--r);padding:44px 40px;text-align:center}
+.success .tick{width:56px;height:56px;border-radius:16px;background:var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+.success .tick svg{width:26px;height:26px;stroke:var(--lime);stroke-width:2.2;fill:none}
+.success h2{font-size:26px;margin-bottom:12px}
+.success p{color:var(--mute);font-size:15.5px;max-width:44ch;margin:0 auto 8px;line-height:1.6}
+
+/* sidebar */
+.side{position:sticky;top:92px;display:flex;flex-direction:column;gap:18px}
+.scard{background:var(--bone-2);border:1px solid var(--line-l);border-radius:var(--r);padding:26px}
+.scard h3{font-size:17px;margin-bottom:16px}
+.next{display:flex;flex-direction:column;gap:0}
+.nitem{display:flex;gap:14px;position:relative;padding-bottom:20px}
+.nitem:last-child{padding-bottom:0}
+.nitem:not(:last-child)::after{content:"";position:absolute;left:13px;top:30px;bottom:2px;width:1.5px;background:var(--line-l)}
+.nnum{width:27px;height:27px;border-radius:8px;background:var(--ink);color:var(--lime);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1}
+.nitem b{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;display:block}
+.nitem p{font-size:13px;color:var(--mute);line-height:1.5;margin-top:2px}
+.scard.visa{background:rgba(110,86,248,.06);border-color:rgba(110,86,248,.2)}
+.scard.visa p{font-size:13.5px;color:var(--mute);line-height:1.55}
+.scard.visa b{color:var(--ink)}
+.scard .mini{font-size:13px;color:var(--mute);line-height:1.55}
+.scard .mini a{color:var(--violet);text-decoration:underline}
+
+/* footer */
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.foot-bot p{font-size:12.5px;line-height:1.6}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:920px){
+    .formgrid{grid-template-columns:1fr}
+  .side{position:static}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .frow{grid-template-columns:1fr}
+  .card{padding:26px 22px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="ahero on-dark">
+  <div class="wrap">
+    <span class="eyebrow" id="applyEyebrow">Marketplace of startups · claim your seat</span>
+    <h1 id="applyH1">Tell us which chair you want.</h1>
+    <p id="applyLead">You’re asking into a startup squad for real work experience — not a course brochure. Soft seat held. The <strong style="color:#fff;font-weight:600">Sprint</strong> comes first. A human replies in <strong style="color:#fff;font-weight:600">five business days</strong> — or we release the hold.</p>
+    <div class="chips">
+      <span class="chip"><i></i>100% online</span>
+      <span class="chip"><i></i>Reply in 5 business days</span>
+      <span class="chip"><i></i>Sprint first · year optional</span>
+    </div>
+  </div>
+</header>
+
+<!-- FORM -->
+<section class="formsec" id="form">
+  <div class="wrap">
+    <div class="formgrid">
+
+      <div>
+        <form class="card" id="applyForm" novalidate>
+          <fieldset class="fset">
+            <legend>About you</legend>
+            <div class="frow">
+              <div class="fgroup" data-field>
+                <label for="fname">First name <span class="req">*</span></label>
+                <input type="text" id="fname" name="First name" autocomplete="given-name" required>
+                <span class="err">Please enter your first name.</span>
+              </div>
+              <div class="fgroup" data-field>
+                <label for="lname">Last name <span class="req">*</span></label>
+                <input type="text" id="lname" name="Last name" autocomplete="family-name" required>
+                <span class="err">Please enter your last name.</span>
+              </div>
+            </div>
+            <div class="frow">
+              <div class="fgroup" data-field>
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="Email" autocomplete="email" required>
+                <span class="err">Please enter a valid email address.</span>
+              </div>
+              <div class="fgroup" data-field>
+                <label for="phone">Phone <span class="opt">(optional)</span></label>
+                <input type="tel" id="phone" name="Phone" autocomplete="tel">
+              </div>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="city">Where are you based? <span class="req">*</span></label>
+              <select id="city" name="Location" required>
+                <option value="">Select…</option>
+                <option>Sydney</option>
+                <option>Melbourne</option>
+                <option>Brisbane</option>
+                <option>Perth</option>
+                <option>Adelaide</option>
+                <option>Elsewhere in Australia</option>
+                <option>Outside Australia</option>
+              </select>
+              <span class="err">Please tell us where you're based.</span>
+            </div>
+          </fieldset>
+
+          <fieldset class="fset" id="eligibility">
+            <legend>Eligibility</legend>
+            <div class="fgroup" data-field>
+              <label for="visa">Work rights / visa status <span class="req">*</span></label>
+              <select id="visa" name="Visa status" required>
+                <option value="">Select…</option>
+                <option>Australian citizen or permanent resident</option>
+                <option>Student visa (subclass 500)</option>
+                <option>Temporary graduate visa (subclass 485)</option>
+                <option>Other work visa</option>
+                <option>Other / not sure</option>
+              </select>
+              <span class="err">Please select your current status.</span>
+              <p class="hint">Helps us prepare the conversation — we’ll talk through eligibility with you if needed.</p>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="stage">Where are you in your career? <span class="req">*</span></label>
+              <select id="stage" name="Career stage" required>
+                <option value="">Select…</option>
+                <option>Current student, graduating soon</option>
+                <option>Recent graduate</option>
+                <option>Post-graduate / further study</option>
+                <option>Out of a job / between roles</option>
+                <option>Early-career, already working</option>
+                <option>Career switcher</option>
+              </select>
+              <span class="err">Please select your career stage.</span>
+            </div>
+          </fieldset>
+
+          <fieldset class="fset">
+            <legend>What you’re asking for</legend>
+            <div class="fgroup" data-field>
+              <label for="path">Path <span class="req">*</span></label>
+              <select id="path" name="Path" required>
+                <option value="">Select…</option>
+                <option value="seat">Startup seat — work experience Sprint</option>
+                <option value="coaching">Career coaching — I’m between jobs</option>
+                <option value="both">Both — steady me, then a seat</option>
+              </select>
+              <span class="err">Please choose a path.</span>
+              <p class="hint">Out of work? Start with coaching. Ready to ship? Claim a seat. Same team either way.</p>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="track">Track <span class="req">*</span></label>
+              <select id="track" name="Track" required>
+                <option value="">Select…</option>
+                <option>Marketing</option>
+                <option>Engineering</option>
+                <option>Business Analyst</option>
+                <option>Product Owner</option>
+                <option>UX</option>
+                <option>Sales</option>
+                <option>Data</option>
+                <option>Not sure yet / coaching first</option>
+              </select>
+              <span class="err">Please select a track.</span>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="hours">Hours you can give per week <span class="req">*</span></label>
+              <select id="hours" name="Hours per week" required>
+                <option value="">Select…</option>
+                <option>~5–8 hours</option>
+                <option>~10–15 hours</option>
+                <option>~16–25 hours</option>
+                <option>25+ hours</option>
+              </select>
+              <span class="err">Please select your hours.</span>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="skill">Focus inside that track <span class="opt">(optional)</span></label>
+              <select id="skill" name="Focus">
+                <option value="">Select…</option>
+                <option>Product / UX design</option>
+                <option>Frontend</option>
+                <option>Backend / full-stack</option>
+                <option>Growth / content</option>
+                <option>Outbound / BD</option>
+                <option>Data / AI-assisted delivery</option>
+                <option>Still figuring it out</option>
+              </select>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="links">Portfolio, GitHub or LinkedIn <span class="opt">(optional, but it helps)</span></label>
+              <input type="url" id="links" name="Links" placeholder="https://">
+              <span class="err">That doesn't look like a URL — include the https:// part.</span>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="why">What’s at stake if nothing lands soon? <span class="req">*</span></label>
+              <textarea id="why" name="Stakes" required placeholder="Honest and private to us — rent, visa, family, career switch pressure, or just tired of silent applications. A few sentences."></textarea>
+              <span class="err">A sentence or two is enough — it helps us place and support you.</span>
+              <p class="hint">We use this to hold you properly — not to judge you. It stays out of squad chat.</p>
+            </div>
+            <div class="fgroup" data-field>
+              <label for="hear">How did you hear about us? <span class="opt">(optional)</span></label>
+              <select id="hear" name="Source">
+                <option value="">Select…</option>
+                <option>Friend or teammate</option>
+                <option>University / careers service</option>
+                <option>LinkedIn</option>
+                <option>Instagram / TikTok</option>
+                <option>Search</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <div class="fgroup" data-field>
+            <label class="consent">
+              <input type="checkbox" id="consent" required>
+              <span>I understand this application isn't a commitment by either side, and I consent to Squad Institute handling my details as described in the <a href="privacy.html">Privacy Policy</a>. <span class="req">*</span></span>
+            </label>
+            <span class="err">Please confirm before submitting.</span>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary">Claim this seat<span class="arw">→</span></button>
+            <span class="submit-note">Submitting opens a pre-filled email to contact@thesquadinstitute.com — hit send and you're done.</span>
+          </div>
+        </form>
+
+        <div class="success" id="successPanel">
+          <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
+          <h2>Application ready to send.</h2>
+          <p>We've opened a pre-filled email — press send when you're ready. We reply within five business days. If we miss that window, the soft seat hold releases — we don’t leave you hanging.</p>
+          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Nothing opened? Email us directly at <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="side">
+        <div class="scard">
+          <h3>Anti-ghost promise</h3>
+          <p class="mini" style="margin-bottom:0">A human replies within five business days. What you share about stakes stays private to care — never squad chat. Rough weeks later mean paused, not punished.</p>
+        </div>
+        <div class="scard">
+          <h3>What happens next</h3>
+          <div class="next">
+            <div class="nitem">
+              <span class="nnum">01</span>
+              <div><b>We read your application</b><p>A human gets back to you within five business days — or the soft hold releases.</p></div>
+            </div>
+            <div class="nitem">
+              <span class="nnum">02</span>
+              <div><b>Pocket + eligibility</b><p>We walk through your state and runway — before we sell you anything.</p></div>
+            </div>
+            <div class="nitem">
+              <span class="nnum">03</span>
+              <div><b>Conditional seat + buddy</b><p>You’re held in a squad for the Sprint. Rough weeks are allowed.</p></div>
+            </div>
+            <div class="nitem">
+              <span class="nnum">04</span>
+              <div><b>Ship · then decide</b><p>Year or Venture terms only if you convert — never forced on apply day.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="scard visa">
+          <h3>On a student or work visa?</h3>
+          <p><b>Apply anyway.</b> Conditions differ a lot by visa type — we’ll talk it through with you early. If it’s not a fit, we’ll say so straight away.</p>
+        </div>
+        <div class="scard">
+          <p class="mini">Not sure about something first? Read the <a href="faq.html">FAQ</a> or <a href="contact.html">ask us directly</a> — we'd rather you were sure before you apply.</p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#FF6B57"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="#form">Next cohort</a>
+        <a href="#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Equity and financial contributions are governed by a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+
+  var form=document.getElementById('applyForm');
+  var success=document.getElementById('successPanel');
+
+  function groupOf(el){ return el.closest('.fgroup'); }
+
+  function validate(){
+    var ok=true, firstBad=null;
+    form.querySelectorAll('.fgroup').forEach(function(g){ g.classList.remove('invalid'); });
+
+    form.querySelectorAll('[required]').forEach(function(el){
+      var bad=false;
+      if(el.type==='checkbox'){ bad=!el.checked; }
+      else if(el.type==='email'){ bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()); }
+      else { bad=!el.value.trim(); }
+      if(bad){ ok=false; var g=groupOf(el); if(g){ g.classList.add('invalid'); if(!firstBad) firstBad=el; } }
+    });
+
+    var links=document.getElementById('links');
+    if(links.value.trim() && !/^https?:\/\/\S+\.\S+/.test(links.value.trim())){
+      ok=false; groupOf(links).classList.add('invalid'); if(!firstBad) firstBad=links;
+    }
+
+    if(firstBad){ firstBad.focus(); firstBad.scrollIntoView({behavior:'smooth',block:'center'}); }
+    return ok;
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!validate()) return;
+
+    var fields=['fname','lname','email','phone','city','visa','stage','path','track','hours','skill','links','hear'];
+    var lines=[];
+    fields.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el && el.value.trim()){
+        var name=el.getAttribute('name')||id;
+        var val=el.tagName==='SELECT' && el.selectedOptions[0] ? el.selectedOptions[0].text : el.value.trim();
+        lines.push(name+': '+val);
+      }
+    });
+    lines.push('');
+    lines.push('What’s at stake:');
+    lines.push(document.getElementById('why').value.trim());
+
+    var pathEl=document.getElementById('path');
+    var pathVal=pathEl ? pathEl.value : 'seat';
+    var prefix=pathVal==='coaching' ? 'Coaching request' : (pathVal==='both' ? 'Coaching + seat' : 'Seat application');
+    var subject=prefix+' — '+document.getElementById('fname').value.trim()+' '+document.getElementById('lname').value.trim();
+    var mailto='mailto:contact@thesquadinstitute.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+
+    window.location.href=mailto;
+    form.style.display='none';
+    success.style.display='block';
+    success.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  (function(){
+    var params=new URLSearchParams(window.location.search);
+    var path=params.get('path');
+    var pathEl=document.getElementById('path');
+    if(path==='coaching' && pathEl){
+      pathEl.value='coaching';
+      var stage=document.getElementById('stage');
+      if(stage && !stage.value) stage.value='Out of a job / between roles';
+      var eye=document.getElementById('applyEyebrow');
+      var h1=document.getElementById('applyH1');
+      var lead=document.getElementById('applyLead');
+      if(eye) eye.textContent='Career coaching · between jobs';
+      if(h1) h1.textContent='Tell us what’s on the line.';
+      if(lead) lead.innerHTML='You’re asking for <strong style="color:#fff;font-weight:600">career coaching</strong> — same team as the marketplace, softer door when you’re out of work. A human replies in <strong style="color:#fff;font-weight:600">five business days</strong>. Seat later if you want it.';
+      var btn=document.querySelector('#applyForm button[type=submit]');
+      if(btn) btn.innerHTML='Book coaching<span class="arw">→</span>';
+    }
+    var track=params.get('track');
+    var trackEl=document.getElementById('track');
+    if(track && trackEl){
+      var wanted=track.trim().toLowerCase();
+      var opts=Array.prototype.slice.call(trackEl.options);
+      var match=opts.find(function(o){
+        var t=(o.value||o.textContent||'').trim().toLowerCase();
+        return t===wanted || t.indexOf(wanted)===0;
+      });
+      if(match) trackEl.value=match.value || match.textContent;
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work experience pathways — Squad Institute</title>
+<meta name="description" content="Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, Data — pick a pathway and see what the work actually looks like.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#E85D4C;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;cursor:pointer;border:none;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+.phero{background:var(--ink);color:var(--bone);padding:68px 0 48px}
+.phero h1{font-size:clamp(34px,5vw,52px);color:#fff;font-weight:700;margin:18px 0 0;max-width:14em}
+.phero p{font-size:clamp(16px,1.4vw,18px);color:var(--mute-d);max-width:36em;margin-top:16px;line-height:1.55}
+
+.path-bar-wrap{background:var(--bone-2);border-bottom:1px solid var(--line-l);padding:16px 0 18px;position:sticky;top:68px;z-index:40}
+.path-bar{display:flex;gap:8px;flex-wrap:wrap}
+.path-btn{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:8px 13px;
+  border:1.5px solid var(--line-l);border-radius:8px;background:#fff;color:var(--mute);
+  transition:border-color .15s,color .15s,background .15s,transform .15s;
+}
+.path-btn:hover{color:var(--ink);border-color:var(--violet-soft);transform:translateY(-1px)}
+.path-btn.active{background:var(--violet);border-color:var(--violet);color:#fff;font-weight:600;box-shadow:0 8px 24px -12px var(--violet)}
+
+.explorer{padding:36px 0 80px}
+.workspace{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:22px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line-l);border-radius:var(--r);padding:24px 22px 22px}
+.panel-h{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line-l)}
+.panel-h h2{font-size:clamp(22px,2.5vw,28px)}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);background:rgba(31,111,91,.08);border:1px solid rgba(31,111,91,.22);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.blurb{font-size:15px;color:var(--mute);line-height:1.55;padding:14px 16px;background:var(--bone);border:1px solid var(--line-l);border-radius:10px;margin-bottom:12px}
+.ai-box{
+  font-size:14px;color:var(--ink);line-height:1.55;padding:14px 16px;margin-bottom:16px;
+  background:rgba(198,242,78,.12);border:1px solid rgba(31,111,91,.22);border-radius:10px;
+}
+.ai-box b{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--violet);display:block;margin-bottom:6px}
+.ai-box p{color:var(--mute);margin:0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute)}
+.legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:2px;display:inline-block}
+.dot.p{background:var(--lime)}
+.dot.s{background:var(--sky,#52C4FF)}
+
+table.steps{width:100%;border-collapse:collapse;font-size:14px}
+table.steps th,table.steps td{text-align:left;padding:10px 12px;border-top:1px solid var(--line-l);vertical-align:top}
+table.steps th{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);font-weight:500;background:var(--bone);border-top:none}
+table.steps td.num{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--violet);white-space:nowrap;width:4.5em}
+table.steps td.sub{font-weight:600;font-size:14px}
+table.steps td.detail{color:var(--mute);font-size:13.5px;line-height:1.45}
+tr.step-row{cursor:default;transition:background .12s}
+tr.step-row.hot{background:rgba(198,242,78,.12)}
+.chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 6px;border-radius:4px;margin:1px 3px 1px 0;border:1px solid var(--line-l);color:var(--mute)}
+.chip.p{color:var(--ink);background:var(--lime);border-color:var(--lime);font-weight:600}
+.chip.s{color:var(--violet);background:rgba(82,196,255,.12);border-color:rgba(82,196,255,.35)}
+
+.sdlc-panel{padding:0;overflow:hidden}
+.sdlc-panel .panel-h{padding:24px 22px 12px;margin:0;border:none}
+.sdlc-wrap{border-top:1px solid var(--line-l)}
+table.sdlc{width:100%;border-collapse:collapse;table-layout:fixed}
+table.sdlc th{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute);font-weight:500;text-align:left;padding:8px 12px;background:var(--bone);border-bottom:1px solid var(--line-l)}
+table.sdlc td{padding:7px 12px;border-top:1px solid var(--line-l);font-size:12.5px;vertical-align:middle}
+table.sdlc td.sn{width:2.8em;font-family:'JetBrains Mono',monospace;color:var(--mute);font-weight:600}
+table.sdlc td.sname{font-weight:600;font-family:'Space Grotesk',sans-serif;width:5.5em}
+table.sdlc td.sdo{color:var(--mute);font-size:12px}
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;border:1px solid var(--line-l);color:var(--mute)}
+tr.stage.dim{opacity:.35}
+tr.stage.hit-p{background:rgba(198,242,78,.14)}
+tr.stage.hit-p td.sn,tr.stage.hit-p td.sname{color:var(--ink)}
+tr.stage.hit-p .badge{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+tr.stage.hit-s{background:rgba(82,196,255,.1)}
+tr.stage.hit-s td.sn,tr.stage.hit-s td.sname{color:var(--violet)}
+tr.stage.hit-s .badge{background:rgba(82,196,255,.15);color:var(--violet);border-color:rgba(82,196,255,.4)}
+tr.stage.pulse{box-shadow:inset 3px 0 0 var(--lime);background:rgba(198,242,78,.22)!important}
+
+.panel-cta{margin-top:18px;padding-top:16px;border-top:1px solid var(--line-l);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.panel-cta p{font-size:13px;color:var(--mute);max-width:28em;line-height:1.45}
+
+.empty{color:var(--mute);padding:32px 16px;text-align:center;border:1px dashed var(--line-l);border-radius:10px;font-size:15px;line-height:1.55}
+
+.final{background:var(--ink);color:var(--bone);padding:72px 0;text-align:center}
+.final h2{font-size:clamp(28px,4vw,40px);color:#fff;max-width:16em;margin:14px auto 0}
+.final p{color:var(--mute-d);font-size:16px;margin:16px auto 0;max-width:32em}
+.final-cta{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;align-items:stretch;position:absolute;top:68px;left:0;right:0;background:var(--bone);padding:8px 0 20px;border-bottom:1px solid var(--line-l);box-shadow:0 18px 40px -28px rgba(0,0,0,.45);z-index:40;max-height:calc(100vh - 68px);overflow-y:auto}
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink)}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+}
+@media (max-width:920px){
+  .workspace{grid-template-columns:1fr}
+  .path-bar-wrap{top:68px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .panel{padding:20px 16px}
+  .nav-cta > .btn{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html" class="active">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="phero on-dark">
+  <div class="wrap">
+    <span class="eyebrow">Work experience pathways</span>
+    <h1>Click a pathway. See the work.</h1>
+    <p>Same squad lifecycle on every track — scope, map, plan, build, review, ship. You also learn to <strong style="color:#fff;font-weight:600">harness AI for your specific role</strong> — reviewed work you still own, not generic prompts.</p>
+  </div>
+</header>
+
+<div class="path-bar-wrap">
+  <div class="wrap">
+    <div class="path-bar" id="pathBar" role="tablist" aria-label="Pathways"></div>
+  </div>
+</div>
+
+<section class="explorer">
+  <div class="wrap">
+    <div class="workspace">
+      <div class="panel" id="detailPanel">
+        <div class="panel-h">
+          <h2 id="roleTitle">Select a pathway</h2>
+          <span class="tag" id="roleCount" hidden></span>
+        </div>
+        <p class="blurb" id="roleBlurb">Pick Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, or Data above — we’ll show what you’d actually do on a squad.</p>
+        <div class="ai-box" id="aiBox" hidden>
+          <b>Harness AI for this role</b>
+          <p id="aiHarness"></p>
+        </div>
+        <div class="legend" id="roleLegend">
+          <i><span class="dot p"></span> primary on a lifecycle stage</i>
+          <i><span class="dot s"></span> support / gate</i>
+        </div>
+        <div id="stepsWrap"><div class="empty">No pathway selected yet.</div></div>
+        <div class="panel-cta" id="panelCta" hidden>
+          <p id="ctaNote">Ready to claim this seat?</p>
+          <a class="btn btn-primary" id="applyBtn" href="apply.html">Claim this seat<span class="arw">→</span></a>
+        </div>
+      </div>
+
+      <div class="panel sdlc-panel" id="sdlcPanel">
+        <div class="panel-h">
+          <h2 style="font-size:20px">Squad lifecycle</h2>
+          <span class="tag" id="sdlcHint">pick a pathway</span>
+        </div>
+        <div class="sdlc-wrap">
+          <table class="sdlc">
+            <thead>
+              <tr><th>#</th><th>Stage</th><th>What happens</th><th></th></tr>
+            </thead>
+            <tbody id="sdlcBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final on-dark">
+  <div class="wrap">
+    <span class="eyebrow">Ready when you are</span>
+    <h2>Know your pathway? Claim the chair.</h2>
+    <p>One application. Soft seat held. A human replies in five business days.</p>
+    <div class="final-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="faq.html" class="btn btn-ghost">Read the FAQ</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#FF6B57"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+        <a href="pathways.html">Pathways</a>
+        <a href="blog.html">Blog</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Equity and financial contributions are governed by a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var STAGES = [
+  { id:'orient', n:'01', name:'Orient', do:'Read Today; name state; open brief' },
+  { id:'scope', n:'02', name:'Scope', do:'Cut one slice; write acceptance' },
+  { id:'model', n:'03', name:'Model', do:'Map flow / journey for the slice' },
+  { id:'plan', n:'04', name:'Plan', do:'Break into cards; WIP = 1' },
+  { id:'instrument', n:'05', name:'Instrument', do:'Tools, access, checks ready' },
+  { id:'build', n:'06', name:'Build', do:'Produce the artifact' },
+  { id:'review', n:'07', name:'Review', do:'Peer review to rubric' },
+  { id:'rework', n:'07b', name:'Rework', do:'Fix named issues; re-submit' },
+  { id:'ship', n:'08', name:'Ship', do:'Accepted version on the trail' },
+  { id:'reflect', n:'09', name:'Reflect', do:'What shipped, what was hard' },
+  { id:'expose', n:'10', name:'Expose', do:'Showcase / recruiter-facing proof' },
+];
+
+var PATHWAYS = [
+  {
+    id:'mkt', label:'Marketing', apply:'Marketing',
+    blurb:'Same SDLC as the squad — your artifacts are campaigns, pages, content, and analytics. Not optional soft work.',
+    aiHarness:'Use AI to draft variants, summarise research, and speed up production — you own brand voice, honest claims, and what actually ships. Review catches AI slop before it goes live.',
+    matrix:{ orient:'P', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'P', expose:'P' },
+    steps:[
+      { id:'MK-01', sub:'Audience + offer read', detail:'Brief, segment, channel constraints.', stages:['orient'] },
+      { id:'MK-02', sub:'Campaign / asset slice', detail:'One controllable ship — landing page, email, or creative set.', stages:['scope'] },
+      { id:'MK-03', sub:'Funnel / message model', detail:'Journey or channel map for the slice.', stages:['model'] },
+      { id:'MK-04', sub:'Production plan', detail:'Copy, design, QA, schedule cards.', stages:['plan'] },
+      { id:'MK-05', sub:'Tools + tracking', detail:'ESP, ads, UTM, analytics intents.', stages:['instrument'] },
+      { id:'MK-06', sub:'Produce assets', detail:'Draft with AI assist; brand and claims check.', stages:['build'] },
+      { id:'MK-07', sub:'Content / brand review', detail:'Rubric: clarity, honest claims, CTA.', stages:['review'] },
+      { id:'MK-08', sub:'Rework copy/creative', detail:'Named fixes only.', stages:['rework'] },
+      { id:'MK-09', sub:'Publish / schedule', detail:'Ship = live or scheduled with proof.', stages:['ship'] },
+      { id:'MK-10', sub:'Reflect metrics + next', detail:'What landed; next experiment.', stages:['reflect'] },
+      { id:'MK-11', sub:'Portfolio case for Expose', detail:'Before/after or live link in your pack.', stages:['expose'] },
+    ]
+  },
+  {
+    id:'eng', label:'Engineering', apply:'Engineering',
+    blurb:'Implementation owner for code slices. AI assists in Build — you still own the diff and the review.',
+    aiHarness:'Use AI as a pair on implementation — scaffold, tests, refactors — but you own architecture, the diff, security, and review. No rubber-stamping generated code.',
+    matrix:{ orient:'S', scope:'S', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'S' },
+    steps:[
+      { id:'EN-01', sub:'Read brief + tech context', detail:'Repo, stack, constraints, risk.', stages:['orient'] },
+      { id:'EN-02', sub:'Technical slice cut', detail:'API, UI, or job — acceptance in engineering terms.', stages:['scope'] },
+      { id:'EN-03', sub:'Architecture / sequence model', detail:'Sequence diagram, component sketch, data shape.', stages:['model'] },
+      { id:'EN-04', sub:'Task breakdown + PR plan', detail:'Commits and PR boundaries on the board.', stages:['plan'] },
+      { id:'EN-05', sub:'Env, CI, branch, intents', detail:'Tool proofs, test hooks, agent steps.', stages:['instrument'] },
+      { id:'EN-06', sub:'Implement draft', detail:'Code with AI assist; human owns the diff.', stages:['build'] },
+      { id:'EN-07', sub:'Unit / smoke self-check', detail:'Against acceptance before review request.', stages:['build'] },
+      { id:'EN-08', sub:'Open PR + request review', detail:'Evidence = PR link.', stages:['build','review'] },
+      { id:'EN-09', sub:'Code review (give/receive)', detail:'Correctness, security, readability.', stages:['review'] },
+      { id:'EN-10', sub:'Address review comments', detail:'Named fixes only; re-request review.', stages:['rework'] },
+      { id:'EN-11', sub:'Merge / deploy / tag', detail:'Ship ceremony — version on main or staging.', stages:['ship'] },
+      { id:'EN-12', sub:'Demo technical ship', detail:'Runnable proof for recruiters.', stages:['expose'] },
+    ]
+  },
+  {
+    id:'ba', label:'Business Analyst', apply:'Business Analyst',
+    blurb:'Clarifies rules, data, and edge cases so Scope and Model are honest before anyone builds.',
+    aiHarness:'Use AI to draft process maps and edge-case lists — you own stakeholder truth, acceptance criteria, and whether the rules match the business.',
+    matrix:{ orient:'S', scope:'P', model:'P', plan:'S', instrument:'S', review:'S', reflect:'S', expose:'S' },
+    steps:[
+      { id:'BA-01', sub:'Elicit requirements', detail:'Stakeholders, rules, constraints from brief or venture.', stages:['orient','scope'] },
+      { id:'BA-02', sub:'Draft acceptance criteria', detail:'Support “done means…” with concrete checks.', stages:['scope'] },
+      { id:'BA-03', sub:'Process / data modelling', detail:'Flows, entities, states for the slice.', stages:['model'] },
+      { id:'BA-04', sub:'Edge-case catalogue', detail:'Empty, error, permission cases into Model/Plan.', stages:['model','plan'] },
+      { id:'BA-05', sub:'Instrument checks', detail:'What must be verified before Review.', stages:['instrument'] },
+      { id:'BA-06', sub:'Review against rules', detail:'Rubric items for business correctness.', stages:['review'] },
+      { id:'BA-07', sub:'Traceability in pack', detail:'Link ships back to acceptance for Expose.', stages:['reflect','expose'] },
+    ]
+  },
+  {
+    id:'po', label:'Product Owner', apply:'Product Owner',
+    blurb:'Owns value and acceptance quality. Gates Scope and Ship — frames what gets shown to employers.',
+    aiHarness:'Use AI to break down slices and draft acceptance — you own prioritisation, non-goals, and the ship call. AI suggests; you decide what the squad builds.',
+    matrix:{ orient:'S', scope:'P', model:'S', plan:'S', review:'S', ship:'S', expose:'P' },
+    steps:[
+      { id:'PO-01', sub:'Frame problem / opportunity', detail:'Why this slice matters for product and employability proof.', stages:['orient','scope'] },
+      { id:'PO-02', sub:'Prioritise slice backlog', detail:'Order which slices the squad pulls next.', stages:['orient','plan'] },
+      { id:'PO-03', sub:'Co-write / challenge acceptance', detail:'Ensure “done means…” is testable.', stages:['scope'] },
+      { id:'PO-04', sub:'Approve non-goals', detail:'Protect slice from scope creep mid-build.', stages:['scope'] },
+      { id:'PO-05', sub:'Validate model vs value', detail:'Does the diagram still solve the outcome?', stages:['model'] },
+      { id:'PO-06', sub:'Acceptance in review', detail:'Join rubric on outcome criteria.', stages:['review'] },
+      { id:'PO-07', sub:'Ship / release decision', detail:'Confirm version is good enough to trail / demo.', stages:['ship'] },
+      { id:'PO-08', sub:'Expose narrative', detail:'Frame showcase story for employers.', stages:['expose'] },
+    ]
+  },
+  {
+    id:'ux', label:'UX / Design', apply:'UX',
+    blurb:'User problems, flows, usability — heavy on Model, Build, and Review for product slices.',
+    aiHarness:'Use AI to explore layout and copy variants — you own research truth, usability, and design review. Frames ship when they meet acceptance, not when the model says they look fine.',
+    matrix:{ orient:'S', scope:'S', model:'P', plan:'S', instrument:'S', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'S' },
+    steps:[
+      { id:'UX-01', sub:'Read brief + user context', detail:'Who’s hurt, job-to-be-done for this slice.', stages:['orient'] },
+      { id:'UX-02', sub:'Problem / opportunity framing', detail:'Align with PO on slice cut.', stages:['scope'] },
+      { id:'UX-03', sub:'User journey / task flow', detail:'Primary Model artifact for UX track.', stages:['model'] },
+      { id:'UX-04', sub:'IA / wireframe plan', detail:'Break frames into board cards.', stages:['plan'] },
+      { id:'UX-05', sub:'Prototype tooling ready', detail:'Figma access proof; libraries linked.', stages:['instrument'] },
+      { id:'UX-06', sub:'Build wireframes / proto', detail:'Draft against acceptance.', stages:['build'] },
+      { id:'UX-07', sub:'Usability self-check', detail:'Empty states, copy, tap targets.', stages:['build'] },
+      { id:'UX-08', sub:'Design review (rubric)', detail:'Peer UX review — artifact only.', stages:['review'] },
+      { id:'UX-09', sub:'Ship versioned frames', detail:'Named version / prototype link in trail.', stages:['ship'] },
+      { id:'UX-10', sub:'Demo in showcase', detail:'Walk the flow for Expose.', stages:['expose'] },
+    ]
+  },
+  {
+    id:'sales', label:'Sales', apply:'Sales',
+    blurb:'Same SDLC — artifacts are outreach packs, scripts, CRM hygiene, and demos. Reviewed for integrity.',
+    aiHarness:'Use AI for personalisation drafts and talk-track prep — you own integrity, tone, and what gets sent. CRM evidence shows your process, not vanity volume.',
+    matrix:{ orient:'P', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'P', expose:'P' },
+    steps:[
+      { id:'SA-01', sub:'Territory / ICP read', detail:'Who, why now, compliance limits.', stages:['orient'] },
+      { id:'SA-02', sub:'Slice: list, script, or demo', detail:'One acceptance sentence (e.g. “10 personalised opens”).', stages:['scope'] },
+      { id:'SA-03', sub:'Funnel / talk-track model', detail:'Objections, stages, CRM fields.', stages:['model'] },
+      { id:'SA-04', sub:'Activity plan', detail:'Cards for research, write, send, log.', stages:['plan'] },
+      { id:'SA-05', sub:'CRM / tools proof', detail:'Sequences and intents instrumented.', stages:['instrument'] },
+      { id:'SA-06', sub:'Produce outreach / demo pack', detail:'Build the artifact; AI drafts OK.', stages:['build'] },
+      { id:'SA-07', sub:'Integrity + quality review', detail:'No misleading claims; tone check.', stages:['review'] },
+      { id:'SA-08', sub:'Ship: send / log / record', detail:'Evidence in CRM + trail.', stages:['ship'] },
+      { id:'SA-09', sub:'Expose pipeline proof', detail:'Pack shows real process, not vanity.', stages:['expose'] },
+    ]
+  },
+  {
+    id:'data', label:'Data', apply:'Data',
+    blurb:'Metrics, dashboards, and AI-assisted delivery the squad can actually use — same lifecycle, different artifacts.',
+    aiHarness:'Use AI to draft queries, explore viz options, and document definitions — you own metric truth, privacy limits, and accuracy review before the squad relies on the dashboard.',
+    matrix:{ orient:'S', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'S' },
+    steps:[
+      { id:'DA-01', sub:'Read brief + data context', detail:'Sources, privacy limits, what decision the squad needs.', stages:['orient'] },
+      { id:'DA-02', sub:'Metric / dashboard slice', detail:'One acceptance sentence — e.g. “funnel view live for squad stand-up”.', stages:['scope'] },
+      { id:'DA-03', sub:'Data flow model', detail:'Entities, joins, refresh cadence, edge cases.', stages:['model'] },
+      { id:'DA-04', sub:'Build plan', detail:'Queries, viz, validation cards on the board.', stages:['plan'] },
+      { id:'DA-05', sub:'Access + tooling proof', detail:'Warehouse, BI, or script intents runnable.', stages:['instrument'] },
+      { id:'DA-06', sub:'Build dashboard / report', detail:'Draft with AI assist; you own correctness.', stages:['build'] },
+      { id:'DA-07', sub:'Data quality review', detail:'Rubric: accuracy, definitions, privacy.', stages:['review'] },
+      { id:'DA-08', sub:'Ship live or scheduled refresh', detail:'Versioned artifact the squad can open weekly.', stages:['ship'] },
+      { id:'DA-09', sub:'Expose in your pack', detail:'Screenshot or link recruiters can verify.', stages:['expose'] },
+    ]
+  },
+  {
+    id:'unsure', label:'Not sure yet', apply:'Not sure yet / coaching first', simple:true,
+    blurb:'You don’t need the perfect label on day one. Tell us where you’re headed, what hours you have, and what’s on the line — we match you to a seat or coaching first.',
+    steps:[
+      { id:'—', sub:'Start with coaching or a soft claim', detail:'Same team either way. Out of work? Coaching door is open.', stages:[] },
+      { id:'—', sub:'We read your situation', detail:'Hours, runway, visa, prior craft — not a trick question.', stages:[] },
+      { id:'—', sub:'Match to squad + pathway', detail:'Human reply in five business days with a recommended seat.', stages:[] },
+    ]
+  }
+];
+
+var activeId = null;
+var pathBar = document.getElementById('pathBar');
+var roleTitle = document.getElementById('roleTitle');
+var roleCount = document.getElementById('roleCount');
+var roleBlurb = document.getElementById('roleBlurb');
+var stepsWrap = document.getElementById('stepsWrap');
+var sdlcBody = document.getElementById('sdlcBody');
+var sdlcHint = document.getElementById('sdlcHint');
+var sdlcPanel = document.getElementById('sdlcPanel');
+var panelCta = document.getElementById('panelCta');
+var applyBtn = document.getElementById('applyBtn');
+var roleLegend = document.getElementById('roleLegend');
+var aiBox = document.getElementById('aiBox');
+var aiHarnessEl = document.getElementById('aiHarness');
+
+function stageById(id){ return STAGES.find(function(s){ return s.id === id; }); }
+
+function renderPathBar(){
+  pathBar.innerHTML = PATHWAYS.map(function(p){
+    return '<button type="button" class="path-btn' + (p.id === activeId ? ' active' : '') + '" role="tab" aria-selected="' + (p.id === activeId) + '" data-path="' + p.id + '">' + p.label + '</button>';
+  }).join('');
+}
+
+function renderSdlcSkeleton(){
+  sdlcBody.innerHTML = STAGES.map(function(s){
+    return '<tr class="stage dim" data-stage="' + s.id + '"><td class="sn">' + s.n + '</td><td class="sname">' + s.name + '</td><td class="sdo">' + s.do + '</td><td><span class="badge" data-badge>—</span></td></tr>';
+  }).join('');
+}
+
+function chipClass(role, stageId){
+  var m = role.matrix && role.matrix[stageId];
+  if (m === 'P') return 'p';
+  if (m === 'S') return 's';
+  return '';
+}
+
+function applySdlcHighlight(role, pulseIds){
+  var pulse = new Set(pulseIds || []);
+  var pCount = 0, sCount = 0;
+  STAGES.forEach(function(s){
+    var el = document.querySelector('[data-stage="' + s.id + '"]');
+    if (!el) return;
+    var badge = el.querySelector('[data-badge]');
+    var level = role && role.matrix ? (role.matrix[s.id] || null) : null;
+    el.classList.remove('dim','hit-p','hit-s','pulse');
+    if (!role || !role.matrix) {
+      el.classList.add('dim');
+      badge.textContent = '—';
+      return;
+    }
+    if (level === 'P') { el.classList.add('hit-p'); pCount++; badge.textContent = 'P'; }
+    else if (level === 'S') { el.classList.add('hit-s'); sCount++; badge.textContent = 'S'; }
+    else { el.classList.add('dim'); badge.textContent = '—'; }
+    if (pulse.has(s.id)) el.classList.add('pulse');
+  });
+  sdlcHint.textContent = role && role.matrix ? (pCount + ' primary · ' + sCount + ' support') : 'same lifecycle every track';
+}
+
+function renderDetail(path){
+  if (!path) {
+    roleTitle.textContent = 'Select a pathway';
+    roleCount.hidden = true;
+    roleBlurb.textContent = 'Pick Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, or Data above — we’ll show what you’d actually do on a squad.';
+    stepsWrap.innerHTML = '<div class="empty">No pathway selected yet.</div>';
+    panelCta.hidden = true;
+    sdlcPanel.style.opacity = '0.55';
+    if (aiBox) aiBox.hidden = true;
+    applySdlcHighlight(null, []);
+    return;
+  }
+
+  roleTitle.textContent = path.label;
+  roleCount.hidden = false;
+  roleCount.textContent = path.steps.length + ' involvement steps';
+  roleBlurb.textContent = path.blurb;
+  if (path.aiHarness && aiBox && aiHarnessEl) {
+    aiBox.hidden = false;
+    aiHarnessEl.textContent = path.aiHarness;
+  } else if (aiBox) {
+    aiBox.hidden = true;
+  }
+
+  if (path.simple) {
+    roleLegend.style.display = 'none';
+    sdlcPanel.style.opacity = '0.45';
+    stepsWrap.innerHTML = '<table class="steps"><thead><tr><th></th><th>What happens</th><th>Detail</th></tr></thead><tbody>' +
+      path.steps.map(function(st){
+        return '<tr><td class="num">·</td><td class="sub">' + st.sub + '</td><td class="detail">' + st.detail + '</td></tr>';
+      }).join('') + '</tbody></table>';
+    applySdlcHighlight(null, []);
+    sdlcHint.textContent = 'we match you';
+  } else {
+    roleLegend.style.display = 'flex';
+    sdlcPanel.style.opacity = '1';
+    stepsWrap.innerHTML = '<table class="steps"><thead><tr><th>#</th><th>What you\'d do</th><th>Detail</th><th>Lifecycle</th></tr></thead><tbody>' +
+      path.steps.map(function(st){
+        return '<tr class="step-row" data-stages="' + st.stages.join(',') + '"><td class="num">' + st.id + '</td><td class="sub">' + st.sub + '</td><td class="detail">' + st.detail + '</td><td>' +
+          st.stages.map(function(id){
+            var s = stageById(id);
+            return s ? '<span class="chip ' + chipClass(path, id) + '">' + s.n + ' ' + s.name + '</span>' : '';
+          }).join('') + '</td></tr>';
+      }).join('') + '</tbody></table>';
+
+    stepsWrap.querySelectorAll('tr.step-row').forEach(function(row){
+      row.addEventListener('mouseenter', function(){
+        var ids = row.dataset.stages ? row.dataset.stages.split(',').filter(Boolean) : [];
+        applySdlcHighlight(path, ids);
+        stepsWrap.querySelectorAll('tr.step-row').forEach(function(r){ r.classList.toggle('hot', r === row); });
+      });
+      row.addEventListener('mouseleave', function(){
+        applySdlcHighlight(path, []);
+        stepsWrap.querySelectorAll('tr.step-row').forEach(function(r){ r.classList.remove('hot'); });
+      });
+    });
+    applySdlcHighlight(path, []);
+  }
+
+  panelCta.hidden = false;
+  applyBtn.href = 'apply.html?track=' + encodeURIComponent(path.apply);
+  applyBtn.innerHTML = (path.simple ? 'Start your claim' : 'Claim this seat') + '<span class="arw">→</span>';
+  document.getElementById('ctaNote').textContent = path.simple
+    ? 'Not sure which seat fits? Tell us — same application, human match.'
+    : 'Ready to claim a ' + path.label + ' seat on a real squad?';
+}
+
+function selectPath(id){
+  activeId = id;
+  var path = PATHWAYS.find(function(p){ return p.id === id; });
+  renderPathBar();
+  renderDetail(path);
+  if (window.matchMedia('(max-width:920px)').matches) {
+    document.getElementById('detailPanel').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+}
+
+pathBar.addEventListener('click', function(e){
+  var btn = e.target.closest('[data-path]');
+  if (!btn) return;
+  selectPath(btn.dataset.path);
+  if (history.replaceState) history.replaceState(null, '', '?path=' + btn.dataset.path);
+});
+
+renderPathBar();
+renderSdlcSkeleton();
+renderDetail(null);
+
+var initial = new URLSearchParams(window.location.search).get('path');
+if (initial && PATHWAYS.some(function(p){ return p.id === initial; })) selectPath(initial);
+else selectPath('eng');
+
+(function(){
+  var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+  if(!mb||!nl) return;
+  function setOpen(on){
+    nl.classList.toggle('open', on);
+    mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+    document.body.style.overflow = on ? 'hidden' : '';
+  }
+  mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+  nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+  window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career coaching — For when you’re out of a job · Squad Institute</title>
+<meta name="description" content="Career coaching for people between jobs. Same brain, softer door: restore one move, rebuild the pack, then claim a startup seat when you’re ready. Human reply in five days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#E85D4C;
+  --sky:#52C4FF;--mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:'JetBrains Mono',monospace}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.04;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;border:none;cursor:pointer;transition:transform .18s,background .18s,box-shadow .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute);transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0}
+
+.hero{background:var(--ink);color:var(--bone);padding:72px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-bottom:56px}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:700;color:#fff;margin:18px 0 0}
+.hero h1 .hl{color:var(--lime)}
+.hero-sub{font-size:clamp(16px,1.5vw,18px);color:var(--mute-d);max-width:32em;margin-top:18px;line-height:1.55}
+.f1-line{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mute-d);line-height:1.7}
+.f1-line b{color:var(--lime);font-weight:500}
+.hero-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.hero-card{background:linear-gradient(180deg,var(--ink-2),#191822);border:1px solid var(--line-d);border-radius:18px;padding:22px}
+.hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hc-id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
+.pill{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.pill.ship{background:rgba(198,242,78,.14);color:var(--lime)}
+.hc-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:#fff}
+.hc-desc{font-size:13.5px;color:var(--mute-d);margin-top:8px;line-height:1.5}
+.hc-list{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.hc-list span{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d);display:flex;gap:10px}
+.hc-list b{color:var(--bone);font-weight:500}
+
+.strip{background:var(--ink);border-top:1px solid var(--line-d)}
+.strip-in{display:flex;align-items:center;gap:28px;padding:18px 0;flex-wrap:wrap;justify-content:center}
+.strip span{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mute-d);display:inline-flex;align-items:center;gap:9px}
+.strip span b{color:var(--bone);font-weight:500}
+.strip .sep{width:5px;height:5px;border-radius:50%;background:var(--violet)}
+
+.sec{padding:88px 0}
+.sec-head{max-width:640px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px);margin-top:14px}
+.sec-head p{color:var(--mute);font-size:17px;margin-top:14px;line-height:1.55}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-l);border:1px solid var(--line-l);border-radius:var(--r);overflow:hidden}
+.step{background:var(--bone);padding:28px 22px 30px;display:flex;flex-direction:column;min-height:200px}
+.step:hover{background:var(--bone-2)}
+.step-n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);font-weight:500}
+.step h3{font-size:19px;margin:16px 0 10px}
+.step p{font-size:14.5px;color:var(--mute);line-height:1.5}
+
+.why{background:var(--ink);color:var(--bone);padding:88px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.why-card{background:var(--ink-2);border:1px solid var(--line-d);border-radius:var(--r);padding:28px 24px}
+.why-card h3{font-size:18px;color:#fff;margin-bottom:8px}
+.why-card p{font-size:14.5px;color:var(--mute-d);line-height:1.55}
+.wic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.wic svg{width:21px;height:21px;stroke-width:1.7;fill:none}
+
+.split{padding:88px 0;background:var(--bone-2)}
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.door{background:#fff;border:1px solid var(--line-l);border-radius:var(--r);padding:32px 28px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.door:hover{transform:translateY(-4px);border-color:rgba(31,111,91,.35)}
+.door .dk{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:12px}
+.door h3{font-size:24px;margin-bottom:10px}
+.door p{font-size:15px;color:var(--mute);line-height:1.55;flex:1}
+.door .btn{margin-top:22px;align-self:flex-start}
+
+.final{background:var(--ink);color:var(--bone);padding:88px 0;text-align:center}
+.final h2{font-size:clamp(28px,3.8vw,44px);color:#fff;margin-top:14px}
+.final p{color:var(--mute-d);font-size:17px;margin:16px auto 0;max-width:30em}
+.final .hero-cta{justify-content:center}
+
+.foot{background:var(--ink);border-top:1px solid var(--line-d);padding:54px 0 40px;color:var(--mute-d)}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:920px){
+    .hero-grid,.why-grid,.split-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .steps{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero on-dark">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="brand-hero reveal d1" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,42px);color:#fff;letter-spacing:-.03em;margin:0">Squad Institute</p>
+        <span class="eyebrow reveal d2" style="margin-top:18px">Career coaching · out of a job</span>
+        <h1 class="reveal d3">Between jobs<br>isn’t the <span class="hl">end of you.</span></h1>
+        <p class="hero-sub reveal d4">Same brain we built the marketplace for — just a softer door. If rent, silence, and Seek are louder than your CV right now, coaching restores one move before you claim a startup seat.</p>
+        <p class="f1-line reveal d4"><b>Out of work</b> · <b>One next move</b> · <b>Human</b> in 5 days · Seat when ready</p>
+        <div class="hero-cta reveal d4">
+          <a href="apply.html?path=coaching" class="btn btn-primary">Book coaching<span class="arw">→</span></a>
+          <a href="active-squads.html" class="btn btn-ghost">Or browse seats</a>
+        </div>
+      </div>
+      <div class="hero-card reveal d4" aria-hidden="true">
+        <div class="hc-top">
+          <span class="hc-id">// today card</span>
+          <span class="pill ship"><span class="dot"></span>one move</span>
+        </div>
+        <div class="hc-name">You’re not broken. The funnel is.</div>
+        <p class="hc-desc">Coaching doesn’t sell you a personality reboot. It steadies the search, names what’s on the line, and puts one controllable step in front of you.</p>
+        <div class="hc-list">
+          <span><b>01</b> Name the weather (rent · visa · burnout)</span>
+          <span><b>02</b> One move for this week — not a 40-tab plan</span>
+          <span><b>03</b> Pack or seat when you’re ready to ship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="wrap strip-in">
+      <span><b>Market</b> problem — not a character flaw</span>
+      <i class="sep"></i>
+      <span><b>Bandwidth</b> first — then the chase</span>
+      <i class="sep"></i>
+      <span><b>Seat</b> waiting when you want in</span>
+      <i class="sep"></i>
+      <span><b>No ghost</b> — human reply in 5 days</span>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="for">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Who this is for</span>
+      <h2>If you’re out of a job — or about to be.</h2>
+      <p>Grad, laid off, contract ended, visa clock ticking, shifts drying up. Coaching meets survival mode and search burnout without pretending you’re “not trying hard enough.”</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">ST1</span>
+        <h3>Survival mode</h3>
+        <p>Rent, food, visa dominate. We shrink the week to one move that still points at work.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">ST2</span>
+        <h3>Search burnout</h3>
+        <p>Exhausted and avoidant. We restore agency first — not another 12-tab strategy deck.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Gate</span>
+        <h3>What’s behind you</h3>
+        <p>Visa, no cushion, first-gen, justify, switch — we match the stakes, not a generic pep talk.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Next</span>
+        <h3>Door into a seat</h3>
+        <p>When you’re steadied, the marketplace is waiting — claim a startup squad for real experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why on-dark" id="how">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="eyebrow">What coaching actually does</span>
+      <h2 style="color:#fff">Stabilize. One move.<br>Then proof.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wic" style="background:rgba(31,111,91,.25)"><svg viewBox="0 0 24 24" stroke="#2A9B7A"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Read the weather</h3>
+        <p>Money, visa, family stakes, how long you’ve been out — named in private, not performed for LinkedIn.</p>
+      </div>
+      <div class="why-card">
+        <div class="wic" style="background:rgba(198,242,78,.14)"><svg viewBox="0 0 24 24" stroke="#C6F24E"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <h3>One controllable move</h3>
+        <p>This week’s card only. Applications, outreach, or a pack rebuild — never “fix your whole life by Friday.”</p>
+      </div>
+      <div class="why-card">
+        <div class="wic" style="background:rgba(232,93,76,.15)"><svg viewBox="0 0 24 24" stroke="#E85D4C"><path d="M4 7h16v13H4z"/><path d="M9 7V4h6v3"/></svg></div>
+        <h3>Pack or seat</h3>
+        <p>Leave with a clearer story and next step — or walk into a startup squad when you want something openable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="split" id="doors">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Two doors — same home</span>
+      <h2>Coaching steadies. A seat lets you ship.</h2>
+      <p>You don’t have to choose forever on day one. Start where your bandwidth is.</p>
+    </div>
+    <div class="split-grid">
+      <a class="door" href="apply.html?path=coaching">
+        <div class="dk">Door A · coaching</div>
+        <h3>I’m out of work. Hold me steady.</h3>
+        <p>Human coaching for the between-jobs brain — survival relevance, no blame, one next move. Soft path into the marketplace when you’re ready.</p>
+        <span class="btn btn-primary">Book coaching<span class="arw">→</span></span>
+      </a>
+      <a class="door" href="apply.html">
+        <div class="dk">Door B · marketplace seat</div>
+        <h3>I’m ready to sit with a squad.</h3>
+        <p>Claim a seat on a startup for real work experience — soft hold, buddy waiting, proof you can open.</p>
+        <span class="btn btn-primary">Claim a seat<span class="arw">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="final on-dark" id="apply">
+  <div class="wrap">
+    <span class="eyebrow">Don’t sit in the silence alone</span>
+    <h2>Out of a job. Still in the game.</h2>
+    <p>Human reply in five days. Coaching first if you need it — a startup seat when you want to ship.</p>
+    <div class="hero-cta">
+      <a href="apply.html?path=coaching" class="btn btn-primary">Book coaching<span class="arw">→</span></a>
+      <a href="active-squads.html" class="btn btn-ghost">See the marketplace</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — plus coaching for when you’re between jobs. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html?path=coaching">Book coaching</a>
+        <a href="apply.html">Claim a seat</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience, with optional career coaching for people between jobs. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Longer-path financial contributions are under a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+</script>
+</body>
+</html>

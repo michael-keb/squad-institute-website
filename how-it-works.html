@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How it works — Marketplace of startups · Squad Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#FF6B57;
+  --sky:#52C4FF;--amber:#FFB54A;--pink:#FF7FB6;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:-.01em}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;cursor:pointer;border:none;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute);transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
+
+/* hero */
+.phero{background:var(--ink);color:var(--bone);padding:68px 0 60px}
+.phero h1{font-size:clamp(34px,5vw,58px);color:#fff;font-weight:700;margin:20px 0 0;max-width:14em}
+.phero p{font-size:clamp(16px,1.4vw,18px);color:var(--mute-d);max-width:34em;margin-top:20px;line-height:1.55}
+.phero-meta{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bone);background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:30px;padding:7px 14px;display:inline-flex;align-items:center;gap:8px}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--lime)}
+
+/* phase nav strip */
+.pstrip{background:var(--ink-2);border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
+.pstrip-in{display:grid;grid-template-columns:repeat(3,1fr)}
+.pstrip a{padding:22px 24px;border-right:1px solid var(--line-d);display:flex;gap:14px;align-items:flex-start;transition:background .18s}
+.pstrip a:last-child{border-right:none}
+.pstrip a:hover{background:rgba(255,255,255,.03)}
+.pstrip .pn{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet-soft);font-weight:500;padding-top:2px}
+.pstrip .pt{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:#fff}
+.pstrip .pd{font-size:12.5px;color:var(--mute-d);margin-top:3px;line-height:1.4}
+
+/* journey */
+.jsec{padding:80px 0 90px;background:var(--bone)}
+.journey{position:relative;padding-left:64px;max-width:780px}
+.spine{position:absolute;left:23px;top:6px;bottom:40px;width:2px;background:var(--line-l);border-radius:2px}
+.spine-fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(180deg,var(--violet),var(--coral));border-radius:2px}
+
+.phase{position:relative;margin-bottom:8px}
+.phase-head{position:relative;padding:30px 0 14px}
+.phase-head .marker{position:absolute;left:-50px;top:30px;width:30px;height:30px;border-radius:8px;background:var(--bone-2);border:2px solid var(--line-l);display:flex;align-items:center;justify-content:center;transition:.3s;z-index:2}
+.phase-head .marker svg{width:15px;height:15px;stroke:var(--mute);stroke-width:2;fill:none;transition:.3s}
+.phase.lit .phase-head .marker{background:var(--ink);border-color:var(--ink)}
+.phase.lit .phase-head .marker svg{stroke:var(--lime)}
+.phase-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.phase-head h2{font-size:clamp(22px,2.6vw,30px);margin-top:8px}
+
+.jstep{position:relative;padding:14px 0 14px}
+.node{position:absolute;left:-50px;top:18px;width:20px;height:20px;border-radius:6px;background:var(--bone);border:2px solid var(--line-l);transition:.3s;z-index:2}
+.node::after{content:"";position:absolute;inset:4px;border-radius:2px;background:transparent;transition:.3s}
+.jstep.lit .node{border-color:var(--violet)}
+.jstep.lit .node::after{background:var(--violet)}
+.jcard{background:var(--bone-2);border:1px solid var(--line-l);border-radius:var(--r);padding:22px 24px;transition:transform .2s,box-shadow .2s}
+.jstep.lit .jcard{box-shadow:0 12px 30px -18px rgba(110,86,248,.55)}
+.jcard:hover{transform:translateX(3px)}
+.jc-top{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.jc-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);font-weight:500;flex-shrink:0}
+.jcard h3{font-size:20px}
+.jcard p{font-size:15px;color:var(--mute);line-height:1.55;margin-top:2px}
+.jc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.jtag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);background:rgba(0,0,0,.05);border:1px solid var(--line-l);padding:4px 9px;border-radius:6px;display:inline-flex;align-items:center;gap:6px}
+.jtag.key{color:var(--violet);background:rgba(110,86,248,.07);border-color:rgba(110,86,248,.22)}
+.jc-note{margin-top:13px;font-size:13px;color:var(--mute);background:rgba(110,86,248,.05);border-left:2px solid var(--violet);padding:10px 14px;border-radius:0 8px 8px 0;line-height:1.5}
+.jc-note b{color:var(--ink)}
+
+/* outcome band */
+.outcome{background:var(--bone-2);border-top:1px solid var(--line-l);padding:78px 0}
+.outcome .eyebrow{margin-bottom:16px}
+.outcome h2{font-size:clamp(26px,3.2vw,40px);max-width:18em}
+.ogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+.ocard{background:var(--bone);border:1px solid var(--line-l);border-radius:var(--r);padding:26px 24px}
+.ocard .oic{width:40px;height:40px;border-radius:10px;background:var(--ink);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.ocard .oic svg{width:19px;height:19px;stroke:var(--lime);stroke-width:1.7;fill:none}
+.ocard h3{font-size:18px;margin-bottom:7px}
+.ocard p{font-size:14px;color:var(--mute);line-height:1.55}
+
+/* final */
+.final{background:var(--ink);color:var(--bone);padding:96px 0;text-align:center}
+.final h2{font-size:clamp(30px,4.2vw,52px);color:#fff;max-width:15em;margin:18px auto 0}
+.final p{color:var(--mute-d);font-size:17px;margin:20px auto 0;max-width:30em}
+.final-cta{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+
+/* footer */
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.foot-bot p{font-size:12.5px;line-height:1.6}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:920px){
+    .pstrip-in{grid-template-columns:1fr}
+  .pstrip a{border-right:none;border-bottom:1px solid var(--line-d)}
+  .pstrip a:last-child{border-bottom:none}
+  .ogrid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .journey{padding-left:54px}
+  .phase-head .marker{left:-44px}
+  .node{left:-44px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html" class="active">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="phero">
+  <div class="wrap">
+    <span class="eyebrow">How it works · marketplace of startups</span>
+    <h1>See them. Want in.<br>Sit down. Ship.</h1>
+    <p>Browse startup squads. Claim a soft seat with a buddy waiting. Ship real work. Leave with a pack you can open. Rough week = paused. Human reply in five days.</p>
+    <div class="phero-meta">
+      <span class="chip"><i></i>Proof you can open</span>
+      <span class="chip"><i></i>Rough week ≠ red</span>
+    </div>
+  </div>
+</header>
+
+<!-- PHASE STRIP -->
+<div class="pstrip">
+  <div class="wrap" style="padding:0">
+    <div class="pstrip-in">
+      <a href="#phase1">
+        <span class="pn">01</span>
+        <span><span class="pt">Fall for a squad</span><span class="pd">Browse. Claim the chair. Buddy hello.</span></span>
+      </a>
+      <a href="#phase2">
+        <span class="pn">02</span>
+        <span><span class="pt">Sprint</span><span class="pd">Real work. Pack + graph you can open.</span></span>
+      </a>
+      <a href="#phase3">
+        <span class="pn">03</span>
+        <span><span class="pt">Year or exit</span><span class="pd">Optional longer path — or leave desirable.</span></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNEY -->
+<section class="jsec" id="journey">
+  <div class="wrap">
+    <div class="journey" id="journeyEl">
+      <div class="spine"><div class="spine-fill" id="spineFill"></div></div>
+
+      <!-- PHASE 1 -->
+      <div class="phase" id="phase1">
+        <div class="phase-head">
+          <div class="marker"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
+          <span class="phase-label">Phase 01 — Claim the seat</span>
+          <h2>You’re wanted — we hold the chair.</h2>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">01</span><h3>Ask into a startup squad</h3></div>
+            <p>It feels like a job application: pick Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, or Data, and tell us your hours, runway, and what’s on the line. Name a squad if you’ve already fallen for one. That’s how we match you to a real seat.</p>
+            <div class="jc-tags"><span class="jtag">Claim energy</span><span class="jtag">7 pathways</span><span class="jtag">~15 min</span></div>
+            <div class="jc-note"><b>On a student or work visa?</b> We’ll talk through eligibility with you early. If it’s not a fit, we say so straight — not after you’ve invested hope.</div>
+          </div>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">02</span><h3>Soft seat + buddy + pocket</h3></div>
+            <p>Your seat is held and a human owes you the first hello. Your pocket opens with one next move when the week is rough. Belonging first; the work unlocks when you’re steadied enough to ship.</p>
+            <div class="jc-tags"><span class="jtag">Someone’s waiting</span><span class="jtag">Buddy</span><span class="jtag">Seat held</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="phase" id="phase2">
+        <div class="phase-head">
+          <div class="marker"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+          <span class="phase-label">Phase 02 — Sprint</span>
+          <h2>Ship proof — and show you showed up.</h2>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">03</span><h3>Work on a real lifecycle</h3></div>
+            <p>You run orient → scope → model → plan → instrument → build → review → ship → reflect — the same spine every slice. Tools are recommended only when that stage needs them, with proof of access, not a shopping cart on day one. In Instrument and Build you also learn to <strong>harness AI for your pathway</strong> — role-specific, reviewed, still yours to ship.</p>
+            <div class="jc-tags"><span class="jtag key">Graduate SDLC</span><span class="jtag">AI harness per role</span><span class="jtag">Squad needs board</span></div>
+          </div>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">04</span><h3>Two ships + engagement graph</h3></div>
+            <p>The minimum bar is two reviewed artifacts, a showable signal pack, and a verified participation timeline — active, paused for a rough week, or absent. Recruiters can share the graph. Soft ground, hard weather: tenacity without humiliation.</p>
+            <div class="jc-tags"><span class="jtag key">More employable than day one</span><span class="jtag">Recruiter-facing graph</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="phase" id="phase3">
+        <div class="phase-head">
+          <div class="marker"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+          <span class="phase-label">Phase 03 — Year path or exit well</span>
+          <h2>Two doors — standing still isn’t one of them.</h2>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">05</span><h3>Exit well — keep the pack</h3></div>
+            <p>Finish the Sprint stronger with a portfolio, squad references, and an engagement record. There’s no shame if you don’t take the year. Refer two people if it helped. Integrity over trap conversion.</p>
+            <div class="jc-tags"><span class="jtag">Signal pack</span><span class="jtag">Dignity intact</span></div>
+          </div>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">06</span><h3>Convert — 52-week employment ladder</h3></div>
+            <p>Same engine, longer fuse: operate, open workplace access, chase roles or deepen into a Venture — a startup path that can become yours, with buy-now-pay-later or income-share terms under a separate agreement when that path is live.</p>
+            <div class="jc-tags"><span class="jtag key">Demand door</span><span class="jtag">Venture / ownership path</span><span class="jtag">Pay when earning</span></div>
+          </div>
+        </div>
+
+        <div class="jstep">
+          <div class="node"></div>
+          <div class="jcard">
+            <div class="jc-top"><span class="jc-num">07</span><h3>Lock employability</h3></div>
+            <p>You may end up in covered professional work, operating a Venture with ownership, or running a documented market process — plus a year of journey captured. We don’t guarantee a job. We guarantee the structure that makes “more employable” measurable.</p>
+            <div class="jc-tags"><span class="jtag key">Outcome lock</span><span class="jtag">No fake promises</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOME -->
+<section class="outcome">
+  <div class="wrap">
+    <span class="eyebrow">What you walk away with</span>
+    <h2>Proof that makes you hard to ignore.</h2>
+    <div class="ogrid">
+      <div class="ocard">
+        <div class="oic"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4z"/><path d="M9 7V4h6v3M4 12h16"/></svg></div>
+        <h3>Shipped work + operating trail</h3>
+        <p>Artifacts plus how you ran them — map, board, review. It’s the thing most grad CVs are missing.</p>
+      </div>
+      <div class="ocard">
+        <div class="oic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="10" r="2.5"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5M14 19c0-2 1-3.5 3-3.5"/></svg></div>
+        <h3>Squad + engagement graph</h3>
+        <p>People who saw you work, and a verified show-up record recruiters can actually open.</p>
+      </div>
+      <div class="ocard">
+        <div class="oic"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <h3>Optional year / ownership path</h3>
+        <p>If you convert, you get sustained employment chase or a Venture with ownership terms — never forced on day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final on-dark" id="apply">
+  <div class="wrap">
+    <span class="eyebrow">Don’t leave it on the tab</span>
+    <h2>Your seat won’t wait forever.</h2>
+    <p>Claim a startup seat for work experience — we’ll check fit with you before you start.</p>
+    <div class="final-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="active-squads.html" class="btn btn-ghost">Browse the marketplace</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#FF6B57"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="#journey">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Equity and financial contributions are governed by a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var journeyEl=document.getElementById('journeyEl');
+  var fill=document.getElementById('spineFill');
+  var steps=[].slice.call(document.querySelectorAll('.jstep'));
+  var phases=[].slice.call(document.querySelectorAll('.phase'));
+
+  function update(){
+    var rect=journeyEl.getBoundingClientRect();
+    var mid=window.innerHeight*0.55;
+    var total=rect.height;
+    var passed=mid-rect.top;
+    var prog=Math.max(0,Math.min(1,passed/total));
+    fill.style.height=(prog*100)+'%';
+    steps.forEach(function(s){
+      var r=s.querySelector('.node').getBoundingClientRect();
+      if(r.top<mid){s.classList.add('lit');}else{s.classList.remove('lit');}
+    });
+    phases.forEach(function(p){
+      var r=p.querySelector('.marker').getBoundingClientRect();
+      if(r.top<mid){p.classList.add('lit');}else{p.classList.remove('lit');}
+    });
+  }
+  if(reduce){
+    fill.style.height='100%';
+    steps.forEach(function(s){s.classList.add('lit');});
+    phases.forEach(function(p){p.classList.add('lit');});
+  }else{
+    update();
+    window.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update);
+  }
+</script>
+</body>
+</html>

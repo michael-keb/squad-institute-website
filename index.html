@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squad Institute — Marketplace of startups for work experience</title>
+<meta name="description" content="A marketplace of startups for work experience. Claim a seat on a real squad, ship real work, leave with proof you can open. Human reply in five days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;
+  --ink-2:#1E1D26;
+  --bone:#F3F2EC;
+  --bone-2:#EAE9E1;
+  --violet:#1F6F5B;
+  --violet-soft:#2A9B7A;
+  --lime:#C6F24E;
+  --coral:#E85D4C;
+  --sky:#52C4FF;
+  --amber:#FFB54A;
+  --pink:#FF7FB6;
+  --mute:#6B6A75;
+  --mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);
+  --line-l:rgba(0,0,0,.12);
+  --maxw:1180px;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Hanken Grotesk',-apple-system,sans-serif;
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:400;letter-spacing:-.01em}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.04;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+section{position:relative}
+
+/* ---------- eyebrow ---------- */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;text-transform:uppercase;letter-spacing:.16em;
+  color:var(--violet);display:inline-flex;align-items:center;gap:9px;
+}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:10px;cursor:pointer;border:none;
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s ease}
+.btn:hover .arw{transform:translateX(3px)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
+
+/* ---------- hero ---------- */
+.hero{background:var(--ink);color:var(--bone);padding:84px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,66px);font-weight:700;color:#fff;margin:22px 0 0}
+.hero h1 .hl{color:var(--lime)}
+.hero-sub{font-size:clamp(16px,1.5vw,18.5px);color:var(--mute-d);max-width:30em;margin-top:22px;line-height:1.55}
+.hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:26px;margin-top:28px;flex-wrap:wrap}
+.hero-meta .mi{display:flex;flex-direction:column;gap:3px}
+.hero-meta .mn{font-family:'Space Grotesk',sans-serif;font-size:23px;font-weight:600;color:#fff}
+.hero-meta .ml{font-size:12.5px;color:var(--mute-d)}
+.f1-line{
+  margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mute-d);
+  letter-spacing:.02em;line-height:1.7;
+}
+.f1-line b{color:var(--lime);font-weight:500}
+.gates{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.gates a{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:7px 11px;border-radius:8px;
+  border:1px solid var(--line-d);color:var(--mute-d);background:rgba(255,255,255,.03);
+  transition:border-color .15s,color .15s,background .15s;
+}
+.gates a:hover{color:#fff;border-color:rgba(198,242,78,.45);background:rgba(198,242,78,.08);text-decoration:none}
+.persona-sec{padding:64px 0;background:var(--bone)}
+.persona-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:24px}
+.persona{
+  display:block;background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:16px 14px;
+  transition:transform .18s,border-color .18s;
+}
+.persona:hover{transform:translateY(-3px);border-color:rgba(31,111,91,.35);text-decoration:none}
+.persona .pk{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);margin-bottom:6px}
+.persona h3{font-size:15px;margin-bottom:0}
+@media (max-width:920px){
+  .persona-grid{grid-template-columns:1fr 1fr 1fr}
+}
+@media (max-width:640px){
+  .persona-grid{grid-template-columns:1fr}
+}
+
+.reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}.d5{animation-delay:.41s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* hero squad preview card */
+.hero-card{
+  background:linear-gradient(180deg,var(--ink-2),#191822);
+  border:1px solid var(--line-d);border-radius:18px;padding:20px;
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.7);
+}
+.hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.hc-id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
+.pill{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.pill .dot{width:6px;height:6px;border-radius:50%}
+.pill.build{background:rgba(110,86,248,.16);color:var(--violet-soft)}
+.pill.build .dot{background:var(--violet-soft)}
+.pill.ship{background:rgba(198,242,78,.14);color:var(--lime)}
+.pill.ship .dot{background:var(--lime)}
+.pill.recruit{background:rgba(255,107,87,.16);color:var(--coral)}
+.pill.recruit .dot{background:var(--coral)}
+.dot.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hc-row{display:flex;align-items:center;gap:13px;padding:12px 0;border-top:1px solid var(--line-d)}
+.crest{width:38px;height:38px;border-radius:9px;flex-shrink:0}
+.hc-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#fff}
+.hc-desc{font-size:12.5px;color:var(--mute-d);margin-top:1px}
+.hc-mem{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
+
+/* hero strip */
+.strip{background:var(--ink);border-top:1px solid var(--line-d);padding:0 0 0}
+.strip-in{display:flex;align-items:center;gap:34px;padding:20px 0;flex-wrap:wrap;justify-content:center}
+.strip span{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mute-d);display:inline-flex;align-items:center;gap:9px}
+.strip span b{color:var(--bone);font-weight:500}
+.strip .sep{width:5px;height:5px;border-radius:50%;background:var(--violet);display:inline-block}
+
+/* ---------- generic section ---------- */
+.sec{padding:96px 0}
+.sec-head{max-width:640px;margin-bottom:54px}
+.sec-head h2{font-size:clamp(28px,3.6vw,44px);margin-top:16px}
+.sec-head p{color:var(--mute);font-size:17px;margin-top:16px;line-height:1.55}
+
+/* ---------- journey ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-l);border:1px solid var(--line-l);border-radius:var(--r);overflow:hidden}
+.step{background:var(--bone);padding:28px 24px 30px;display:flex;flex-direction:column;min-height:200px;transition:background .2s}
+.step:hover{background:var(--bone-2)}
+.step-n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);font-weight:500}
+.step h3{font-size:20px;margin:18px 0 10px}
+.step p{font-size:14.5px;color:var(--mute);line-height:1.5}
+.step .ic{margin-top:auto;padding-top:18px}
+.step .ic svg{width:26px;height:26px;stroke:var(--ink);stroke-width:1.6;fill:none}
+
+/* ---------- why real ---------- */
+.why{background:var(--ink);color:var(--bone);padding:96px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.why-card{background:var(--ink-2);border:1px solid var(--line-d);border-radius:var(--r);padding:30px 26px;transition:transform .2s,border-color .2s}
+.why-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.24)}
+.why-card .wic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.why-card .wic svg{width:21px;height:21px;stroke-width:1.7;fill:none}
+.why-card h3{font-size:19px;color:#fff;margin-bottom:9px}
+.why-card p{font-size:14.5px;color:var(--mute-d);line-height:1.55}
+
+/* ---------- squads board ---------- */
+.board{background:var(--ink);color:var(--bone);padding:30px 0 100px;border-top:1px solid var(--line-d)}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.board-head h2{font-size:clamp(28px,3.6vw,44px);margin-top:14px}
+.board-head p{color:var(--mute-d);max-width:34em;margin-top:14px;font-size:16px}
+.legend{display:flex;gap:18px;flex-wrap:wrap}
+.legend span{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d);display:inline-flex;align-items:center;gap:7px}
+.legend .dot{width:7px;height:7px;border-radius:50%}
+.squads{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.squad{
+  background:linear-gradient(180deg,var(--ink-2),#191822);
+  border:1px solid var(--line-d);border-radius:var(--r);padding:22px;
+  transition:transform .2s,border-color .2s;position:relative;
+}
+.squad:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.26)}
+.sq-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.sq-id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
+.sq-body{display:flex;gap:14px;align-items:flex-start}
+.sq-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:#fff}
+.sq-desc{font-size:13.5px;color:var(--mute-d);margin-top:4px;line-height:1.45}
+.sq-foot{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line-d);flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute-d);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:6px}
+.sq-people{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.sq-person{display:flex;gap:10px;align-items:center}
+.sq-person img{width:36px;height:36px;border-radius:10px;background:#252430;border:1px solid var(--line-d);flex-shrink:0}
+.sq-person .sp-n{font-size:13.5px;color:#fff;font-weight:600;font-family:'Space Grotesk',sans-serif}
+.sq-person .sp-d{font-size:12px;color:var(--mute-d);margin-top:1px;line-height:1.35}
+.sq-person .sp-d b{color:var(--lime);font-weight:500}
+
+/* ---------- model / eligibility ---------- */
+.model{padding:96px 0;background:var(--bone-2)}
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.model h2{font-size:clamp(28px,3.4vw,42px);margin-top:16px}
+.model-lead{font-size:17px;color:var(--mute);margin-top:18px;line-height:1.6;max-width:30em}
+.facts{display:flex;flex-direction:column;gap:2px;background:var(--line-l);border:1px solid var(--line-l);border-radius:var(--r);overflow:hidden}
+.fact{background:var(--bone);padding:20px 24px;display:flex;align-items:flex-start;gap:16px}
+.fact .fk{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet);min-width:90px;padding-top:3px;font-weight:500}
+.fact .fv b{font-family:'Space Grotesk',sans-serif;font-size:16px;display:block;margin-bottom:3px}
+.fact .fv span{font-size:13.5px;color:var(--mute);line-height:1.45}
+.note{margin-top:22px;font-size:13px;color:var(--mute);background:rgba(110,86,248,.06);border:1px solid rgba(110,86,248,.18);border-radius:10px;padding:15px 17px;line-height:1.55}
+.note b{color:var(--ink)}
+
+/* ---------- faq ---------- */
+.faq{padding:96px 0}
+.faq-list{max-width:780px;margin-top:44px}
+details{border-top:1px solid var(--line-l);padding:0}
+details:last-child{border-bottom:1px solid var(--line-l)}
+summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px}
+summary::-webkit-details-marker{display:none}
+.plus{position:relative;width:18px;height:18px;flex-shrink:0}
+.plus::before,.plus::after{content:"";position:absolute;background:var(--violet);transition:transform .2s}
+.plus::before{top:8px;left:0;width:18px;height:2px}
+.plus::after{left:8px;top:0;width:2px;height:18px}
+details[open] .plus::after{transform:scaleY(0)}
+details[open] summary{padding-bottom:8px}
+.faq-a{padding:0 0 24px;color:var(--mute);font-size:15.5px;line-height:1.6;max-width:64ch}
+
+/* ---------- final cta ---------- */
+.final{background:var(--ink);color:var(--bone);padding:104px 0;text-align:center}
+.final h2{font-size:clamp(32px,4.4vw,56px);color:#fff;max-width:16em;margin:18px auto 0}
+.final p{color:var(--mute-d);font-size:17px;margin:20px auto 0;max-width:30em}
+.final .hero-cta{justify-content:center;margin-top:36px}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.foot-bot p{font-size:12.5px;line-height:1.6}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+/* ---------- responsive ---------- */
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero{padding-top:60px}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .squads{grid-template-columns:repeat(2,1fr)}
+  .model-grid{grid-template-columns:1fr;gap:40px}
+  }
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .sec,.why,.board,.model,.faq,.final{padding-top:64px;padding-bottom:64px}
+  .steps{grid-template-columns:1fr}
+  .squads{grid-template-columns:1fr}
+  .hero-meta{gap:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="brand-hero reveal d1" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,42px);color:#fff;letter-spacing:-.03em;margin:0">Squad Institute</p>
+        <span class="eyebrow reveal d2" style="margin-top:18px">Marketplace of startups · seats waiting</span>
+        <h1 class="reveal d3">Stop refreshing Seek.<br><span class="hl">Come get chosen.</span></h1>
+        <p class="hero-sub reveal d4">A marketplace of startups that want you on the build — real work experience, a seat with a crew, proof you can open.</p>
+        <p class="f1-line reveal d4"><b>Your seat</b> held soft · <b>Ship</b> real work · Human in <b>5 days</b></p>
+        <div class="hero-cta reveal d5">
+          <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+          <a href="builders.html#maya" class="btn btn-ghost">Taste a ship</a>
+        </div>
+        <div class="gates reveal d5" aria-label="What’s behind you">
+          <a href="builders.html#maya">Visa →</a>
+          <a href="builders.html#aisha">Shifts →</a>
+          <a href="builders.html#noah">First-gen →</a>
+          <a href="builders.html#priya">Justify →</a>
+          <a href="builders.html#liam">Switch →</a>
+        </div>
+      </div>
+
+      <!-- hero squad preview -->
+      <div class="hero-card reveal d5" aria-hidden="true">
+        <div class="hc-top">
+          <span class="hc-id">// seat held for you</span>
+          <span class="pill recruit"><span class="dot pulse"></span>open</span>
+        </div>
+        <div class="hc-row" style="border-top:none;flex-direction:column;align-items:stretch;gap:10px">
+          <div class="hc-name" style="font-size:15px">Harbour · wants one more</div>
+          <div class="hc-desc">Priya’s already on listing cards. Elena’s wiring the booking journey. There’s a chair with your name almost on it.</div>
+          <div class="hc-desc" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;line-height:1.8;color:var(--mute-d);margin-top:6px">
+            Soft hold · buddy hello · reply in 5 days<br>
+            Rough week? We pause you — we don’t drop you.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- strip -->
+  <div class="strip">
+    <div class="wrap strip-in">
+      <span><b>Wanted</b> on a real squad</span>
+      <i class="sep"></i>
+      <span><b>Chosen</b> into a startup seat</span>
+      <i class="sep"></i>
+      <span><b>Shipping</b> real work</span>
+      <i class="sep"></i>
+      <span><b>Leaving</b> with proof that opens</span>
+    </div>
+  </div>
+</header>
+
+<!-- PERSONA DOORS -->
+<section class="persona-sec" id="stakes">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="eyebrow">We already know the weather</span>
+      <h2>Come as you are. We’ll hold the seat.</h2>
+    </div>
+    <div class="persona-grid">
+      <a class="persona" href="builders.html#maya"><div class="pk">visa</div><h3>Visa clock</h3></a>
+      <a class="persona" href="builders.html#aisha"><div class="pk">no cushion</div><h3>Shifts + rent</h3></a>
+      <a class="persona" href="builders.html#noah"><div class="pk">first-gen</div><h3>No family map</h3></a>
+      <a class="persona" href="builders.html#priya"><div class="pk">justify</div><h3>First real failure</h3></a>
+      <a class="persona" href="builders.html#liam"><div class="pk">switch</div><h3>Career change</h3></a>
+      <a class="persona" href="career-coaching.html"><div class="pk">between jobs</div><h3>Out of work</h3></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The pull</span>
+      <h2>See them. Want in. Sit down. Ship.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h3>Fall for a squad</h3>
+        <p>Browse the marketplace — startups with faces, work in flight, seats that still want someone.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M8 14h8"/></svg></div>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h3>Ask for the chair</h3>
+        <p>One application. Soft seat held. A buddy already waiting to say hello. Human reply in five days.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 5-5M21 20c0-3-2.5-5-5-5"/></svg></div>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h3>Feel the work</h3>
+        <p>Inside a real product. Two ships. Something you can open — and show.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M8 9l-2 3 2 3M16 9l2 3-2 3"/></svg></div>
+      </div>
+      <div class="step">
+        <span class="step-n">04</span>
+        <h3>Leave desirable</h3>
+        <p>A pack recruiters can open. Optional longer Venture if you want to stay — never forced on day one.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 6"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY REAL -->
+<section class="why on-dark">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="eyebrow">Why it pulls</span>
+      <h2 style="color:#fff">Belonging first.<br>Proof next.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wic" style="background:rgba(31,111,91,.25)"><svg viewBox="0 0 24 24" stroke="#2A9B7A"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>The market ghosted you</h3>
+        <p>ATS, silence, unpaid filters — not a verdict on you. We start from that weather.</p>
+      </div>
+      <div class="why-card">
+        <div class="wic" style="background:rgba(198,242,78,.14)"><svg viewBox="0 0 24 24" stroke="#C6F24E"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 2 4-6"/></svg></div>
+        <h3>We don’t flirt then vanish</h3>
+        <p>Rough week = paused, not red. Go quiet and a human pings you. The work gets reviewed — not your worth.</p>
+      </div>
+      <div class="why-card">
+        <div class="wic" style="background:rgba(232,93,76,.15)"><svg viewBox="0 0 24 24" stroke="#E85D4C"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="10" r="2.5"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5M14 19c0-2 1-3.5 3-3.5"/></svg></div>
+        <h3>Someone wants you there</h3>
+        <p>Buddy + soft seat. You’re not browsing a brochure — you’re being held for a crew.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SQUADS BOARD -->
+<section class="board on-dark" id="squads">
+  <div class="wrap">
+    <div class="board-head">
+      <div>
+        <span class="eyebrow">Who’s already building</span>
+        <h2>Find the squad you can’t ignore.</h2>
+        <p>Illustrative board until live repos wire in — people, work in flight, seats that still want someone.</p>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#2A9B7A"></i>Building</span>
+        <span><i class="dot" style="background:#C6F24E"></i>Shipping</span>
+        <span><i class="dot" style="background:#FF6B57"></i>Recruiting</span>
+      </div>
+    </div>
+
+    <div class="squads">
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-01</span><span class="pill build"><span class="dot"></span>Building</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><circle cx="14" cy="14" r="7" fill="#1F6F5B"/><rect x="18" y="18" width="12" height="12" rx="3" fill="#2A9B7A"/></svg>
+          <div><div class="sq-name">Tollgate</div><div class="sq-desc">Invoicing for solo tradies — quote to paid.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AishaK&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Aisha K.</div><div class="sp-d">Working on <b>GST line items</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MarcusT&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Marcus T.</div><div class="sp-d">Working on <b>Stripe paid status</b></div></div></div>
+        </div>
+        <div class="sq-foot"><span class="tag">React</span><span class="tag">Node</span></div>
+      </div>
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-02</span><span class="pill recruit"><span class="dot pulse"></span>Recruiting</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><path d="M19 8l9 16H10z" fill="#FF6B57"/></svg>
+          <div><div class="sq-name">Harbour</div><div class="sq-desc">Allied-health booking · 2 seats open.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=PriyaS&backgroundColor=ff7fb6" alt=""><div><div class="sp-n">Priya S.</div><div class="sp-d">Working on <b>listing cards</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=ElenaV&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Elena V.</div><div class="sp-d">Working on <b>booking journey</b></div></div></div>
+        </div>
+        <div class="sq-foot"><span class="tag">Next.js</span><span class="tag">2 seats</span></div>
+      </div>
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-03</span><span class="pill ship"><span class="dot"></span>Shipping</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><circle cx="13" cy="19" r="6" fill="#C6F24E"/><circle cx="25" cy="19" r="6" fill="#221F33" stroke="#C6F24E" stroke-width="1.5"/></svg>
+          <div><div class="sq-name">Kelpie</div><div class="sq-desc">Last-mile routes for regional drivers.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Maya R.</div><div class="sp-d">Working on <b>offline fallback</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=SamO&backgroundColor=2a9b7a" alt=""><div><div class="sp-n">Sam O.</div><div class="sp-d">Working on <b>break-window reviews</b></div></div></div>
+        </div>
+        <div class="sq-foot"><span class="tag">Python</span><span class="tag">Maps</span></div>
+      </div>
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-04</span><span class="pill build"><span class="dot"></span>Building</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><rect x="9" y="9" width="9" height="9" rx="2" fill="#52C4FF"/><rect x="20" y="20" width="9" height="9" rx="2" fill="#52C4FF"/><rect x="20" y="9" width="9" height="9" rx="2" fill="#2C3A4A"/></svg>
+          <div><div class="sq-name">Ledger</div><div class="sq-desc">Bookkeeping copilot for small firms.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=NoahP&backgroundColor=ff6b57" alt=""><div><div class="sp-n">Noah P.</div><div class="sp-d">Working on <b>regression pack</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=HannahB&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Hannah B.</div><div class="sp-d">Working on <b>bank-match rules</b></div></div></div>
+        </div>
+        <div class="sq-foot"><span class="tag">TypeScript</span></div>
+      </div>
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-05</span><span class="pill build"><span class="dot"></span>Building</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><path d="M19 9l10 10-10 10L9 19z" fill="#FFB54A"/><circle cx="19" cy="19" r="3.5" fill="#221F33"/></svg>
+          <div><div class="sq-name">Sandbar</div><div class="sq-desc">Membership &amp; rostering for sports clubs.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=LiamT&backgroundColor=ffb54a" alt=""><div><div class="sp-n">Liam T.</div><div class="sp-d">Working on <b>renewals + waitlist</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AmiraH&backgroundColor=ff6b57" alt=""><div><div class="sp-n">Amira H.</div><div class="sp-d">Working on <b>mobile roster UI</b></div></div></div>
+        </div>
+        <div class="sq-foot"><span class="tag">Rails</span><span class="tag">React</span></div>
+      </div>
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-06</span><span class="pill recruit"><span class="dot pulse"></span>Recruiting</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><circle cx="19" cy="15" r="6" fill="#FF7FB6"/><rect x="11" y="22" width="16" height="7" rx="3.5" fill="#FF7FB6"/></svg>
+          <div><div class="sq-name">Quokka</div><div class="sq-desc">Hospitality shift handover · seats open.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=RileyJ&backgroundColor=ff7fb6" alt=""><div><div class="sp-n">Riley J.</div><div class="sp-d">Working on <b>shift notes</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=KaiM&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Kai M.</div><div class="sp-d">Working on <b>handover pack</b></div></div></div>
+        </div>
+        <div class="sq-foot"><span class="tag">Go</span><span class="tag">3 seats</span></div>
+      </div>
+    </div>
+    <p class="mono" style="margin-top:26px;font-size:12px;color:#56555f">// Illustrative people &amp; work — not a live headcount feed.</p>
+    <div style="margin-top:28px"><a href="active-squads.html" class="btn btn-ghost">See every seat that’s open<span class="arw">→</span></a></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final on-dark" id="apply">
+  <div class="wrap">
+    <span class="eyebrow">Don’t leave it on the tab</span>
+    <h2>Your seat won’t wait forever.</h2>
+    <p>Proof you can open. A human answers in five days — or we release the hold.</p>
+    <div class="hero-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="builders.html" class="btn btn-ghost">See who already shipped</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience (Sprint and optional longer Venture paths). Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Longer-path financial contributions are under a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // mobile menu
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+
+  // scroll reveal
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.style.transition='opacity .6s ease, transform .6s ease'; e.target.style.opacity=1; e.target.style.transform='none'; io.unobserve(e.target); }
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.step, .why-card, .squad, .fact, details, .sec-head').forEach(function(el){
+      el.style.opacity=0; el.style.transform='translateY(18px)'; io.observe(el);
+    });
+  }
+</script>
+</body>
+</html>

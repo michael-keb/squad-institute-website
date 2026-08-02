@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Marketplace of startups · Squad Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#FF6B57;
+  --sky:#52C4FF;--amber:#FFB54A;--pink:#FF7FB6;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.narrow{max-width:820px}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:-.01em}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;cursor:pointer;border:none;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute);transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
+
+/* hero */
+.fhero{background:var(--ink);color:var(--bone);padding:66px 0 58px}
+.fhero h1{font-size:clamp(34px,5vw,58px);color:#fff;font-weight:700;margin:18px 0 0;max-width:14em}
+.fhero p{font-size:clamp(16px,1.4vw,18px);color:var(--mute-d);max-width:34em;margin-top:18px;line-height:1.55}
+.fhero .chips{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bone);background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:30px;padding:7px 14px}
+
+/* faq body */
+.fsec{padding:72px 0 40px}
+.cat{margin-bottom:46px}
+.cat-label{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--violet);font-weight:500;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.cat-label::after{content:"";flex:1;height:1px;background:var(--line-l)}
+
+details{border-top:1px solid var(--line-l)}
+.cat details:last-child{border-bottom:1px solid var(--line-l)}
+summary{list-style:none;cursor:pointer;padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18.5px}
+summary::-webkit-details-marker{display:none}
+.plus{position:relative;width:17px;height:17px;flex-shrink:0}
+.plus::before,.plus::after{content:"";position:absolute;background:var(--violet);transition:transform .2s}
+.plus::before{top:7.5px;left:0;width:17px;height:2px}
+.plus::after{left:7.5px;top:0;width:2px;height:17px}
+details[open] .plus::after{transform:scaleY(0)}
+details[open] summary{padding-bottom:6px}
+.faq-a{padding:0 0 24px;color:var(--mute);font-size:15.5px;line-height:1.65;max-width:68ch}
+.faq-a strong{color:var(--ink);font-weight:600}
+.faq-a .pin{display:block;margin-top:12px;font-size:13.5px;color:var(--mute);background:rgba(110,86,248,.06);border-left:2px solid var(--violet);padding:11px 14px;border-radius:0 8px 8px 0}
+.faq-a .pin b{color:var(--ink)}
+
+/* still have q */
+.still{padding:18px 0 64px}
+.still-card{background:var(--bone-2);border:1px solid var(--line-l);border-radius:var(--r);padding:30px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.still-card h3{font-size:21px}
+.still-card p{color:var(--mute);font-size:15px;margin-top:5px}
+
+/* final */
+.final{background:var(--ink);color:var(--bone);padding:92px 0;text-align:center}
+.final h2{font-size:clamp(30px,4.2vw,52px);color:#fff;max-width:15em;margin:18px auto 0}
+.final p{color:var(--mute-d);font-size:17px;margin:20px auto 0;max-width:30em}
+.final-cta{display:flex;gap:14px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+
+/* footer */
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="fhero">
+  <div class="wrap">
+    <span class="eyebrow">FAQ · marketplace of startups</span>
+    <h1>Straight answers.</h1>
+    <p>Not a course. Not fake placement. A marketplace of startups for work experience — start here.</p>
+    <div class="chips">
+      <span class="chip">The program</span>
+      <span class="chip">Money &amp; equity</span>
+      <span class="chip">Eligibility</span>
+      <span class="chip">After the program</span>
+    </div>
+  </div>
+</header>
+
+<!-- FAQ -->
+<section class="fsec" id="faq">
+  <div class="wrap narrow">
+
+    <div class="cat" id="tldr" style="margin-bottom:40px">
+      <div class="cat-label">60-second answers</div>
+      <div style="display:grid;gap:10px;margin-top:14px">
+        <div style="background:var(--bone-2);border:1px solid var(--line-l);border-radius:12px;padding:16px 18px"><b style="font-family:'Space Grotesk',sans-serif">Cost?</b><span style="display:block;color:var(--mute);font-size:14.5px;margin-top:4px;line-height:1.5">Applying and the Sprint aren’t sold as a day-one fee. Year/Venture money only after you’ve shown up — separate written agreement.</span></div>
+        <div style="background:var(--bone-2);border:1px solid var(--line-l);border-radius:12px;padding:16px 18px"><b style="font-family:'Space Grotesk',sans-serif">Is this a job?</b><span style="display:block;color:var(--mute);font-size:14.5px;margin-top:4px;line-height:1.5">You apply like it is. We’re work experience — not payroll by default. No honest program guarantees a job.</span></div>
+        <div style="background:var(--bone-2);border:1px solid var(--line-l);border-radius:12px;padding:16px 18px"><b style="font-family:'Space Grotesk',sans-serif">Visa?</b><span style="display:block;color:var(--mute);font-size:14.5px;margin-top:4px;line-height:1.5">We’ll talk through eligibility with you. Don’t guess alone — start an application.</span></div>
+        <div style="background:var(--bone-2);border:1px solid var(--line-l);border-radius:12px;padding:16px 18px"><b style="font-family:'Space Grotesk',sans-serif">Online? Hours?</b><span style="display:block;color:var(--mute);font-size:14.5px;margin-top:4px;line-height:1.5">100% online. Built for shifts. Rough week = paused. Ghost = visible + human ping.</span></div>
+        <div style="background:var(--bone-2);border:1px solid var(--line-l);border-radius:12px;padding:16px 18px"><b style="font-family:'Space Grotesk',sans-serif">Will you ghost me?</b><span style="display:block;color:var(--mute);font-size:14.5px;margin-top:4px;line-height:1.5">No. Human reply within five business days.</span></div>
+      </div>
+    </div>
+
+    <!-- CATEGORY: PROGRAM -->
+    <div class="cat">
+      <div class="cat-label">The program</div>
+
+      <details open>
+        <summary>What exactly is Squad Institute?<span class="plus"></span></summary>
+        <div class="faq-a">A <strong>marketplace of startups for work experience</strong> — for grads, post-grads, and career switchers. You claim a seat on a startup squad, get a buddy and a soft hold, and run a <strong>Sprint</strong> that ships real work and a recruiter-facing engagement graph. An optional <strong>52-week</strong> path deepens employment chase or Venture/ownership. It’s not a course, and it’s not fake busywork.</div>
+      </details>
+
+      <details>
+        <summary>What about career coaching if I’m out of a job?<span class="plus"></span></summary>
+        <div class="faq-a">Same brain, softer door. <a href="career-coaching.html" style="color:var(--violet);text-decoration:underline">Career coaching</a> is for people between jobs — survival mode, search burnout, rent or visa pressure — who need one controllable next move before (or instead of) claiming a seat. Human reply in five days. You can move into a marketplace seat when you’re ready to ship.</div>
+      </details>
+
+      <details>
+        <summary>Is this a job? Am I an employee?<span class="plus"></span></summary>
+        <div class="faq-a">You <strong>apply like it’s a job</strong> — that’s the energy. The Sprint itself is mentored work experience in a squad, not a wage employment contract by default. Longer Venture / ownership paths have separate written terms. We won’t pretend you’re on payroll if you’re not.</div>
+      </details>
+
+      <details>
+        <summary>What’s the Sprint vs the year path?<span class="plus"></span></summary>
+        <div class="faq-a"><strong>Sprint</strong> is the front door: a seat, a squad, real lifecycle work, two ships, a signal pack, and an engagement graph — then you convert or exit well. The <strong>year path (52 weeks)</strong> is the long game after you’ve proven you can show up: workplace access, sustained delivery, and an optional Venture with ownership and pay-later terms when that agreement applies.</div>
+      </details>
+
+      <details>
+        <summary>What will I actually do?<span class="plus"></span></summary>
+        <div class="faq-a">You do track work — Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, or Data — on a repeatable lifecycle: scope, map, plan, build, review, ship. Tools appear when the work needs them. You leave with artifacts and a show-up record, not a certificate alone.</div>
+      </details>
+
+      <details>
+        <summary>Do I learn to use AI?<span class="plus"></span></summary>
+        <div class="faq-a">Yes — because the market now expects it. Recruiters are drowning in generic AI applications; what employers want is someone who can <strong>harness AI for their specific role and industry</strong> — draft with it, review it, ship work they still own. On every pathway you practice that in Instrument and Build: AI assists, humans review to a rubric, you keep the artifact. See <a href="pathways.html" style="color:var(--violet);text-decoration:underline">pathways</a> for role-specific examples.</div>
+      </details>
+
+      <details>
+        <summary>What’s the engagement graph?<span class="plus"></span></summary>
+        <div class="faq-a">A verified timeline recruiters can open: active, partial, paused for a rough week, or absent. It’s the same view you see. <strong>Hardship, rent pressure, or a food crisis isn’t scored as flaking</strong> — that’s a care path. Ghosting the work is visible <em>and</em> triggers a human ping, not a public roast. We’d rather show integrity than vanity streaks. The artifact is on trial — not the person.</div>
+      </details>
+    </div>
+
+    <!-- CATEGORY: MONEY & EQUITY -->
+    <div class="cat">
+      <div class="cat-label">Money &amp; equity</div>
+
+      <details>
+        <summary>What does it cost?<span class="plus"></span></summary>
+        <div class="faq-a"><strong>Applying and the Sprint</strong> aren’t sold as a day-one finance product. Recommended tools are yours to clear when work needs them (proof of access). The <strong>year / Venture path</strong> may use a separate buy-now-pay-later or income-share agreement — capped, threshold-based, dull and written. You review numbers before you convert, not before you’re allowed to apply.
+        <span class="pin"><b>Worth knowing:</b> take independent advice before signing any credit/partnership agreement. Cooling-off and deferment rules are in that document.</span></div>
+      </details>
+
+      <details>
+        <summary>When and how do I actually pay?<span class="plus"></span></summary>
+        <div class="faq-a">You pay nothing until your income passes the agreed threshold. Below it, payments are deferred — paused, with no interest building up. Once you're earning above the threshold, contributions begin as a share of income, up to the fixed cap and never beyond it. The mechanics are spelled out in your agreement.</div>
+      </details>
+
+      <details>
+        <summary>How does the equity work?<span class="plus"></span></summary>
+        <div class="faq-a">As a founding member you take a stake in the venture, vesting over time. You're not doing free work for someone else — you're building something you partly own. The vesting schedule and full terms are set out in your agreement, so you know exactly what you hold and when.</div>
+      </details>
+
+      <details>
+        <summary>What happens if I leave early?<span class="plus"></span></summary>
+        <div class="faq-a">You're free to leave — these are voluntary ventures. What you keep, how vesting is treated, and any remaining obligations are all defined in your agreement. We'd genuinely rather you read that section carefully (and take independent advice) before signing than gloss over it here, because the specifics matter.</div>
+      </details>
+    </div>
+
+    <!-- CATEGORY: ELIGIBILITY -->
+    <div class="cat">
+      <div class="cat-label">Eligibility</div>
+
+      <details>
+        <summary>Is the program online?<span class="plus"></span></summary>
+        <div class="faq-a"><strong>Yes — 100% online.</strong> Squads, buddy check-ins, reviews, and shipping all run remotely. You need a reliable internet connection and the tools your track clears — not a city campus seat.</div>
+      </details>
+
+      <details>
+        <summary>Who can apply?<span class="plus"></span></summary>
+        <div class="faq-a">Graduates, post-graduates, and career switchers who can commit Sprint hours and are eligible to work or train in Australia. Pathways include Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, and Data. The program itself is <strong>100% online</strong>.</div>
+      </details>
+
+      <details>
+        <summary>Can I apply if I'm on a student or work visa?<span class="plus"></span></summary>
+        <div class="faq-a">Possibly — it depends on your visa’s work and study conditions, which differ a lot by type. Start an application and we’ll walk through eligibility with you early.</div>
+      </details>
+
+      <details>
+        <summary>Do I need to be an experienced developer already?<span class="plus"></span></summary>
+        <div class="faq-a">No — the whole point is to take you from "not enough experience" to genuinely hireable. You'll need some foundation to contribute to a real build, and the application helps us understand where you're at and which squad fits. We'd rather place you well than take everyone.</div>
+      </details>
+    </div>
+
+    <!-- CATEGORY: AFTER -->
+    <div class="cat">
+      <div class="cat-label">After the program</div>
+
+      <details>
+        <summary>Do you guarantee me a job at the end?<span class="plus"></span></summary>
+        <div class="faq-a">No — and anyone who promises that is selling you something. What we give you is the thing most grads are missing: genuine, recent, shippable experience and people who can vouch for your work. That's what moves you up the pile in a real hiring process. The applying, interviewing and landing is still yours to do — and our mentors help you do it.</div>
+      </details>
+
+      <details>
+        <summary>What do I walk away with?<span class="plus"></span></summary>
+        <div class="faq-a">At minimum after the Sprint: two shipped artifacts, squad people who can vouch, a signal pack, and an engagement graph. On the year path you get deeper operating proof, workplace access activity, and — if you take Venture — ownership terms per agreement. No honest program guarantees a job.</div>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- STILL HAVE QUESTIONS -->
+<section class="still">
+  <div class="wrap narrow">
+    <div class="still-card">
+      <div>
+        <h3>Still have a question?</h3>
+        <p>Ask us anything before you apply — we'd rather you were sure.</p>
+      </div>
+      <a href="contact.html" class="btn btn-ghost">Contact us<span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final on-dark" id="apply">
+  <div class="wrap">
+    <span class="eyebrow">Don’t leave it on the tab</span>
+    <h2>Got the answers? Claim your seat.</h2>
+    <p>We’ll check fit with you before you start. Sprint first — the year path is optional.</p>
+    <div class="final-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="active-squads.html" class="btn btn-ghost">Browse the marketplace</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#FF6B57"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="builders.html">Builders</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Equity and financial contributions are governed by a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+</script>
+</body>
+</html>

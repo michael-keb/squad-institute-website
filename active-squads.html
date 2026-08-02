@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup marketplace — Active squads · Squad Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;
+  --ink-2:#1E1D26;
+  --bone:#F3F2EC;
+  --bone-2:#EAE9E1;
+  --violet:#1F6F5B;
+  --violet-soft:#2A9B7A;
+  --lime:#C6F24E;
+  --coral:#E85D4C;
+  --sky:#52C4FF;
+  --amber:#FFB54A;
+  --pink:#FF7FB6;
+  --mute:#6B6A75;
+  --mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);
+  --line-l:rgba(0,0,0,.12);
+  --maxw:1180px;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Hanken Grotesk',-apple-system,sans-serif;
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:400;letter-spacing:-.01em}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.04;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;text-transform:uppercase;letter-spacing:.16em;
+  color:var(--violet);display:inline-flex;align-items:center;gap:9px;
+}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:10px;cursor:pointer;border:none;
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s ease}
+.btn:hover .arw{transform:translateX(3px)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute);transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
+
+.hero{background:var(--ink);color:var(--bone);padding:72px 0 64px;overflow:hidden}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:700;color:#fff;margin:18px 0 0;max-width:14em}
+.hero h1 .hl{color:var(--lime)}
+.hero-sub{font-size:clamp(16px,1.5vw,18px);color:var(--mute-d);max-width:34em;margin-top:18px;line-height:1.55}
+.hero-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.pill{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.pill .dot{width:6px;height:6px;border-radius:50%}
+.pill.build{background:rgba(42,155,122,.16);color:var(--violet-soft)}
+.pill.build .dot{background:var(--violet-soft)}
+.pill.ship{background:rgba(198,242,78,.14);color:var(--lime)}
+.pill.ship .dot{background:var(--lime)}
+.pill.recruit{background:rgba(232,93,76,.16);color:var(--coral)}
+.pill.recruit .dot{background:var(--coral)}
+.dot.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.board{background:var(--ink);color:var(--bone);padding:20px 0 90px;border-top:1px solid var(--line-d)}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px;flex-wrap:wrap}
+.board-head h2{font-size:clamp(28px,3.6vw,40px);margin-top:14px}
+.board-head p{color:var(--mute-d);max-width:34em;margin-top:12px;font-size:16px}
+.legend{display:flex;gap:18px;flex-wrap:wrap}
+.legend span{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d);display:inline-flex;align-items:center;gap:7px}
+.legend .dot{width:7px;height:7px;border-radius:50%}
+
+.squads{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.squad{
+  background:linear-gradient(180deg,var(--ink-2),#191822);
+  border:1px solid var(--line-d);border-radius:var(--r);padding:22px;
+  transition:transform .2s,border-color .2s;
+}
+.squad:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.26)}
+.sq-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.sq-id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
+.sq-body{display:flex;gap:14px;align-items:flex-start}
+.crest{width:38px;height:38px;border-radius:9px;flex-shrink:0}
+.sq-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:#fff}
+.sq-desc{font-size:13.5px;color:var(--mute-d);margin-top:4px;line-height:1.45}
+.sq-people{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.sq-person{display:flex;gap:10px;align-items:flex-start}
+.sq-person img{width:36px;height:36px;border-radius:10px;background:#252430;border:1px solid var(--line-d);flex-shrink:0}
+.sq-person .sp-n{font-size:13.5px;color:#fff;font-weight:600;font-family:'Space Grotesk',sans-serif}
+.sq-person .sp-r{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);font-weight:400;margin-left:5px}
+.sq-person .sp-d{font-size:12px;color:var(--mute-d);margin-top:2px;line-height:1.35}
+.sq-person .sp-d b{color:var(--lime);font-weight:500}
+.sq-person.open{opacity:.72}
+.sq-foot{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line-d);flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute-d);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:6px}
+.sq-link{margin-left:auto;font-size:13px;color:var(--lime);font-weight:500}
+.sq-link:hover{text-decoration:underline}
+
+.final{background:var(--ink);color:var(--bone);padding:80px 0;text-align:center;border-top:1px solid var(--line-d)}
+.final h2{font-size:clamp(28px,3.8vw,44px);color:#fff;margin-top:14px}
+.final p{color:var(--mute-d);font-size:17px;margin:16px auto 0;max-width:28em}
+.final .hero-cta{justify-content:center}
+
+.foot{background:var(--ink);border-top:1px solid var(--line-d);padding:54px 0 40px;color:var(--mute-d)}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:920px){
+  .squads{grid-template-columns:repeat(2,1fr)}
+  }
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .squads{grid-template-columns:1fr}
+  .hero,.board,.final{padding-top:56px;padding-bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html" class="active">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero on-dark">
+  <div class="wrap">
+    <p class="brand-hero reveal d1" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,42px);color:#fff;letter-spacing:-.03em;margin:0">Squad Institute</p>
+    <span class="eyebrow reveal d2" style="margin-top:18px">Marketplace · seats that still want someone</span>
+    <h1 class="reveal d3">Fall for a squad.<br><span class="hl">Ask for the chair.</span></h1>
+    <p class="hero-sub reveal d4">Faces, work in flight, open seats. Harbour and Quokka are recruiting — come see if one of them feels like yours.</p>
+    <div class="hero-cta reveal d4">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="#squads" class="btn btn-ghost">Browse who’s building</a>
+    </div>
+  </div>
+</header>
+
+<section class="board on-dark" id="squads">
+  <div class="wrap">
+    <div class="board-head">
+      <div>
+        <span class="eyebrow">The marketplace</span>
+        <h2>Crews already in motion.</h2>
+        <p>Illustrative until live repos wire in — find the one you can’t scroll past.</p>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#2A9B7A"></i>Building</span>
+        <span><i class="dot" style="background:#C6F24E"></i>Shipping</span>
+        <span><i class="dot" style="background:#E85D4C"></i>Recruiting</span>
+      </div>
+    </div>
+
+    <div class="squads">
+
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-01</span><span class="pill build"><span class="dot"></span>Building</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><circle cx="14" cy="14" r="7" fill="#1F6F5B"/><rect x="18" y="18" width="12" height="12" rx="3" fill="#2A9B7A"/></svg>
+          <div><div class="sq-name">Tollgate</div><div class="sq-desc">Invoicing for solo tradies — quote to paid.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AishaK&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Aisha K.<span class="sp-r">full-stack</span></div><div class="sp-d">Working on <b>GST line items</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MarcusT&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Marcus T.<span class="sp-r">backend</span></div><div class="sp-d">Working on <b>Stripe paid status</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=SofiaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Sofia R.<span class="sp-r">UX</span></div><div class="sp-d">Working on <b>quote → invoice flow</b></div></div></div>
+        </div>
+        <div class="sq-foot">
+          <span class="tag">React</span><span class="tag">Node</span>
+          <a href="builders.html#aisha" class="sq-link">Meet Aisha →</a>
+        </div>
+      </div>
+
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-02</span><span class="pill recruit"><span class="dot pulse"></span>Recruiting</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><path d="M19 8l9 16H10z" fill="#E85D4C"/></svg>
+          <div><div class="sq-name">Harbour</div><div class="sq-desc">Allied-health booking · 2 seats open.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=PriyaS&backgroundColor=ff7fb6" alt=""><div><div class="sp-n">Priya S.<span class="sp-r">frontend</span></div><div class="sp-d">Working on <b>listing cards</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=ChrisN&backgroundColor=e85d4c" alt=""><div><div class="sp-n">Chris N.<span class="sp-r">full-stack</span></div><div class="sp-d">Working on <b>clinic onboarding</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=ElenaV&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Elena V.<span class="sp-r">UX</span></div><div class="sp-d">Working on <b>booking journey</b></div></div></div>
+          <div class="sq-person open"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=OpenSeat1&backgroundColor=2c333d" alt=""><div><div class="sp-n">Open seat<span class="sp-r">eng or UX</span></div><div class="sp-d">Could be you — <b>2 seats</b></div></div></div>
+        </div>
+        <div class="sq-foot">
+          <span class="tag">Next.js</span><span class="tag">2 seats</span>
+          <a href="apply.html" class="sq-link">Want this seat →</a>
+        </div>
+      </div>
+
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-03</span><span class="pill ship"><span class="dot"></span>Shipping</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><circle cx="13" cy="19" r="6" fill="#C6F24E"/><circle cx="25" cy="19" r="6" fill="#221F33" stroke="#C6F24E" stroke-width="1.5"/></svg>
+          <div><div class="sq-name">Kelpie</div><div class="sq-desc">Last-mile routes for regional drivers.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Maya R.<span class="sp-r">backend</span></div><div class="sp-d">Working on <b>offline fallback</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=SamO&backgroundColor=2a9b7a" alt=""><div><div class="sp-n">Sam O.<span class="sp-r">squad lead</span></div><div class="sp-d">Working on <b>break-window reviews</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=JordanL&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Jordan L.<span class="sp-r">maps</span></div><div class="sp-d">Working on <b>geocode cache</b></div></div></div>
+        </div>
+        <div class="sq-foot">
+          <span class="tag">Python</span><span class="tag">Maps</span>
+          <a href="builders.html#maya" class="sq-link">Meet Maya →</a>
+        </div>
+      </div>
+
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-04</span><span class="pill build"><span class="dot"></span>Building</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><rect x="9" y="9" width="9" height="9" rx="2" fill="#52C4FF"/><rect x="20" y="20" width="9" height="9" rx="2" fill="#52C4FF"/><rect x="20" y="9" width="9" height="9" rx="2" fill="#2C3A4A"/></svg>
+          <div><div class="sq-name">Ledger</div><div class="sq-desc">Bookkeeping copilot for small firms.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=NoahP&backgroundColor=e85d4c" alt=""><div><div class="sp-n">Noah P.<span class="sp-r">QA / ops</span></div><div class="sp-d">Working on <b>regression pack</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=HannahB&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Hannah B.<span class="sp-r">eng</span></div><div class="sp-d">Working on <b>bank-match rules</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=DevK&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Dev K.<span class="sp-r">product</span></div><div class="sp-d">Working on <b>accountant export</b></div></div></div>
+        </div>
+        <div class="sq-foot">
+          <span class="tag">TypeScript</span>
+          <a href="builders.html#noah" class="sq-link">Meet Noah →</a>
+        </div>
+      </div>
+
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-05</span><span class="pill build"><span class="dot"></span>Building</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><path d="M19 9l10 10-10 10L9 19z" fill="#FFB54A"/><circle cx="19" cy="19" r="3.5" fill="#221F33"/></svg>
+          <div><div class="sq-name">Sandbar</div><div class="sq-desc">Membership &amp; rostering for sports clubs.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=LiamT&backgroundColor=ffb54a" alt=""><div><div class="sp-n">Liam T.<span class="sp-r">product</span></div><div class="sp-d">Working on <b>renewals + waitlist</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AmiraH&backgroundColor=e85d4c" alt=""><div><div class="sp-n">Amira H.<span class="sp-r">frontend</span></div><div class="sp-d">Working on <b>mobile roster UI</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=TomW&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Tom W.<span class="sp-r">backend</span></div><div class="sp-d">Working on <b>season rollover</b></div></div></div>
+        </div>
+        <div class="sq-foot">
+          <span class="tag">Rails</span><span class="tag">React</span>
+          <a href="builders.html#liam" class="sq-link">Meet Liam →</a>
+        </div>
+      </div>
+
+      <div class="squad">
+        <div class="sq-top"><span class="sq-id">SQ-06</span><span class="pill recruit"><span class="dot pulse"></span>Recruiting</span></div>
+        <div class="sq-body">
+          <svg class="crest" viewBox="0 0 38 38"><rect width="38" height="38" rx="9" fill="#221F33"/><circle cx="19" cy="15" r="6" fill="#FF7FB6"/><rect x="11" y="22" width="16" height="7" rx="3.5" fill="#FF7FB6"/></svg>
+          <div><div class="sq-name">Quokka</div><div class="sq-desc">Hospitality shift handover · 3 seats open.</div></div>
+        </div>
+        <div class="sq-people">
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=RileyJ&backgroundColor=ff7fb6" alt=""><div><div class="sp-n">Riley J.<span class="sp-r">product</span></div><div class="sp-d">Working on <b>shift notes</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=KaiM&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Kai M.<span class="sp-r">eng</span></div><div class="sp-d">Working on <b>handover pack</b></div></div></div>
+          <div class="sq-person open"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=OpenSeatQ&backgroundColor=2c333d" alt=""><div><div class="sp-n">Open seats<span class="sp-r">UX · eng</span></div><div class="sp-d">Could be you — <b>3 seats</b></div></div></div>
+        </div>
+        <div class="sq-foot">
+          <span class="tag">Go</span><span class="tag">3 seats</span>
+          <a href="apply.html" class="sq-link">Want this seat →</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="mono" style="margin-top:26px;font-size:12px;color:#56555f">// Illustrative people &amp; work — not a live headcount feed.</p>
+  </div>
+</section>
+
+<section class="final on-dark">
+  <div class="wrap">
+    <span class="eyebrow">Don’t leave it on the tab</span>
+    <h2>Your seat won’t wait forever.</h2>
+    <p>Proof you can open. A human answers in five days.</p>
+    <div class="hero-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="how-it-works.html" class="btn btn-ghost">How it works</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="blog.html">Blog</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience (Sprint and optional longer Venture paths). Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Longer-path financial contributions are under a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+</script>
+</body>
+</html>

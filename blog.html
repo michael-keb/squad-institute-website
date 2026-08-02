@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Squad Institute</title>
+<meta name="description" content="Updates, pathways, squads, and notes from Squad Institute — the marketplace of startups for work experience.">
+<link rel="alternate" type="application/json" href="blog/posts.json" title="Squad Institute blog posts">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;border:none;transition:transform .18s,background .18s}
+.btn-primary{background:var(--violet);color:#fff}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+.bhero{background:var(--ink);color:var(--bone);padding:64px 0 56px}
+.bhero h1{font-size:clamp(34px,5vw,52px);color:#fff;margin:16px 0 0}
+.bhero p{font-size:17px;color:var(--mute-d);max-width:32em;margin-top:14px;line-height:1.55}
+
+.blist{padding:56px 0 88px}
+.posts{display:flex;flex-direction:column;gap:0;border:1px solid var(--line-l);border-radius:var(--r);overflow:hidden;background:#fff}
+.post-card{
+  display:grid;grid-template-columns:140px 1fr auto;gap:20px;align-items:center;
+  padding:24px 26px;border-top:1px solid var(--line-l);transition:background .15s;
+}
+.post-card:first-child{border-top:none}
+.post-card:hover{background:var(--bone-2);text-decoration:none}
+.post-card .date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute);line-height:1.4}
+.post-card .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--violet);margin-top:6px}
+.post-card h2{font-size:clamp(20px,2.2vw,24px);margin:0}
+.post-card p{font-size:15px;color:var(--mute);margin-top:6px;line-height:1.5;max-width:52ch}
+.post-card .read{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet);white-space:nowrap}
+
+.empty,.loading{padding:48px 24px;text-align:center;color:var(--mute);font-size:15px}
+.how{margin-top:32px;padding:20px 22px;background:var(--bone-2);border:1px solid var(--line-l);border-radius:var(--r);font-size:14px;color:var(--mute);line-height:1.55;max-width:640px}
+.how code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#fff;padding:2px 6px;border-radius:4px;border:1px solid var(--line-l)}
+
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700}
+.brandmark{width:30px;height:30px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;font-size:12.5px;color:var(--mute)}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--ink)}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;flex-direction:column;align-items:center;justify-content:center;border-radius:8px}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:2.5px 0;border-radius:1px}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;align-items:stretch;position:absolute;top:68px;left:0;right:0;background:var(--bone);padding:8px 0 20px;border-bottom:1px solid var(--line-l);box-shadow:0 18px 40px -28px rgba(0,0,0,.45);z-index:40}
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink)}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+}
+@media (max-width:720px){
+  .post-card{grid-template-columns:1fr;gap:10px}
+  .post-card .read{justify-self:start}
+}
+@media (max-width:640px){.wrap{padding:0 20px}.nav-cta > .btn{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="bhero on-dark">
+  <div class="wrap">
+    <span class="eyebrow">Blog</span>
+    <h1>Notes from the marketplace.</h1>
+    <p>Pathways, squads, program updates, and honest notes on work experience — not course marketing.</p>
+  </div>
+</header>
+
+<section class="blist">
+  <div class="wrap">
+    <div class="posts" id="postsList">
+      <div class="loading">Loading posts…</div>
+    </div>
+    <p class="how"><strong>To publish a new post:</strong> copy <code>blog/post-template.html</code>, save as <code>blog/your-slug.html</code>, then add an entry to <code>blog/posts.json</code> with the same slug.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#FF6B57"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+        <a href="pathways.html">Pathways</a>
+        <a href="blog.html">Blog</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+function formatDate(iso){
+  var d = new Date(iso + 'T12:00:00');
+  return d.toLocaleDateString('en-AU', { day:'numeric', month:'short', year:'numeric' });
+}
+
+fetch('blog/posts.json')
+  .then(function(r){ if(!r.ok) throw new Error('Failed to load posts'); return r.json(); })
+  .then(function(posts){
+    posts.sort(function(a,b){ return b.date.localeCompare(a.date); });
+    var el = document.getElementById('postsList');
+    if (!posts.length) {
+      el.innerHTML = '<div class="empty">No posts yet — check back soon.</div>';
+      return;
+    }
+    el.innerHTML = posts.map(function(p){
+      return '<a class="post-card" href="blog/' + p.slug + '.html">' +
+        '<div><div class="date">' + formatDate(p.date) + '</div><div class="tag">' + p.tag + '</div></div>' +
+        '<div><h2>' + p.title + '</h2><p>' + p.excerpt + '</p></div>' +
+        '<span class="read">Read →</span></a>';
+    }).join('');
+  })
+  .catch(function(){
+    document.getElementById('postsList').innerHTML = '<div class="empty">Could not load posts. Check that blog/posts.json exists.</div>';
+  });
+
+(function(){
+  var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+  if(!mb||!nl) return;
+  function setOpen(on){
+    nl.classList.toggle('open', on);
+    mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+    document.body.style.overflow = on ? 'hidden' : '';
+  }
+  mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+  nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+  window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+})();
+</script>
+</body>
+</html>

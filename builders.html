@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Builders who shipped — Squad Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--ink-3:#252430;--bone:#F3F2EC;--line-l:rgba(0,0,0,.12);--violet:#1F6F5B;--violet-soft:#2A9B7A;
+  --teal:#1F6F5B;--teal-soft:#2A9B7A;--lime:#C6F24E;--coral:#FF6B57;
+  --sky:#52C4FF;--amber:#FFB54A;--pink:#FF7FB6;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line:rgba(255,255,255,.12);
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',sans-serif;background:var(--ink);color:var(--bone);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.03em;font-weight:700;line-height:1.05}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;background:var(--lime);border-radius:2px;transform:rotate(45deg)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;border:none;cursor:pointer;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-primary:hover{background:var(--teal-soft);transform:translateY(-2px);box-shadow:0 12px 32px -12px var(--teal)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:#d4f76a;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--bone);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--bone);transform:translateY(-2px)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(22,21,28,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#fff}
+.brandmark{width:30px;height:30px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--mute-d)}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--bone);margin:4px 0}
+
+.hero{
+  padding:52px 0 28px;
+  background:
+    radial-gradient(ellipse 60% 70% at 10% 0%, rgba(31,111,91,.42), transparent 55%),
+    radial-gradient(ellipse 40% 50% at 95% 30%, rgba(198,242,78,.09), transparent 50%),
+    var(--ink);
+}
+.hero h1{font-size:clamp(32px,4.8vw,50px);color:#fff;margin-top:14px;max-width:15em}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p{font-size:17px;color:var(--mute-d);margin-top:14px;max-width:36em;line-height:1.55}
+
+/* wave spine */
+.spine{padding:0 0 36px}
+.spine-track{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:14px;
+}
+.sp{
+  text-align:center;padding:10px 6px;border-radius:10px;background:var(--ink-3);
+}
+.sp b{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);letter-spacing:.06em}
+.sp span{display:block;font-size:11.5px;color:var(--mute-d);margin-top:4px;line-height:1.3}
+
+.people{padding:0 0 50px}
+.plist{display:flex;flex-direction:column;gap:18px}
+
+.card{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  display:grid;grid-template-columns:280px 1fr;scroll-margin-top:88px;
+}
+.card-side{
+  padding:26px 24px;border-right:1px solid var(--line);
+  background:rgba(0,0,0,.18);display:flex;flex-direction:column;gap:14px;
+}
+.who{display:flex;align-items:center;gap:12px}
+.av{
+  width:48px;height:48px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--ink);
+}
+.name{font-size:20px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600}
+.meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d);margin-top:3px}
+.stake{font-size:14.5px;color:var(--bone);line-height:1.5;border-left:2px solid rgba(198,242,78,.45);padding-left:12px}
+.stake em{font-style:normal;color:var(--mute-d)}
+.ships3{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.ships3 .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+.ships3 a,.ships3 .s{
+  font-size:13.5px;color:var(--lime);font-family:'JetBrains Mono',monospace;line-height:1.35;
+}
+.ships3 .s{color:var(--mute-d)}
+.ships3 .s b{color:#fff;font-weight:500}
+
+.card-main{padding:22px 24px 24px}
+.weeks{display:flex;flex-direction:column;gap:0}
+.w{
+  display:grid;grid-template-columns:52px 1fr;gap:14px;
+  padding:11px 0;border-top:1px solid var(--line);align-items:start;
+}
+.w:first-child{border-top:none;padding-top:0}
+.w .n{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute);
+  padding-top:2px;
+}
+.w.ship .n{color:var(--lime)}
+.w.hard .n{color:var(--coral)}
+.w .t{font-size:14.5px;color:var(--bone);line-height:1.45}
+.w .t b{color:#fff;font-weight:600}
+.w.ship .t{color:var(--bone)}
+.w .tag{
+  display:inline-block;margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  color:var(--lime);border:1px solid rgba(198,242,78,.3);padding:1px 7px;border-radius:999px;
+  vertical-align:middle;
+}
+
+.soft{padding:10px 0 80px}
+.soft-box{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding:28px 32px;border-radius:18px;border:1px solid var(--line);background:var(--ink-2);
+}
+.soft-box h2{font-size:clamp(22px,2.5vw,28px);color:#fff}
+.soft-box p{font-size:15px;color:var(--mute-d);margin-top:8px;max-width:34em;line-height:1.5}
+.soft-acts{display:flex;gap:12px;flex-wrap:wrap}
+.note{font-family:'JetBrains Mono',monospace;font-size:12px;color:#56555f;margin-top:16px;line-height:1.5}
+
+.foot{border-top:1px solid var(--line);padding:54px 0 40px;color:var(--mute-d)}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{margin-bottom:14px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--mute)}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:920px){
+    .spine-track{grid-template-columns:repeat(4,1fr)}
+  .card{grid-template-columns:1fr}
+  .card-side{border-right:none;border-bottom:1px solid var(--line)}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .spine-track{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:2.5px solid var(--lime);outline-offset:3px;border-radius:4px}
+
+/* ---------- nav (shared) ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+            <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html" class="active">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Marketplace builders · Sprint · illustrative</span>
+    <h1>They sat down. <em>Here’s what they shipped.</em></h1>
+    <p>Not a trophy wall — arcs with rough weeks left in. <strong style="color:#fff;font-weight:600">Illustrative Sprint stories</strong> until live ships are linked. Different stakes behind each person. Same pull: a seat, a crew, proof you can open.</p>
+  </div>
+</header>
+
+<section class="spine">
+  <div class="wrap">
+    <div class="spine-track" aria-label="Sprint shape">
+      <div class="sp"><b>01</b><span>Seat + buddy + slice</span></div>
+      <div class="sp"><b>02</b><span>Ship #1</span></div>
+      <div class="sp"><b>03</b><span>Ship #2 · stretch</span></div>
+      <div class="sp"><b>04</b><span>Pack · showcase · decide</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="people">
+  <div class="wrap">
+    <div class="plist">
+
+      <!-- MAYA — Aarav / visa -->
+      <article class="card" id="maya">
+        <aside class="card-side">
+          <div class="who">
+            <div class="av" style="background:var(--lime)">MA</div>
+            <div>
+              <div class="name">Maya R.</div>
+              <div class="meta">kelpie · backend</div>
+            </div>
+          </div>
+          <p class="stake">Her visa clock is running and family already paid for the move. <em>She needed to leave with something she could open — not another empty month.</em></p>
+          <div class="ships3">
+            <div class="k">2 ships</div>
+            <div class="s"><b>01</b> · route constraint sketch</div>
+            <div class="s"><b>02</b> · offline fallback</div>
+          </div>
+        </aside>
+        <div class="card-main">
+          <div class="weeks">
+            <div class="w"><div class="n">01</div><div class="t">Took the seat. Buddy hello same day. Cleared tools. Pocket: <b>if nothing lands, the visa story gets ugly.</b></div></div>
+            <div class="w ship"><div class="n">02</div><div class="t"><b>Ship #1</b> — route constraint sketch, reviewed. First thing she could show. <span class="tag">ship</span></div></div>
+            <div class="w hard"><div class="n">03</div><div class="t">Rough stretch — rent + job apps. <b>Paused two days, didn’t ghost.</b> Then <b>Ship #2</b> — offline fallback routing. <span class="tag">ship</span></div></div>
+            <div class="w"><div class="n">04</div><div class="t">Pack + showcase. Converted to Venture — <b>proof before the clock, not after.</b></div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- AISHA — Chloe / no cushion -->
+      <article class="card" id="aisha">
+        <aside class="card-side">
+          <div class="who">
+            <div class="av" style="background:var(--sky)">AK</div>
+            <div>
+              <div class="name">Aisha K.</div>
+              <div class="meta">tollgate · full-stack</div>
+            </div>
+          </div>
+          <p class="stake">She works retail shifts and can’t do an unpaid internship. <em>The Sprint had to fit a real life — or it wasn’t for her.</em></p>
+          <div class="ships3">
+            <div class="k">2 ships</div>
+            <div class="s"><b>01</b> · quote → invoice wire</div>
+            <div class="s"><b>02</b> · GST line items</div>
+          </div>
+        </aside>
+        <div class="card-main">
+          <div class="weeks">
+            <div class="w"><div class="n">01</div><div class="t">Applied after a double shift. Seat held. Buddy: <b>squad fits around shifts, not the other way round.</b> Scoped a three-hour slice.</div></div>
+            <div class="w ship"><div class="n">02</div><div class="t"><b>Ship #1</b> — quote → invoice wireframe. Reviewed. First openable thing that wasn’t a uni assignment. <span class="tag">ship</span></div></div>
+            <div class="w ship"><div class="n">03</div><div class="t"><b>Ship #2</b> — GST line items + send-to-client. Almost took more retail hours; buddy: <b>survival job ≠ quitting.</b> <span class="tag">ship</span></div></div>
+            <div class="w"><div class="n">04</div><div class="t">Showcase. Exit-well path open — she kept the pack and <b>referred two people from retail.</b></div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- LIAM — David / career change -->
+      <article class="card" id="liam">
+        <aside class="card-side">
+          <div class="who">
+            <div class="av" style="background:var(--amber)">LT</div>
+            <div>
+              <div class="name">Liam T.</div>
+              <div class="meta">sandbar · product</div>
+            </div>
+          </div>
+          <p class="stake">He left hospitality with age on the CV and sunk cost in the rear-view. <em>“Have I risked too much?” — a Sprint to prove the switch.</em></p>
+          <div class="ships3">
+            <div class="k">2 ships</div>
+            <div class="s"><b>01</b> · member renew flow</div>
+            <div class="s"><b>02</b> · waitlist v1</div>
+          </div>
+        </aside>
+        <div class="card-main">
+          <div class="weeks">
+            <div class="w"><div class="n">01</div><div class="t">Said the fear out loud in pocket intake. Seat + buddy. Scoped renewals — <b>prior ops experience counted.</b></div></div>
+            <div class="w ship"><div class="n">02</div><div class="t"><b>Ship #1</b> — member renew flow. Review: sharper acceptance. He reworked once. <span class="tag">ship</span></div></div>
+            <div class="w ship"><div class="n">03</div><div class="t"><b>Ship #2</b> — waitlist v1. Comparison hit; lead: <b>critique the artifact, not your age.</b> <span class="tag">ship</span></div></div>
+            <div class="w"><div class="n">04</div><div class="t">Showcase. Signal pack ready. <b>The switch has evidence now — not just a story.</b></div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NOAH — Sam / first gen -->
+      <article class="card" id="noah">
+        <aside class="card-side">
+          <div class="who">
+            <div class="av" style="background:var(--coral)">NP</div>
+            <div>
+              <div class="name">Noah P.</div>
+              <div class="meta">ledger · QA / ops</div>
+            </div>
+          </div>
+          <p class="stake">First in his family through uni, with no map to follow. <em>He built one — by shipping things people can open.</em></p>
+          <div class="ships3">
+            <div class="k">2 ships</div>
+            <div class="s"><b>01</b> · bug bash notes</div>
+            <div class="s"><b>02</b> · regression pack</div>
+          </div>
+        </aside>
+        <div class="card-main">
+          <div class="weeks">
+            <div class="w"><div class="n">01</div><div class="t">Didn’t know what to ask. Buddy: <b>seat, one move, then tools.</b> Belonging before the toll.</div></div>
+            <div class="w ship"><div class="n">02</div><div class="t"><b>Ship #1</b> — bug bash notes. First employer-readable artifact. <span class="tag">ship</span></div></div>
+            <div class="w hard"><div class="n">03</div><div class="t">Family achievement guilt. Pocket private. Then <b>Ship #2</b> — regression pack. Rubric only — <b>artifact on trial, not the person.</b> <span class="tag">ship</span></div></div>
+            <div class="w"><div class="n">04</div><div class="t">Showcase. Still no family “map” — <em>but he has a trail now.</em> Exit well + two invites out.</div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRIYA — Olivia / first failure -->
+      <article class="card" id="priya">
+        <aside class="card-side">
+          <div class="who">
+            <div class="av" style="background:var(--pink)">PS</div>
+            <div>
+              <div class="name">Priya S.</div>
+              <div class="meta">harbour · frontend</div>
+            </div>
+          </div>
+          <p class="stake">Friends say she’s “fine,” but applications go into silence. <em>First real failure — shipping instead of another month refreshing.</em></p>
+          <div class="ships3">
+            <div class="k">2 ships</div>
+            <div class="s"><b>01</b> · listing card UI</div>
+            <div class="s"><b>02</b> · availability slots</div>
+          </div>
+        </aside>
+        <div class="card-main">
+          <div class="weeks">
+            <div class="w"><div class="n">01</div><div class="t">Joined mid-recruiting squad. Buddy &lt;90 min. Pocket: <b>“why am I behind?”</b> named, not shamed. Scoped listing card.</div></div>
+            <div class="w ship"><div class="n">02</div><div class="t"><b>Ship #1</b> — listing card UI. Review: two spacing fixes. Done. <span class="tag">ship</span></div></div>
+            <div class="w ship"><div class="n">03</div><div class="t"><b>Ship #2</b> — availability slots. LinkedIn envy spike → squad pulse only. <span class="tag">ship</span></div></div>
+            <div class="w"><div class="n">04</div><div class="t">Showcase. Not “fine” yet — <b>but she has two openable things and a seat she didn’t quit.</b></div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SAM O — near peer / relatedness -->
+      <article class="card" id="sam">
+        <aside class="card-side">
+          <div class="who">
+            <div class="av" style="background:var(--teal-soft)">SO</div>
+            <div>
+              <div class="name">Sam O.</div>
+              <div class="meta">kelpie · squad lead</div>
+            </div>
+          </div>
+          <p class="stake">He was in the void too — now he’s near-peer. <em>Holding the bar so nobody ships alone into silence.</em></p>
+          <div class="ships3">
+            <div class="k">2 ships</div>
+            <div class="s"><b>01</b> · review rubric pass</div>
+            <div class="s"><b>02</b> · break-window co-author</div>
+          </div>
+        </aside>
+        <div class="card-main">
+          <div class="weeks">
+            <div class="w"><div class="n">01</div><div class="t">Met Maya’s hello in under an hour. <b>Belonging before clearance.</b> Helped scope “done means…”</div></div>
+            <div class="w ship"><div class="n">02</div><div class="t"><b>Ship #1</b> — calibrated first reviews. Artifact on trial, never the person. <span class="tag">ship</span></div></div>
+            <div class="w ship"><div class="n">03</div><div class="t"><b>Ship #2</b> — co-authored break-window constraints. Caught a stall — pause logged, <b>not humiliation.</b> <span class="tag">ship</span></div></div>
+            <div class="w"><div class="n">04</div><div class="t">Ran showcase. Pack integrity check. Two seats via peer invite. <b>Relatedness, not a highlight reel.</b></div></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <p class="note">Opt-in · first name + initial · Sprint arcs · intros through us · we never put email, phone, or visa details on the wall</p>
+  </div>
+</section>
+
+<section class="soft" id="intro">
+  <div class="wrap">
+    <div class="soft-box">
+      <div>
+        <h2>Your Sprint can look like this.</h2>
+        <p>Claim a seat and we’ll check fit with you. Buddy waiting. Two ships — or exit well with the pack. Hiring? Ask us for an intro.</p>
+      </div>
+      <div class="soft-acts">
+        <a href="apply.html" class="btn btn-lime">Claim a seat<span class="arw">→</span></a>
+        <a href="mailto:contact@thesquadinstitute.com?subject=Builder%20intro%20request" class="btn btn-ghost">Request an intro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#FF6B57"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+      <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Builder arcs are opt-in illustrations of the Sprint. Participation does not guarantee employment. The market is structural — we don’t frame silence as a personal verdict.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+</script>
+</body>
+</html>
