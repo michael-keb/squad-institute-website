@@ -64,39 +64,64 @@ a{color:inherit;text-decoration:none}
 
 .card{
   background:var(--ink-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;
-  display:grid;grid-template-columns:280px 1fr;scroll-margin-top:88px;
+  display:grid;grid-template-columns:320px 1fr;scroll-margin-top:88px;
 }
 .card-side{
-  padding:26px 24px;border-right:1px solid var(--line);
-  background:rgba(0,0,0,.18);display:flex;flex-direction:column;gap:14px;
+  padding:28px 24px;border-right:1px solid var(--line);
+  background:rgba(0,0,0,.18);display:flex;flex-direction:column;gap:16px;
 }
-.who{display:flex;align-items:center;gap:12px}
+.who{display:flex;align-items:flex-start;gap:16px}
 .av{
-  width:48px;height:48px;border-radius:14px;flex-shrink:0;
+  width:88px;height:88px;border-radius:20px;flex-shrink:0;object-fit:cover;
+  border:2px solid rgba(255,255,255,.08);background:var(--ink-3);
+}
+.av-init{
+  width:88px;height:88px;border-radius:20px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;color:var(--ink);
 }
-.name{font-size:20px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600}
-.meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d);margin-top:3px}
-.stake{font-size:14.5px;color:var(--bone);line-height:1.5;border-left:2px solid rgba(198,242,78,.45);padding-left:12px}
-.stake em{font-style:normal;color:var(--mute-d)}
-.ships3{margin-top:auto;display:flex;flex-direction:column;gap:8px}
-.ships3 .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
-.ships3 a,.ships3 .s{
-  font-size:13.5px;color:var(--lime);font-family:'JetBrains Mono',monospace;line-height:1.35;
-}
-.ships3 .s{color:var(--mute-d)}
-.ships3 .s b{color:#fff;font-weight:500}
+.who-text{min-width:0;padding-top:4px}
+.name{font-size:22px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;line-height:1.15}
+.meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d);margin-top:5px}
+.stake{font-size:13.5px;color:var(--mute-d);line-height:1.45}
+.stake b{color:var(--bone);font-weight:500}
 
-.card-main{padding:26px 28px 28px;display:flex;flex-direction:column;gap:14px;justify-content:center}
-.chapter p{font-size:15.5px;color:var(--mute-d);line-height:1.65;max-width:48ch}
-.chapter p + p{margin-top:12px}
-.chapter p em{font-style:normal;color:#fff;font-weight:500}
-.chapter .left-with{
-  margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+.ship-promo{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.ship-promo .k{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:2px;
+}
+.ship-item{
+  padding:12px 14px;border-radius:12px;background:rgba(198,242,78,.06);
+  border:1px solid rgba(198,242,78,.18);
+}
+.ship-item .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);margin-bottom:4px}
+.ship-item .title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:4px}
+.ship-item .pitch{font-size:13px;color:var(--mute-d);line-height:1.45}
+.ship-item .proof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);margin-top:6px}
+
+.card-main{padding:24px 28px 28px;display:flex;flex-direction:column;gap:0;justify-content:center}
+.timeline{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);padding-top:4px}
+.t-row{
+  display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);align-items:start;
+}
+.t-row:last-child{border-bottom:none}
+.t-n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute);padding-top:2px}
+.t-n.ship-n{color:var(--lime)}
+.t-body{font-size:14.5px;color:var(--mute-d);line-height:1.55}
+.t-body b,.t-body strong{color:#fff;font-weight:600}
+.t-body em{font-style:normal;color:var(--bone)}
+.ship-tag{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--lime);
+  padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle;font-weight:600;
+}
+.hire-line{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
   font-size:13.5px;color:var(--bone);line-height:1.5;
 }
-.chapter .left-with b{color:var(--lime);font-weight:500}
+.hire-line b{color:var(--lime);font-weight:500}
 
 .soft{padding:10px 0 80px}
 .soft-box{
@@ -202,8 +227,8 @@ a{color:inherit;text-decoration:none}
 <header class="hero">
   <div class="wrap">
     <span class="eyebrow">Marketplace builders · Sprint · illustrative</span>
-    <h1>Not a trophy wall. <em>People under pressure who still shipped.</em></h1>
-    <p>Illustrative stories until live ships are linked. Rough stretches left in on purpose — visa clocks, shifts, first-gen silence, age bias, the quiet inbox. Same pull underneath: a seat, a crew, proof you can open.</p>
+    <h1>Not a trophy wall. <em>Proof you can hire for.</em></h1>
+    <p>Illustrative builders until live repos link. Each card leads with what they shipped — reviewed artifacts recruiters can open, not vibes. Rough stretches stay in; the work is the pitch.</p>
   </div>
 </header>
 
@@ -215,25 +240,49 @@ a{color:inherit;text-decoration:none}
       <article class="card" id="maya">
         <aside class="card-side">
           <div class="who">
-            <div class="av" style="background:var(--lime)">MA</div>
-            <div>
+            <img class="av" src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt="Maya R.">
+            <div class="who-text">
               <div class="name">Maya R.</div>
-              <div class="meta">kelpie · backend</div>
+              <div class="meta">kelpie · backend · Python</div>
             </div>
           </div>
-          <p class="stake">Her visa clock is running and family already paid for the move. <em>She needed to leave with something she could open — not another empty month.</em></p>
-          <div class="ships3">
-            <div class="k">What she can open</div>
-            <div class="s"><b>Route</b> · constraint sketch</div>
-            <div class="s"><b>Offline</b> · fallback routing</div>
+          <p class="stake"><b>Visa clock.</b> Family funded the move. Needed proof before the deadline — not another empty month.</p>
+          <div class="ship-promo">
+            <div class="k">2 ships · open in pack</div>
+            <div class="ship-item">
+              <div class="num">01</div>
+              <div class="title">Route constraint sketch</div>
+              <div class="pitch">Break-window routing rules for regional drivers when GPS drops mid-run — sequence diagram + edge-case table.</div>
+              <div class="proof">Kelpie · reviewed · PR in trail</div>
+            </div>
+            <div class="ship-item">
+              <div class="num">02</div>
+              <div class="title">Offline fallback routing</div>
+              <div class="pitch">Cached last-known route + retry logic — demo replay for recruiters when the network fails on a delivery leg.</div>
+              <div class="proof">Kelpie · merged · demo link in pack</div>
+            </div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="chapter">
-            <p>Every listing asked for local experience she couldn’t invent. Going home empty wasn’t a soft option — it was the nightmare her parents had funded against. She claimed a backend seat on Kelpie. A buddy answered the same day and scoped real work, not a lecture.</p>
-            <p>Midway, rent hit hard. She said so out loud and paused two days. Nobody scored her as a flake. She came back and finished. Pack in hand, she converted to the longer path — <em>proof before the clock, not after.</em></p>
-            <p class="left-with">Left with: <b>two reviewed ships</b> a recruiter can open, plus a squad who knew her name.</p>
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-n">01</div>
+              <div class="t-body">Took the backend seat. Buddy hello same day. Cleared tools. Pocket: <em>if nothing lands, the visa story gets ugly.</em></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">02</div>
+              <div class="t-body"><strong>Ship #1</strong> — route constraint sketch, reviewed. First thing a recruiter could open. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">03</div>
+              <div class="t-body">Rough stretch — rent + job apps. Paused two days, didn’t ghost. Then <strong>Ship #2</strong> — offline fallback routing. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">04</div>
+              <div class="t-body">Pack + showcase. Converted to Venture — <strong>proof before the clock, not after.</strong></div>
+            </div>
           </div>
+          <p class="hire-line"><b>Hire for:</b> backend slices under deadline pressure · routing edge cases · ships with review trail, not slide decks.</p>
         </div>
       </article>
 
@@ -241,25 +290,49 @@ a{color:inherit;text-decoration:none}
       <article class="card" id="aisha">
         <aside class="card-side">
           <div class="who">
-            <div class="av" style="background:var(--sky)">AK</div>
-            <div>
+            <img class="av" src="https://api.dicebear.com/7.x/notionists/svg?seed=AishaK&backgroundColor=52c4ff" alt="Aisha K.">
+            <div class="who-text">
               <div class="name">Aisha K.</div>
-              <div class="meta">tollgate · full-stack</div>
+              <div class="meta">tollgate · full-stack · React</div>
             </div>
           </div>
-          <p class="stake">She works retail shifts and can’t do an unpaid internship. <em>The Sprint had to fit a real life — or it wasn’t for her.</em></p>
-          <div class="ships3">
-            <div class="k">What she can open</div>
-            <div class="s"><b>Quote</b> · invoice wire</div>
-            <div class="s"><b>GST</b> · line items + send</div>
+          <p class="stake"><b>Shift worker.</b> No unpaid-internship cushion. Ships had to fit three-hour windows after retail.</p>
+          <div class="ship-promo">
+            <div class="k">2 ships · open in pack</div>
+            <div class="ship-item">
+              <div class="num">01</div>
+              <div class="title">Quote → invoice wire</div>
+              <div class="pitch">Tradie accepts a quote, invoice generates with line items — happy path from SMS link to “sent” state in Tollgate.</div>
+              <div class="proof">Tollgate · reviewed · live on staging</div>
+            </div>
+            <div class="ship-item">
+              <div class="num">02</div>
+              <div class="title">GST line items + send</div>
+              <div class="pitch">GST rounding rules, per-line tax, invoice PDF + email send — business rules doc paired with the PR.</div>
+              <div class="proof">Tollgate · merged · rules doc in pack</div>
+            </div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="chapter">
-            <p>She applied after a double shift. No cushion, no family float for an unpaid full-time filter. Her buddy said the quiet part first: <em>the squad fits around shifts, not the other way round</em> — then scoped a three-hour slice she could actually finish.</p>
-            <p>First openable thing that wasn’t a uni assignment. Almost took more retail hours when money got thin; kept the survival job and kept shipping. She left with the pack — and referred two people from the shop floor who recognised the same pressure.</p>
-            <p class="left-with">Left with: <b>work that fits a shift life</b>, and proof survival work isn’t quitting.</p>
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-n">01</div>
+              <div class="t-body">Applied after a double shift. Buddy scoped a <em>three-hour slice</em> — squad fits shifts, not the other way round.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">02</div>
+              <div class="t-body"><strong>Ship #1</strong> — quote-to-invoice wire. First openable thing that wasn’t a uni assignment. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">03</div>
+              <div class="t-body">Kept the survival job. <strong>Ship #2</strong> — GST line items + send flow, reviewed against business rules. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">04</div>
+              <div class="t-body">Pack shipped. Referred two from the shop floor who recognised the same pressure.</div>
+            </div>
           </div>
+          <p class="hire-line"><b>Hire for:</b> full-stack slices on a budget clock · invoicing/fintech flows · ships that fit real shift life.</p>
         </div>
       </article>
 
@@ -267,25 +340,49 @@ a{color:inherit;text-decoration:none}
       <article class="card" id="liam">
         <aside class="card-side">
           <div class="who">
-            <div class="av" style="background:var(--amber)">LT</div>
-            <div>
+            <img class="av" src="https://api.dicebear.com/7.x/notionists/svg?seed=LiamT&backgroundColor=ffb54a" alt="Liam T.">
+            <div class="who-text">
               <div class="name">Liam T.</div>
-              <div class="meta">sandbar · product</div>
+              <div class="meta">sandbar · product · Rails</div>
             </div>
           </div>
-          <p class="stake">He left hospitality with age on the CV and sunk cost in the rear-view. <em>“Have I risked too much?” — a Sprint to prove the switch.</em></p>
-          <div class="ships3">
-            <div class="k">What he can open</div>
-            <div class="s"><b>Renew</b> · member flow</div>
-            <div class="s"><b>Waitlist</b> · v1</div>
+          <p class="stake"><b>Career switch.</b> Age on the CV, mortgage in the rear-view. Needed receipts for the move — not another pivot story.</p>
+          <div class="ship-promo">
+            <div class="k">2 ships · open in pack</div>
+            <div class="ship-item">
+              <div class="num">01</div>
+              <div class="title">Member renewals flow</div>
+              <div class="pitch">Sports-club member renews online — card on file, proration rules, confirmation email. Reworked once under a clear rubric.</div>
+              <div class="proof">Sandbar · reviewed · acceptance criteria in pack</div>
+            </div>
+            <div class="ship-item">
+              <div class="num">02</div>
+              <div class="title">Waitlist v1</div>
+              <div class="pitch">Capacity-full club captures waitlist signups, priority order, admin notify — scoped product slice with demo narrative.</div>
+              <div class="proof">Sandbar · merged · demo script in pack</div>
+            </div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="chapter">
-            <p>He said the fear out loud in intake — age on the CV, mortgage in the rear-view, the sense he’d risked too much too late. Prior ops experience counted. It wasn’t erased for being the wrong industry stamp. First ship: member renewals, reworked once under a clear bar.</p>
-            <p>Comparison hit mid-sprint. The line that stuck from his lead: <em>critique the artifact, not your age.</em> He left with a waitlist he built and a signal pack. The switch has receipts now — not another pivot story.</p>
-            <p class="left-with">Left with: <b>evidence for the move</b>, reviewed by people who weren’t selling him a dream.</p>
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-n">01</div>
+              <div class="t-body">Named the fear in intake — age, mortgage, sunk cost. Prior ops experience counted; not erased for wrong-industry stamp.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">02</div>
+              <div class="t-body"><strong>Ship #1</strong> — member renewals. One rework cycle, named fixes only. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">03</div>
+              <div class="t-body">Comparison hit mid-sprint. Lead line: <em>critique the artifact, not your age.</em> <strong>Ship #2</strong> — waitlist v1. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">04</div>
+              <div class="t-body">Signal pack + showcase. The switch has receipts now.</div>
+            </div>
           </div>
+          <p class="hire-line"><b>Hire for:</b> product ownership on membership flows · scope + ship under scrutiny · evidence for career moves.</p>
         </div>
       </article>
 
@@ -293,25 +390,49 @@ a{color:inherit;text-decoration:none}
       <article class="card" id="noah">
         <aside class="card-side">
           <div class="who">
-            <div class="av" style="background:var(--coral)">NP</div>
-            <div>
+            <img class="av" src="https://api.dicebear.com/7.x/notionists/svg?seed=NoahP&backgroundColor=ff6b57" alt="Noah P.">
+            <div class="who-text">
               <div class="name">Noah P.</div>
-              <div class="meta">ledger · QA / ops</div>
+              <div class="meta">ledger · QA / ops · TypeScript</div>
             </div>
           </div>
-          <p class="stake">First in his family through uni, with no map to follow. <em>He built one — by shipping things people can open.</em></p>
-          <div class="ships3">
-            <div class="k">What he can open</div>
-            <div class="s"><b>Bugs</b> · bash notes</div>
-            <div class="s"><b>Regression</b> · pack</div>
+          <p class="stake"><b>First-gen.</b> No family map for any of this. Built one by shipping things people can open.</p>
+          <div class="ship-promo">
+            <div class="k">2 ships · open in pack</div>
+            <div class="ship-item">
+              <div class="num">01</div>
+              <div class="title">Bug-bash notes pack</div>
+              <div class="pitch">Structured repro steps, severity tags, screenshots — triage doc from a live Ledger sprint, not a classroom template.</div>
+              <div class="proof">Ledger · reviewed · rubric pass</div>
+            </div>
+            <div class="ship-item">
+              <div class="num">02</div>
+              <div class="title">Regression pack</div>
+              <div class="pitch">Smoke checklist + automated hooks for bank-match rules — rerunnable before every merge on the squad board.</div>
+              <div class="proof">Ledger · merged · CI link in trail</div>
+            </div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="chapter">
-            <p>He didn’t know what to ask. Nobody at the dinner table had a playbook for this corridor. Buddy answer was small on purpose: seat first, one move, tools later. Belonging before the toll — so the jargon didn’t arrive as another gate.</p>
-            <p>Family achievement guilt stayed private. Review was rubric-only: the artifact on trial, never the person. He still doesn’t have an inherited map. He has a trail — bug-bash notes, a regression pack, two invites out to people who also had no map.</p>
-            <p class="left-with">Left with: <b>a trail he can show</b>, built without pretending he already knew the path.</p>
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-n">01</div>
+              <div class="t-body">Didn’t know what to ask. Buddy answer: seat first, one move, tools later — belonging before the toll.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">02</div>
+              <div class="t-body"><strong>Ship #1</strong> — bug-bash notes. Artifact on trial, never the person. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">03</div>
+              <div class="t-body"><strong>Ship #2</strong> — regression pack. Two invites out to people who also had no map. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">04</div>
+              <div class="t-body">Trail in pack — still no inherited playbook, but proof a recruiter can verify.</div>
+            </div>
           </div>
+          <p class="hire-line"><b>Hire for:</b> QA rigour on fintech ops · regression discipline · clear written evidence, not gatekeeping jargon.</p>
         </div>
       </article>
 
@@ -319,25 +440,49 @@ a{color:inherit;text-decoration:none}
       <article class="card" id="priya">
         <aside class="card-side">
           <div class="who">
-            <div class="av" style="background:var(--pink)">PS</div>
-            <div>
+            <img class="av" src="https://api.dicebear.com/7.x/notionists/svg?seed=PriyaS&backgroundColor=ff7fb6" alt="Priya S.">
+            <div class="who-text">
               <div class="name">Priya S.</div>
-              <div class="meta">harbour · frontend</div>
+              <div class="meta">harbour · frontend · Next.js</div>
             </div>
           </div>
-          <p class="stake">Friends say she’s “fine,” but applications go into silence. <em>First real failure — shipping instead of another month refreshing.</em></p>
-          <div class="ships3">
-            <div class="k">What she can open</div>
-            <div class="s"><b>Listing</b> · card UI</div>
-            <div class="s"><b>Slots</b> · availability</div>
+          <p class="stake"><b>Silent inbox.</b> Degree done, applications vanishing. Needed work to put on the table — not another month refreshing.</p>
+          <div class="ship-promo">
+            <div class="k">2 ships · open in pack</div>
+            <div class="ship-item">
+              <div class="num">01</div>
+              <div class="title">Listing card UI</div>
+              <div class="pitch">Allied-health provider card — photo, specialty, next slot, empty state. Figma + merged component in Harbour repo.</div>
+              <div class="proof">Harbour · reviewed · frame link in trail</div>
+            </div>
+            <div class="ship-item">
+              <div class="num">02</div>
+              <div class="title">Availability slots</div>
+              <div class="pitch">Week-view slot picker with timezone edge cases — wired to mock API, usability review notes attached.</div>
+              <div class="proof">Harbour · merged · demo walkthrough in pack</div>
+            </div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="chapter">
-            <p>On paper she was fine. In the applications, silence felt like a verdict on her. It wasn’t — credential inflation plus ghosting is a market shape. She named it in intake: <em>why am I behind?</em> Named, not shamed. Buddy scoped a listing card that afternoon. No pep talk. A task with her name on it.</p>
-            <p>Two reviewed ships. A LinkedIn spike she didn’t chase into comparison. She isn’t “sorted.” She has two openable things and a seat she didn’t quit — something she can put on the table when someone asks what the degree bought.</p>
-            <p class="left-with">Left with: <b>work that justifies the investment</b> without pretending the silence never hurt.</p>
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-n">01</div>
+              <div class="t-body">Named the fear: <em>why am I behind?</em> Buddy scoped a listing card that afternoon — task with her name on it, not a pep talk.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">02</div>
+              <div class="t-body"><strong>Ship #1</strong> — listing card UI, rubric pass. First thing she could show in an interview. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n ship-n">03</div>
+              <div class="t-body"><strong>Ship #2</strong> — availability slots. LinkedIn spike she didn’t chase into comparison. <span class="ship-tag">ship</span></div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">04</div>
+              <div class="t-body">Two openable things + a seat she didn’t quit. Something to justify what the degree bought.</div>
+            </div>
           </div>
+          <p class="hire-line"><b>Hire for:</b> frontend on booking/health UX · component work with review trail · ships over certificates.</p>
         </div>
       </article>
 
@@ -345,25 +490,49 @@ a{color:inherit;text-decoration:none}
       <article class="card" id="sam">
         <aside class="card-side">
           <div class="who">
-            <div class="av" style="background:var(--teal-soft)">SO</div>
-            <div>
+            <img class="av" src="https://api.dicebear.com/7.x/notionists/svg?seed=SamO&backgroundColor=2a9b7a" alt="Sam O.">
+            <div class="who-text">
               <div class="name">Sam O.</div>
               <div class="meta">kelpie · squad lead</div>
             </div>
           </div>
-          <p class="stake">He was in the void too — now he’s near-peer. <em>Holding the bar so nobody ships alone into silence.</em></p>
-          <div class="ships3">
-            <div class="k">What he holds</div>
-            <div class="s"><b>Reviews</b> · rubric pass</div>
-            <div class="s"><b>Breaks</b> · pause without shame</div>
+          <p class="stake"><b>Near-peer lead.</b> Was in the void too. Holds the bar so nobody ships alone into silence.</p>
+          <div class="ship-promo">
+            <div class="k">What he ships for the squad</div>
+            <div class="ship-item">
+              <div class="num">01</div>
+              <div class="title">Rubric reviews · 40+ passes</div>
+              <div class="pitch">Named fixes only — artifact on trial, never the person. Every ship on Kelpie gets a signed review before merge.</div>
+              <div class="proof">Kelpie · review ledger in trail</div>
+            </div>
+            <div class="ship-item">
+              <div class="num">02</div>
+              <div class="title">Pause without shame</div>
+              <div class="pitch">Rough stretches logged as care, not flake score. Two seats filled through peer invite — relatedness, not a highlight reel.</div>
+              <div class="proof">Kelpie · squad integrity graph</div>
+            </div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="chapter">
-            <p>He remembers the quiet inbox. That’s why Maya’s hello landed in under an hour — belonging before clearance. He helps scope what “done” means so the first task isn’t a fog of uncertainty.</p>
-            <p>Reviews put the artifact on trial, never the person. When someone stalls, the pause gets logged — not a public roast. Two seats filled through peer invite. Relatedness, not a highlight reel.</p>
-            <p class="left-with">Holds the bar so <b>nobody ships alone into silence</b> — the near-peer voice the market rarely gives you.</p>
+          <div class="timeline">
+            <div class="t-row">
+              <div class="t-n">01</div>
+              <div class="t-body">Remembers the quiet inbox. Maya’s hello landed in under an hour — belonging before clearance.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">02</div>
+              <div class="t-body">Scopes what “done” means so the first task isn’t a fog of uncertainty — acceptance in plain language.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">03</div>
+              <div class="t-body">Reviews to rubric. When someone stalls, pause gets logged — not a public roast.</div>
+            </div>
+            <div class="t-row">
+              <div class="t-n">04</div>
+              <div class="t-body">Two peer invites converted to seats. Holds the bar so <strong>ships keep moving</strong> without humiliation.</div>
+            </div>
           </div>
+          <p class="hire-line"><b>Hire for:</b> near-peer leadership · review discipline · squads that ship under real life pressure.</p>
         </div>
       </article>
 
