@@ -262,7 +262,7 @@ tr.stage.pulse{box-shadow:inset 3px 0 0 var(--lime);background:rgba(198,242,78,.
   <div class="wrap">
     <span class="eyebrow">Ready when you are</span>
     <h2>Know your pathway? Claim the chair.</h2>
-    <p>One application. Soft seat held. A human replies in five business days.</p>
+    <p>One application. Soft seat held. We reply within five business days.</p>
     <div class="final-cta">
       <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
       <a href="faq.html" class="btn btn-ghost">Read the FAQ</a>
@@ -372,7 +372,7 @@ var PATHWAYS = [
       { id:'EN-03', sub:'Architecture / sequence model', detail:'Sequence diagram, component sketch, data shape.', stages:['model'] },
       { id:'EN-04', sub:'Task breakdown + PR plan', detail:'Commits and PR boundaries on the board.', stages:['plan'] },
       { id:'EN-05', sub:'Env, CI, branch, intents', detail:'Tool proofs, test hooks, agent steps.', stages:['instrument'] },
-      { id:'EN-06', sub:'Implement draft', detail:'Code with AI assist; human owns the diff.', stages:['build'] },
+      { id:'EN-06', sub:'Implement draft', detail:'Code with AI assist; you own the diff.', stages:['build'] },
       { id:'EN-07', sub:'Unit / smoke self-check', detail:'Against acceptance before review request.', stages:['build'] },
       { id:'EN-08', sub:'Open PR + request review', detail:'Evidence = PR link.', stages:['build','review'] },
       { id:'EN-09', sub:'Code review (give/receive)', detail:'Correctness, security, readability.', stages:['review'] },
@@ -505,7 +505,7 @@ var PATHWAYS = [
     steps:[
       { id:'—', sub:'Start with coaching or a soft claim', detail:'Same team either way. Out of work? Coaching door is open.', stages:[] },
       { id:'—', sub:'We read your situation', detail:'Hours, runway, visa, prior craft — not a trick question.', stages:[] },
-      { id:'—', sub:'Match to squad + pathway', detail:'Human reply in five business days with a recommended seat.', stages:[] },
+      { id:'—', sub:'Match to squad + pathway', detail:'Reply within five business days with a recommended seat.', stages:[] },
     ]
   }
 ];
@@ -640,7 +640,7 @@ function renderDetail(path){
   applyBtn.href = 'apply.html?track=' + encodeURIComponent(path.apply);
   applyBtn.innerHTML = (path.simple ? 'Start your claim' : 'Claim this seat') + '<span class="arw">→</span>';
   document.getElementById('ctaNote').textContent = path.simple
-    ? 'Not sure which seat fits? Tell us — same application, human match.'
+    ? 'Not sure which seat fits? Tell us — same application, we match you.'
     : 'Ready to claim a ' + path.label + ' seat on a real squad?';
 }
 

@@ -2,7 +2,7 @@
 
 **Positioning:** A **marketplace of startups for work experience** — not a course, not fake placement. Claim a seat → Sprint → pack you can open. Optional longer Venture after you show up.
 
-**Voice:** Seductive but honest — wanted / chosen / claim the seat. Proof you can open, human reply in five days. No equity or job guarantees in the hero.
+**Voice:** Seductive but honest — wanted / chosen / claim the seat. Proof you can open, reply within five business days. No equity or job guarantees in the hero.
 
 ## Pages (ship these)
 
@@ -15,7 +15,7 @@
 | Career coaching | `career-coaching.html` | Between-jobs door (ST1/ST2) |
 | Apply | `apply.html` | Claim a seat · or `?path=coaching` |
 | FAQ | `faq.html` | Unblock money / visa / trust |
-| Contact | `contact.html` | Human channel |
+| Contact | `contact.html` | Direct channel |
 | Privacy | `privacy.html` | Legal |
 
 Internal / not primary GTM: `candidate-explainer.html`, `brain-map-audit/`.
