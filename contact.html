@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/custom-select.css">
 <style>
 :root{
   --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
@@ -81,9 +82,10 @@ input[type=text],input[type=email],select,textarea{
   background:var(--bone);border:1.5px solid var(--line-l);border-radius:10px;
   padding:12px 14px;transition:border-color .15s, box-shadow .15s;
 }
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(110,86,248,.14)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(31,111,91,.14)}
 textarea{min-height:140px;resize:vertical}
-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6A75' stroke-width='1.8' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6A75' stroke-width='1.8' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.fgroup.invalid .cs-trigger{border-color:var(--coral)}
 .err{display:none;font-size:12.5px;color:var(--coral);margin-top:6px;font-weight:500}
 .fgroup.invalid .err{display:block}
 .fgroup.invalid input,.fgroup.invalid select,.fgroup.invalid textarea{border-color:var(--coral)}
@@ -368,6 +370,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 </footer>
 
 <script src="js/api-config.js"></script>
+<script src="js/custom-select.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   (function(){
@@ -394,7 +397,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       var bad = el.type==='email' ? !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()) : !el.value.trim();
       if(bad){ ok=false; el.closest('.fgroup').classList.add('invalid'); if(!firstBad) firstBad=el; }
     });
-    if(!ok){ firstBad.focus(); firstBad.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    if(!ok){
+      var focusEl=(window.SICustomSelect&&SICustomSelect.focusTarget)?SICustomSelect.focusTarget(firstBad):firstBad;
+      if(focusEl&&focusEl.focus) focusEl.focus();
+      (focusEl||firstBad).scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
 
     var btn=document.getElementById('contactSubmit');
     var errEl=document.getElementById('contactError');
