@@ -66,6 +66,14 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 }
 .ai-box b{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--violet);display:block;margin-bottom:6px}
 .ai-box p{color:var(--mute);margin:0}
+.ships-box{
+  font-size:14px;line-height:1.55;padding:14px 16px 12px;margin-bottom:12px;
+  background:#fff;border:1px solid var(--line-l);border-radius:10px;
+}
+.ships-box b{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--violet);display:block;margin-bottom:8px}
+.ships-box ul{margin:0;padding-left:1.15em;color:var(--mute)}
+.ships-box li{margin-top:6px}
+.ships-box li strong{color:var(--ink);font-weight:600}
 .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute)}
 .legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
 .dot{width:8px;height:8px;border-radius:2px;display:inline-block}
@@ -213,6 +221,10 @@ tr.stage.pulse{box-shadow:inset 3px 0 0 var(--lime);background:rgba(198,242,78,.
           <span class="tag" id="roleCount" hidden></span>
         </div>
         <p class="blurb" id="roleBlurb">Pick Marketing, Engineering, Business Analyst, Product Owner, UX, Sales, or Data above — we’ll show what you’d actually do on a squad.</p>
+        <div class="ships-box" id="shipsBox" hidden>
+          <b>What you ship in your pack</b>
+          <ul id="shipsList"></ul>
+        </div>
         <div class="ai-box" id="aiBox" hidden>
           <b>Harness AI for this role</b>
           <p id="aiHarness"></p>
@@ -323,6 +335,11 @@ var PATHWAYS = [
   {
     id:'mkt', label:'Marketing', apply:'Marketing',
     blurb:'Same SDLC as the squad — your artifacts are campaigns, pages, content, and analytics. Not optional soft work.',
+    ships:[
+      '<strong>Landing page or email</strong> — live with UTM + honest claims (e.g. Harbour waitlist)',
+      '<strong>Channel plan</strong> — who, message, CTA, success metric for one slice',
+      '<strong>Before/after case</strong> — screenshot + what changed in your pack',
+    ],
     aiHarness:'Use AI to draft variants, summarise research, and speed up production — you own brand voice, honest claims, and what actually ships. Review catches AI slop before it goes live.',
     matrix:{ orient:'P', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'P', expose:'P' },
     steps:[
@@ -342,6 +359,11 @@ var PATHWAYS = [
   {
     id:'eng', label:'Engineering', apply:'Engineering',
     blurb:'Implementation owner for code slices. AI assists in Build — you still own the diff and the review.',
+    ships:[
+      '<strong>Merged PR</strong> — scoped feature or fix with tests (e.g. booking API on Harbour)',
+      '<strong>Deploy tag</strong> — version on staging/main the squad can demo',
+      '<strong>Technical note</strong> — how it works, limits, what you’d do next',
+    ],
     aiHarness:'Use AI as a pair on implementation — scaffold, tests, refactors — but you own architecture, the diff, security, and review. No rubber-stamping generated code.',
     matrix:{ orient:'S', scope:'S', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'S' },
     steps:[
@@ -361,56 +383,84 @@ var PATHWAYS = [
   },
   {
     id:'ba', label:'Business Analyst', apply:'Business Analyst',
-    blurb:'Clarifies rules, data, and edge cases so Scope and Model are honest before anyone builds.',
-    aiHarness:'Use AI to draft process maps and edge-case lists — you own stakeholder truth, acceptance criteria, and whether the rules match the business.',
-    matrix:{ orient:'S', scope:'P', model:'P', plan:'S', instrument:'S', review:'S', reflect:'S', expose:'S' },
+    blurb:'You make the messy part legible — who does what, what breaks, what “done” means — so engineers and designers aren’t guessing. On a real squad slice, not a textbook case study.',
+    ships:[
+      '<strong>Process map</strong> — e.g. patient books → confirms → reminder (Harbour squad)',
+      '<strong>Business rules doc</strong> — e.g. GST line items, rounding, invoice states (Tollgate)',
+      '<strong>Acceptance criteria pack</strong> — testable “done means…” a recruiter can open',
+    ],
+    aiHarness:'Use AI to draft process maps, entity lists, and edge-case catalogues — you own stakeholder truth, the rules that match the business, and whether acceptance is actually testable. Review catches “AI-shaped” requirements that nobody can build.',
+    matrix:{ orient:'P', scope:'P', model:'P', plan:'P', instrument:'S', build:'P', review:'P', rework:'S', ship:'S', reflect:'P', expose:'P' },
     steps:[
-      { id:'BA-01', sub:'Elicit requirements', detail:'Stakeholders, rules, constraints from brief or venture.', stages:['orient','scope'] },
-      { id:'BA-02', sub:'Draft acceptance criteria', detail:'Support “done means…” with concrete checks.', stages:['scope'] },
-      { id:'BA-03', sub:'Process / data modelling', detail:'Flows, entities, states for the slice.', stages:['model'] },
-      { id:'BA-04', sub:'Edge-case catalogue', detail:'Empty, error, permission cases into Model/Plan.', stages:['model','plan'] },
-      { id:'BA-05', sub:'Instrument checks', detail:'What must be verified before Review.', stages:['instrument'] },
-      { id:'BA-06', sub:'Review against rules', detail:'Rubric items for business correctness.', stages:['review'] },
-      { id:'BA-07', sub:'Traceability in pack', detail:'Link ships back to acceptance for Expose.', stages:['reflect','expose'] },
+      { id:'BA-01', sub:'Read the slice brief', detail:'Who’s hurt, what decision the squad needs this week, constraints (visa hours, stack, compliance).', stages:['orient'] },
+      { id:'BA-02', sub:'Stakeholder map + open questions', detail:'Who knows the rules? What’s assumed vs written down? List unknowns before anyone codes.', stages:['orient','scope'] },
+      { id:'BA-03', sub:'Cut the slice + write acceptance', detail:'One sentence: “Done means a clinician can …” with 5–8 concrete checks — not vibes.', stages:['scope'] },
+      { id:'BA-04', sub:'As-is / to-be process map', detail:'Swimlane or flow for the slice — happy path + where it fails today.', stages:['model'] },
+      { id:'BA-05', sub:'Data + entity sketch', detail:'What objects exist (Booking, Invoice, Member), key fields, states — feeds Eng/UX.', stages:['model'] },
+      { id:'BA-06', sub:'Edge-case catalogue', detail:'Empty, duplicate, permission, timeout, refund, partial pay — named before Build.', stages:['model','plan'] },
+      { id:'BA-07', sub:'Break into reviewable cards', detail:'Rules doc sections, AC batches, test scenarios — WIP = 1 for the squad.', stages:['plan'] },
+      { id:'BA-08', sub:'Verification checklist', detail:'What must be true before Review (calc samples, sample payloads, rule IDs).', stages:['instrument'] },
+      { id:'BA-09', sub:'Produce requirements pack', detail:'Living doc/link: map + rules + AC — draft with AI, you own accuracy.', stages:['build'] },
+      { id:'BA-10', sub:'Business review (rubric)', detail:'Peer checks: rules match reality, AC testable, no hand-wavy “should”.', stages:['review'] },
+      { id:'BA-11', sub:'Fix named gaps', detail:'Only listed issues — version the pack, don’t rewrite the slice mid-build.', stages:['rework'] },
+      { id:'BA-12', sub:'Traceability for your pack', detail:'Ship #1 links: brief → AC → what merged — recruiters see your thinking.', stages:['reflect','expose'] },
     ]
   },
   {
     id:'po', label:'Product Owner', apply:'Product Owner',
-    blurb:'Owns value and acceptance quality. Gates Scope and Ship — frames what gets shown to employers.',
-    aiHarness:'Use AI to break down slices and draft acceptance — you own prioritisation, non-goals, and the ship call. AI suggests; you decide what the squad builds.',
-    matrix:{ orient:'S', scope:'P', model:'S', plan:'S', review:'S', ship:'S', expose:'P' },
+    blurb:'You own what’s worth building and whether it’s good enough to ship — prioritisation, non-goals, and the ship call on a live product slice.',
+    ships:[
+      '<strong>Prioritised slice backlog</strong> — ordered work the squad can pull without thrash',
+      '<strong>Ship decision record</strong> — what went live, what didn’t, and why',
+      '<strong>Demo narrative</strong> — 3-minute employer story tied to outcomes',
+    ],
+    aiHarness:'Use AI to break down epics and draft acceptance — you own prioritisation, non-goals, and the ship call. AI suggests slices; you decide what the squad builds this week.',
+    matrix:{ orient:'P', scope:'P', model:'S', plan:'P', instrument:'S', build:'S', review:'P', rework:'S', ship:'P', reflect:'P', expose:'P' },
     steps:[
-      { id:'PO-01', sub:'Frame problem / opportunity', detail:'Why this slice matters for product and employability proof.', stages:['orient','scope'] },
-      { id:'PO-02', sub:'Prioritise slice backlog', detail:'Order which slices the squad pulls next.', stages:['orient','plan'] },
-      { id:'PO-03', sub:'Co-write / challenge acceptance', detail:'Ensure “done means…” is testable.', stages:['scope'] },
-      { id:'PO-04', sub:'Approve non-goals', detail:'Protect slice from scope creep mid-build.', stages:['scope'] },
-      { id:'PO-05', sub:'Validate model vs value', detail:'Does the diagram still solve the outcome?', stages:['model'] },
-      { id:'PO-06', sub:'Acceptance in review', detail:'Join rubric on outcome criteria.', stages:['review'] },
-      { id:'PO-07', sub:'Ship / release decision', detail:'Confirm version is good enough to trail / demo.', stages:['ship'] },
-      { id:'PO-08', sub:'Expose narrative', detail:'Frame showcase story for employers.', stages:['expose'] },
+      { id:'PO-01', sub:'Frame the outcome', detail:'Why this slice matters for users and for your employability proof — one paragraph, no deck.', stages:['orient'] },
+      { id:'PO-02', sub:'Prioritise the backlog', detail:'Order slices by value + dependency; say no to creep before Build starts.', stages:['orient','plan'] },
+      { id:'PO-03', sub:'Co-write acceptance with BA/Eng', detail:'Challenge vague “done” — every criterion observable or testable.', stages:['scope'] },
+      { id:'PO-04', sub:'Lock non-goals', detail:'Explicit “not in this slice” list — protects WIP when someone gets excited.', stages:['scope'] },
+      { id:'PO-05', sub:'Validate model vs outcome', detail:'Does the journey still solve the problem if we only ship half?', stages:['model'] },
+      { id:'PO-06', sub:'Release plan', detail:'What ships when, demo order, rollback owner — cards on the board.', stages:['plan'] },
+      { id:'PO-07', sub:'Join outcome review', detail:'Rubric on user value + acceptance — not taste, not personality.', stages:['review'] },
+      { id:'PO-08', sub:'Ship / release call', detail:'Named version is good enough for trail + demo — or send back with reasons.', stages:['ship'] },
+      { id:'PO-09', sub:'Reflect: what we learned', detail:'Honest retro note — scope cuts, surprises — private hardness OK.', stages:['reflect'] },
+      { id:'PO-10', sub:'Expose narrative', detail:'Employer-facing story: problem → slice → proof link.', stages:['expose'] },
     ]
   },
   {
     id:'ux', label:'UX / Design', apply:'UX',
-    blurb:'User problems, flows, usability — heavy on Model, Build, and Review for product slices.',
+    blurb:'You turn user pain into flows and frames the squad can build — research-backed, reviewable, versioned.',
+    ships:[
+      '<strong>Task flow + wireframes</strong> — happy path + empty/error states (Figma link in trail)',
+      '<strong>Usability review notes</strong> — rubric pass with named fixes',
+      '<strong>Demo walkthrough</strong> — 2-minute flow recruiters can follow',
+    ],
     aiHarness:'Use AI to explore layout and copy variants — you own research truth, usability, and design review. Frames ship when they meet acceptance, not when the model says they look fine.',
-    matrix:{ orient:'S', scope:'S', model:'P', plan:'S', instrument:'S', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'S' },
+    matrix:{ orient:'S', scope:'S', model:'P', plan:'P', instrument:'S', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'P' },
     steps:[
-      { id:'UX-01', sub:'Read brief + user context', detail:'Who’s hurt, job-to-be-done for this slice.', stages:['orient'] },
-      { id:'UX-02', sub:'Problem / opportunity framing', detail:'Align with PO on slice cut.', stages:['scope'] },
-      { id:'UX-03', sub:'User journey / task flow', detail:'Primary Model artifact for UX track.', stages:['model'] },
-      { id:'UX-04', sub:'IA / wireframe plan', detail:'Break frames into board cards.', stages:['plan'] },
-      { id:'UX-05', sub:'Prototype tooling ready', detail:'Figma access proof; libraries linked.', stages:['instrument'] },
-      { id:'UX-06', sub:'Build wireframes / proto', detail:'Draft against acceptance.', stages:['build'] },
-      { id:'UX-07', sub:'Usability self-check', detail:'Empty states, copy, tap targets.', stages:['build'] },
-      { id:'UX-08', sub:'Design review (rubric)', detail:'Peer UX review — artifact only.', stages:['review'] },
-      { id:'UX-09', sub:'Ship versioned frames', detail:'Named version / prototype link in trail.', stages:['ship'] },
-      { id:'UX-10', sub:'Demo in showcase', detail:'Walk the flow for Expose.', stages:['expose'] },
+      { id:'UX-01', sub:'Read brief + user context', detail:'Who’s hurt, job-to-be-done, constraints (mobile, accessibility, brand).', stages:['orient'] },
+      { id:'UX-02', sub:'Problem framing with PO/BA', detail:'Agree slice cut — one flow, not the whole product.', stages:['scope'] },
+      { id:'UX-03', sub:'User journey / task flow', detail:'Primary Model artifact — steps, decisions, failure points.', stages:['model'] },
+      { id:'UX-04', sub:'IA + wireframe plan', detail:'Break frames into board cards; WIP = 1 screen at a time.', stages:['plan'] },
+      { id:'UX-05', sub:'Prototype tooling ready', detail:'Figma access, components linked, export path for Eng.', stages:['instrument'] },
+      { id:'UX-06', sub:'Build wireframes / proto', detail:'Draft with AI for copy/layout options — you pick what ships.', stages:['build'] },
+      { id:'UX-07', sub:'Usability self-check', detail:'Empty states, error copy, tap targets, contrast — before review.', stages:['build'] },
+      { id:'UX-08', sub:'Design review (rubric)', detail:'Peer checks task fit, not taste — artifact only.', stages:['review'] },
+      { id:'UX-09', sub:'Fix named UI issues', detail:'Listed gaps only; version the file, don’t redesign mid-sprint.', stages:['rework'] },
+      { id:'UX-10', sub:'Ship versioned frames', detail:'Named Figma version / prototype link on the trail.', stages:['ship'] },
+      { id:'UX-11', sub:'Demo in showcase', detail:'Walk the flow for Expose — tie to acceptance criteria.', stages:['expose'] },
     ]
   },
   {
     id:'sales', label:'Sales', apply:'Sales',
     blurb:'Same SDLC — artifacts are outreach packs, scripts, CRM hygiene, and demos. Reviewed for integrity.',
+    ships:[
+      '<strong>Outreach pack</strong> — personalised sequence + talk track for one ICP slice',
+      '<strong>CRM trail</strong> — logged sends, replies, next steps (evidence, not vanity volume)',
+      '<strong>Demo script</strong> — 5-minute walk tied to product proof',
+    ],
     aiHarness:'Use AI for personalisation drafts and talk-track prep — you own integrity, tone, and what gets sent. CRM evidence shows your process, not vanity volume.',
     matrix:{ orient:'P', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'P', expose:'P' },
     steps:[
@@ -427,19 +477,26 @@ var PATHWAYS = [
   },
   {
     id:'data', label:'Data', apply:'Data',
-    blurb:'Metrics, dashboards, and AI-assisted delivery the squad can actually use — same lifecycle, different artifacts.',
+    blurb:'Metrics, dashboards, and definitions the squad can stand up in — same lifecycle, different artifacts.',
+    ships:[
+      '<strong>Dashboard or report</strong> — live refresh the squad uses in stand-up',
+      '<strong>Metric definitions doc</strong> — what counts, joins, known gaps',
+      '<strong>Data quality note</strong> — what you validated before Ship',
+    ],
     aiHarness:'Use AI to draft queries, explore viz options, and document definitions — you own metric truth, privacy limits, and accuracy review before the squad relies on the dashboard.',
-    matrix:{ orient:'S', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'S' },
+    matrix:{ orient:'S', scope:'P', model:'P', plan:'P', instrument:'P', build:'P', review:'P', rework:'P', ship:'P', reflect:'S', expose:'P' },
     steps:[
-      { id:'DA-01', sub:'Read brief + data context', detail:'Sources, privacy limits, what decision the squad needs.', stages:['orient'] },
+      { id:'DA-01', sub:'Read brief + data context', detail:'Sources, privacy limits, what decision the squad needs this week.', stages:['orient'] },
       { id:'DA-02', sub:'Metric / dashboard slice', detail:'One acceptance sentence — e.g. “funnel view live for squad stand-up”.', stages:['scope'] },
-      { id:'DA-03', sub:'Data flow model', detail:'Entities, joins, refresh cadence, edge cases.', stages:['model'] },
-      { id:'DA-04', sub:'Build plan', detail:'Queries, viz, validation cards on the board.', stages:['plan'] },
-      { id:'DA-05', sub:'Access + tooling proof', detail:'Warehouse, BI, or script intents runnable.', stages:['instrument'] },
-      { id:'DA-06', sub:'Build dashboard / report', detail:'Draft with AI assist; you own correctness.', stages:['build'] },
-      { id:'DA-07', sub:'Data quality review', detail:'Rubric: accuracy, definitions, privacy.', stages:['review'] },
-      { id:'DA-08', sub:'Ship live or scheduled refresh', detail:'Versioned artifact the squad can open on a cadence.', stages:['ship'] },
-      { id:'DA-09', sub:'Expose in your pack', detail:'Screenshot or link recruiters can verify.', stages:['expose'] },
+      { id:'DA-03', sub:'Data flow model', detail:'Entities, joins, refresh cadence, edge cases — diagram or table.', stages:['model'] },
+      { id:'DA-04', sub:'Build plan', detail:'Queries, viz, validation cards on the board; WIP = 1 chart at a time.', stages:['plan'] },
+      { id:'DA-05', sub:'Access + tooling proof', detail:'Warehouse, BI, or script intents runnable — no “works on my laptop”.', stages:['instrument'] },
+      { id:'DA-06', sub:'Build dashboard / report', detail:'Draft queries with AI; you own definitions and sanity checks.', stages:['build'] },
+      { id:'DA-07', sub:'Validate against source', detail:'Spot-check rows, totals, null handling before review.', stages:['build'] },
+      { id:'DA-08', sub:'Data quality review', detail:'Rubric: accuracy, definitions, privacy, misleading viz.', stages:['review'] },
+      { id:'DA-09', sub:'Fix named data issues', detail:'Listed gaps only — version the dashboard.', stages:['rework'] },
+      { id:'DA-10', sub:'Ship live or scheduled refresh', detail:'Versioned artifact the squad can open on a cadence.', stages:['ship'] },
+      { id:'DA-11', sub:'Expose in your pack', detail:'Screenshot or link + definitions recruiters can verify.', stages:['expose'] },
     ]
   },
   {
@@ -467,6 +524,8 @@ var applyBtn = document.getElementById('applyBtn');
 var roleLegend = document.getElementById('roleLegend');
 var aiBox = document.getElementById('aiBox');
 var aiHarnessEl = document.getElementById('aiHarness');
+var shipsBox = document.getElementById('shipsBox');
+var shipsList = document.getElementById('shipsList');
 
 function stageById(id){ return STAGES.find(function(s){ return s.id === id; }); }
 
@@ -520,6 +579,7 @@ function renderDetail(path){
     panelCta.hidden = true;
     sdlcPanel.style.opacity = '0.55';
     if (aiBox) aiBox.hidden = true;
+    if (shipsBox) shipsBox.hidden = true;
     applySdlcHighlight(null, []);
     return;
   }
@@ -528,6 +588,12 @@ function renderDetail(path){
   roleCount.hidden = false;
   roleCount.textContent = path.steps.length + ' involvement steps';
   roleBlurb.textContent = path.blurb;
+  if (path.ships && shipsBox && shipsList) {
+    shipsBox.hidden = false;
+    shipsList.innerHTML = path.ships.map(function(s){ return '<li>' + s + '</li>'; }).join('');
+  } else if (shipsBox) {
+    shipsBox.hidden = true;
+  }
   if (path.aiHarness && aiBox && aiHarnessEl) {
     aiBox.hidden = false;
     aiHarnessEl.textContent = path.aiHarness;
@@ -601,7 +667,7 @@ renderDetail(null);
 
 var initial = new URLSearchParams(window.location.search).get('path');
 if (initial && PATHWAYS.some(function(p){ return p.id === initial; })) selectPath(initial);
-else selectPath('eng');
+else selectPath(null);
 
 (function(){
   var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
