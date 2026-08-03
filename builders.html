@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work experience stories — Squad Institute</title>
+<title>Builders who shipped — Squad Institute</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -59,17 +59,6 @@ a{color:inherit;text-decoration:none}
 .hero p{font-size:17px;color:var(--mute-d);margin-top:14px;max-width:36em;line-height:1.55}
 
 /* wave spine */
-.spine{padding:0 0 36px}
-.spine-track{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
-  background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:14px;
-}
-.sp{
-  text-align:center;padding:10px 6px;border-radius:10px;background:var(--ink-3);
-}
-.sp b{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);letter-spacing:.06em}
-.sp span{display:block;font-size:11.5px;color:var(--mute-d);margin-top:4px;line-height:1.3}
-
 .people{padding:0 0 50px}
 .plist{display:flex;flex-direction:column;gap:18px}
 
@@ -99,27 +88,15 @@ a{color:inherit;text-decoration:none}
 .ships3 .s{color:var(--mute-d)}
 .ships3 .s b{color:#fff;font-weight:500}
 
-.card-main{padding:22px 24px 24px}
-.weeks{display:flex;flex-direction:column;gap:0}
-.w{
-  display:grid;grid-template-columns:52px 1fr;gap:14px;
-  padding:11px 0;border-top:1px solid var(--line);align-items:start;
+.card-main{padding:26px 28px 28px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.chapter p{font-size:15.5px;color:var(--mute-d);line-height:1.65;max-width:48ch}
+.chapter p + p{margin-top:12px}
+.chapter p em{font-style:normal;color:#fff;font-weight:500}
+.chapter .left-with{
+  margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:13.5px;color:var(--bone);line-height:1.5;
 }
-.w:first-child{border-top:none;padding-top:0}
-.w .n{
-  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute);
-  padding-top:2px;
-}
-.w.ship .n{color:var(--lime)}
-.w.hard .n{color:var(--coral)}
-.w .t{font-size:14.5px;color:var(--bone);line-height:1.45}
-.w .t b{color:#fff;font-weight:600}
-.w.ship .t{color:var(--bone)}
-.w .tag{
-  display:inline-block;margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;
-  color:var(--lime);border:1px solid rgba(198,242,78,.3);padding:1px 7px;border-radius:999px;
-  vertical-align:middle;
-}
+.chapter .left-with b{color:var(--lime);font-weight:500}
 
 .soft{padding:10px 0 80px}
 .soft-box{
@@ -142,13 +119,11 @@ a{color:inherit;text-decoration:none}
 .disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
 
 @media (max-width:920px){
-    .spine-track{grid-template-columns:repeat(4,1fr)}
   .card{grid-template-columns:1fr}
   .card-side{border-right:none;border-bottom:1px solid var(--line)}
 }
 @media (max-width:640px){
   .wrap{padding:0 20px}
-  .spine-track{grid-template-columns:repeat(2,1fr)}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 :focus-visible{outline:2.5px solid var(--lime);outline-offset:3px;border-radius:4px}
@@ -226,191 +201,174 @@ a{color:inherit;text-decoration:none}
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">Builder stories · illustrative</span>
-    <h1>Work experience stories.</h1>
-    <p>Illustrative 8-week Sprints on startup squads — visa pressure, rent, silent applications, career switches. Same program, different starting points.</p>
+    <span class="eyebrow">Marketplace builders · Sprint · illustrative</span>
+    <h1>Not a trophy wall. <em>People under pressure who still shipped.</em></h1>
+    <p>Illustrative stories until live ships are linked. Rough stretches left in on purpose — visa clocks, shifts, first-gen silence, age bias, the quiet inbox. Same pull underneath: a seat, a crew, proof you can open.</p>
   </div>
 </header>
-
-<section class="spine">
-  <div class="wrap">
-    <div class="spine-track" aria-label="8-week Sprint">
-      <div class="sp"><b>01</b><span>Join squad + buddy</span></div>
-      <div class="sp"><b>02</b><span>Deliverable 1</span></div>
-      <div class="sp"><b>03</b><span>Deliverable 2</span></div>
-      <div class="sp"><b>04</b><span>Portfolio + next step</span></div>
-    </div>
-  </div>
-</section>
 
 <section class="people">
   <div class="wrap">
     <div class="plist">
 
-      <!-- MAYA — P1 international / visa + family sacrifice -->
+      <!-- MAYA — Aarav / visa -->
       <article class="card" id="maya">
         <aside class="card-side">
           <div class="who">
             <div class="av" style="background:var(--lime)">MA</div>
             <div>
               <div class="name">Maya R.</div>
-              <div class="meta">Kelpie · backend · international</div>
+              <div class="meta">kelpie · backend</div>
             </div>
           </div>
-          <p class="stake">Her visa clock is running and every job ad asks for “local experience.” <em>She needed the work experience that gets you hired — proof she could open in an interview, not another empty month.</em></p>
+          <p class="stake">Her visa clock is running and family already paid for the move. <em>She needed to leave with something she could open — not another empty month.</em></p>
           <div class="ships3">
-            <div class="k">2 deliverables</div>
-            <div class="s"><b>01</b> · route constraint sketch</div>
-            <div class="s"><b>02</b> · offline fallback</div>
+            <div class="k">What she can open</div>
+            <div class="s"><b>Route</b> · constraint sketch</div>
+            <div class="s"><b>Offline</b> · fallback routing</div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="weeks">
-            <div class="w"><div class="n">01</div><div class="t">Took the seat. Buddy matched same day. Cleared tools. Pocket: <b>if nothing lands, the visa story gets ugly.</b></div></div>
-            <div class="w ship"><div class="n">02</div><div class="t"><b>Deliverable 1</b> — route constraint sketch, reviewed. First thing she could show. <span class="tag">deliverable</span></div></div>
-            <div class="w hard"><div class="n">03</div><div class="t">Rough stretch — <b>rent + job apps.</b> Paused two days, didn’t ghost. Then <b>Deliverable 2</b> — offline fallback routing. <span class="tag">deliverable</span></div></div>
-            <div class="w"><div class="n">04</div><div class="t">Pack + showcase. Converted to the 52-week path — <b>proof before the clock, not after.</b></div></div>
+          <div class="chapter">
+            <p>Every listing asked for local experience she couldn’t invent. Going home empty wasn’t a soft option — it was the nightmare her parents had funded against. She claimed a backend seat on Kelpie. A buddy answered the same day and scoped real work, not a lecture.</p>
+            <p>Midway, rent hit hard. She said so out loud and paused two days. Nobody scored her as a flake. She came back and finished. Pack in hand, she converted to the longer path — <em>proof before the clock, not after.</em></p>
+            <p class="left-with">Left with: <b>two reviewed ships</b> a recruiter can open, plus a squad who knew her name.</p>
           </div>
         </div>
       </article>
 
-      <!-- AISHA — P2 working-class / no cushion -->
+      <!-- AISHA — Chloe / no cushion -->
       <article class="card" id="aisha">
         <aside class="card-side">
           <div class="who">
             <div class="av" style="background:var(--sky)">AK</div>
             <div>
               <div class="name">Aisha K.</div>
-              <div class="meta">Tollgate · full-stack · working while studying</div>
+              <div class="meta">tollgate · full-stack</div>
             </div>
           </div>
-          <p class="stake">Dad drives trucks. Mum cleans. She’s covered rent since second year — unpaid internships were never on the table. <em>Core fear: one wrong bet and she falls back.</em></p>
+          <p class="stake">She works retail shifts and can’t do an unpaid internship. <em>The Sprint had to fit a real life — or it wasn’t for her.</em></p>
           <div class="ships3">
-            <div class="k">2 deliverables</div>
-            <div class="s"><b>01</b> · quote → invoice wire</div>
-            <div class="s"><b>02</b> · GST line items</div>
+            <div class="k">What she can open</div>
+            <div class="s"><b>Quote</b> · invoice wire</div>
+            <div class="s"><b>GST</b> · line items + send</div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="weeks">
-            <div class="w"><div class="n">01</div><div class="t">Applied from the break room after closing. Buddy scoped a task she could finish between shifts — <b>no guilt for saying no to extra hours.</b></div></div>
-            <div class="w ship"><div class="n">02</div><div class="t"><b>Deliverable 1</b> — quote → invoice wireframe, reviewed. First portfolio piece that wasn’t a uni assignment. Sent the link to her mum; she didn’t get it but knew it was real. <span class="tag">deliverable</span></div></div>
-            <div class="w hard"><div class="n">03</div><div class="t">Landlord raised rent. Almost picked up a sixth shift. Buddy shrank Deliverable 2 to GST line items only. <b>Still finished.</b> <span class="tag">deliverable</span></div></div>
-            <div class="w"><div class="n">04</div><div class="t">Portfolio review. Two artifacts + squad reference. Referred two people from retail who asked how she “got into tech.”</div></div>
+          <div class="chapter">
+            <p>She applied after a double shift. No cushion, no family float for an unpaid full-time filter. Her buddy said the quiet part first: <em>the squad fits around shifts, not the other way round</em> — then scoped a three-hour slice she could actually finish.</p>
+            <p>First openable thing that wasn’t a uni assignment. Almost took more retail hours when money got thin; kept the survival job and kept shipping. She left with the pack — and referred two people from the shop floor who recognised the same pressure.</p>
+            <p class="left-with">Left with: <b>work that fits a shift life</b>, and proof survival work isn’t quitting.</p>
           </div>
         </div>
       </article>
 
-      <!-- LIAM — P5 career changer / sunk cost -->
+      <!-- LIAM — David / career change -->
       <article class="card" id="liam">
         <aside class="card-side">
           <div class="who">
             <div class="av" style="background:var(--amber)">LT</div>
             <div>
               <div class="name">Liam T.</div>
-              <div class="meta">Sandbar · product · career change</div>
+              <div class="meta">sandbar · product</div>
             </div>
           </div>
-          <p class="stake">Fourteen years in venues. Mortgage, two kids, parents asking when he’ll “get a real job again.” <em>Sunk cost on his mind — needed proof the switch wasn’t a midlife whim before savings ran out.</em></p>
+          <p class="stake">He left hospitality with age on the CV and sunk cost in the rear-view. <em>“Have I risked too much?” — a Sprint to prove the switch.</em></p>
           <div class="ships3">
-            <div class="k">2 deliverables</div>
-            <div class="s"><b>01</b> · member renew flow</div>
-            <div class="s"><b>02</b> · waitlist v1</div>
+            <div class="k">What he can open</div>
+            <div class="s"><b>Renew</b> · member flow</div>
+            <div class="s"><b>Waitlist</b> · v1</div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="weeks">
-            <div class="w"><div class="n">01</div><div class="t">Application said career change out loud. Joined Sandbar; buddy treated his roster ops background as product signal, <b>not a gap.</b></div></div>
-            <div class="w ship"><div class="n">02</div><div class="t"><b>Deliverable 1</b> — member renew flow. Review pushed acceptance criteria; he reworked once without reading it as “too old to learn.” <span class="tag">deliverable</span></div></div>
-            <div class="w hard"><div class="n">03</div><div class="t">Compared himself to 22-year-olds on LinkedIn. Reviewer stayed on the work. <b>Deliverable 2</b> — waitlist v1. Kids asleep, finished at 11pm. <span class="tag">deliverable</span></div></div>
-            <div class="w"><div class="n">04</div><div class="t">Portfolio review. <b>The switch has receipts now</b> — not just a cover letter story.</div></div>
+          <div class="chapter">
+            <p>He said the fear out loud in intake — age on the CV, mortgage in the rear-view, the sense he’d risked too much too late. Prior ops experience counted. It wasn’t erased for being the wrong industry stamp. First ship: member renewals, reworked once under a clear bar.</p>
+            <p>Comparison hit mid-sprint. The line that stuck from his lead: <em>critique the artifact, not your age.</em> He left with a waitlist he built and a signal pack. The switch has receipts now — not another pivot story.</p>
+            <p class="left-with">Left with: <b>evidence for the move</b>, reviewed by people who weren’t selling him a dream.</p>
           </div>
         </div>
       </article>
 
-      <!-- NOAH — P3 first-generation / no map -->
+      <!-- NOAH — Sam / first gen -->
       <article class="card" id="noah">
         <aside class="card-side">
           <div class="who">
             <div class="av" style="background:var(--coral)">NP</div>
             <div>
               <div class="name">Noah P.</div>
-              <div class="meta">Ledger · QA / ops · first in family</div>
+              <div class="meta">ledger · QA / ops</div>
             </div>
           </div>
-          <p class="stake">First in his family through uni. Dad proud but quiet; mum asks when he’ll get “a proper job.” <em>No uncle in tech, no map for interviews or portfolios — achievement guilt on both sides.</em></p>
+          <p class="stake">First in his family through uni, with no map to follow. <em>He built one — by shipping things people can open.</em></p>
           <div class="ships3">
-            <div class="k">2 deliverables</div>
-            <div class="s"><b>01</b> · bug bash notes</div>
-            <div class="s"><b>02</b> · regression pack</div>
+            <div class="k">What he can open</div>
+            <div class="s"><b>Bugs</b> · bash notes</div>
+            <div class="s"><b>Regression</b> · pack</div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="weeks">
-            <div class="w"><div class="n">01</div><div class="t">Didn’t know what “scope” meant. Buddy walked the first task line by line — <b>no jargon gatekeeping.</b></div></div>
-            <div class="w ship"><div class="n">02</div><div class="t"><b>Deliverable 1</b> — bug bash notes. First artifact an employer could open without him explaining context. <span class="tag">deliverable</span></div></div>
-            <div class="w hard"><div class="n">03</div><div class="t">Cousin got into med school; achievement guilt hit hard. Paused, didn’t quit. <b>Deliverable 2</b> — regression pack. Feedback on the notes, not on him. <span class="tag">deliverable</span></div></div>
-            <div class="w"><div class="n">04</div><div class="t">Portfolio review. Still no family career map — <em>but he has a show-up record and two reviewed deliverables.</em></div></div>
+          <div class="chapter">
+            <p>He didn’t know what to ask. Nobody at the dinner table had a playbook for this corridor. Buddy answer was small on purpose: seat first, one move, tools later. Belonging before the toll — so the jargon didn’t arrive as another gate.</p>
+            <p>Family achievement guilt stayed private. Review was rubric-only: the artifact on trial, never the person. He still doesn’t have an inherited map. He has a trail — bug-bash notes, a regression pack, two invites out to people who also had no map.</p>
+            <p class="left-with">Left with: <b>a trail he can show</b>, built without pretending he already knew the path.</p>
           </div>
         </div>
       </article>
 
-      <!-- PRIYA — P4 middle-class / ghosting + comparison -->
+      <!-- PRIYA — Olivia / first failure -->
       <article class="card" id="priya">
         <aside class="card-side">
           <div class="who">
             <div class="av" style="background:var(--pink)">PS</div>
             <div>
               <div class="name">Priya S.</div>
-              <div class="meta">Harbour · frontend · recent graduate</div>
+              <div class="meta">harbour · frontend</div>
             </div>
           </div>
-          <p class="stake">Good degree, supportive parents, expected a grad role by Christmas. Forty applications, three auto-replies, one ghosted interview. <em>LinkedIn made everyone else look hired — she needed work to open, not another month refreshing Seek.</em></p>
+          <p class="stake">Friends say she’s “fine,” but applications go into silence. <em>First real failure — shipping instead of another month refreshing.</em></p>
           <div class="ships3">
-            <div class="k">2 deliverables</div>
-            <div class="s"><b>01</b> · listing card UI</div>
-            <div class="s"><b>02</b> · availability slots</div>
+            <div class="k">What she can open</div>
+            <div class="s"><b>Listing</b> · card UI</div>
+            <div class="s"><b>Slots</b> · availability</div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="weeks">
-            <div class="w"><div class="n">01</div><div class="t">Joined Harbour while they were still recruiting. Buddy replied in 90 minutes — <b>first human response in weeks.</b></div></div>
-            <div class="w ship"><div class="n">02</div><div class="t"><b>Deliverable 1</b> — listing card UI. Two spacing fixes in review. Done in a day. Felt like progress for the first time in months. <span class="tag">deliverable</span></div></div>
-            <div class="w hard"><div class="n">03</div><div class="t">Caught herself scrolling peer highlight reels. Squad kept her on the build. <b>Deliverable 2</b> — availability slots. <span class="tag">deliverable</span></div></div>
-            <div class="w"><div class="n">04</div><div class="t">Portfolio review. Two things she can open in an interview. <b>Parents finally have something concrete to point at.</b></div></div>
+          <div class="chapter">
+            <p>On paper she was fine. In the applications, silence felt like a verdict on her. It wasn’t — credential inflation plus ghosting is a market shape. She named it in intake: <em>why am I behind?</em> Named, not shamed. Buddy scoped a listing card that afternoon. No pep talk. A task with her name on it.</p>
+            <p>Two reviewed ships. A LinkedIn spike she didn’t chase into comparison. She isn’t “sorted.” She has two openable things and a seat she didn’t quit — something she can put on the table when someone asks what the degree bought.</p>
+            <p class="left-with">Left with: <b>work that justifies the investment</b> without pretending the silence never hurt.</p>
           </div>
         </div>
       </article>
 
-      <!-- SAM O — peer lead / lived the same inbox -->
+      <!-- SAM O — near peer / relatedness -->
       <article class="card" id="sam">
         <aside class="card-side">
           <div class="who">
             <div class="av" style="background:var(--teal-soft)">SO</div>
             <div>
               <div class="name">Sam O.</div>
-              <div class="meta">Kelpie · squad lead · alumni</div>
+              <div class="meta">kelpie · squad lead</div>
             </div>
           </div>
-          <p class="stake">Came through two cohorts ago — working-class, no portfolio, same silent inbox. <em>Stays on as squad lead so the next person doesn’t ship alone.</em></p>
+          <p class="stake">He was in the void too — now he’s near-peer. <em>Holding the bar so nobody ships alone into silence.</em></p>
           <div class="ships3">
-            <div class="k">2 ships (lead track)</div>
-            <div class="s"><b>01</b> · review rubric pass</div>
-            <div class="s"><b>02</b> · break-window co-author</div>
+            <div class="k">What he holds</div>
+            <div class="s"><b>Reviews</b> · rubric pass</div>
+            <div class="s"><b>Breaks</b> · pause without shame</div>
           </div>
         </aside>
         <div class="card-main">
-          <div class="weeks">
-            <div class="w"><div class="n">01</div><div class="t">Welcomed Maya within an hour. Remembered what it felt like when <b>nobody replied.</b></div></div>
-            <div class="w ship"><div class="n">02</div><div class="t"><b>Deliverable 1</b> — calibrated first reviews. Feedback on the diff, not the person. Same rule he needed when he started. <span class="tag">deliverable</span></div></div>
-            <div class="w hard"><div class="n">03</div><div class="t">Noticed Maya stall during rent week. Logged pause, no penalty. Co-authored break-window constraints with her. <span class="tag">deliverable</span></div></div>
-            <div class="w"><div class="n">04</div><div class="t">Ran portfolio review. Referred two applicants who sounded like him eighteen months ago.</div></div>
+          <div class="chapter">
+            <p>He remembers the quiet inbox. That’s why Maya’s hello landed in under an hour — belonging before clearance. He helps scope what “done” means so the first task isn’t a fog of uncertainty.</p>
+            <p>Reviews put the artifact on trial, never the person. When someone stalls, the pause gets logged — not a public roast. Two seats filled through peer invite. Relatedness, not a highlight reel.</p>
+            <p class="left-with">Holds the bar so <b>nobody ships alone into silence</b> — the near-peer voice the market rarely gives you.</p>
           </div>
         </div>
       </article>
 
     </div>
-    <p class="note">Illustrative stories · first name + initial only · we never publish email, phone, or visa details</p>
+    <p class="note">Opt-in · first name + initial · illustrative stories · intros through us · we never put email, phone, or visa details on the wall</p>
   </div>
 </section>
 
@@ -418,8 +376,8 @@ a{color:inherit;text-decoration:none}
   <div class="wrap">
     <div class="soft-box">
       <div>
-        <h2>Your Sprint can look like this.</h2>
-        <p>Apply for a squad spot. We check fit with you, assign a buddy, and you complete two deliverables in eight weeks.</p>
+        <h2>Your chapter can start like theirs.</h2>
+        <p>Claim a seat and we’ll check fit with you. A buddy answers. Work you can open — or exit well with the pack. Hiring? Ask us for an intro.</p>
       </div>
       <div class="soft-acts">
         <a href="apply.html" class="btn btn-lime">Claim a seat<span class="arw">→</span></a>
@@ -442,7 +400,7 @@ a{color:inherit;text-decoration:none}
           </svg>
           Squad Institute
         </div>
-        <p class="foot-about">Real work experience on startup squads — two portfolio pieces, a buddy, reply in five business days. Not a course.</p>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
       </div>
       <div class="foot-col">
         <h4>Program</h4>
@@ -468,7 +426,7 @@ a{color:inherit;text-decoration:none}
       <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
       <p>100% online</p>
     </div>
-    <p class="disc">Squad Institute provides work experience on startup squads. Builder stories are illustrative examples of the 8-week Sprint. This is not employment and does not guarantee a job.</p>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Builder arcs are opt-in illustrations of the Sprint. Participation does not guarantee employment. The market is structural — we don’t frame silence as a personal verdict.</p>
   </div>
 </footer>
 

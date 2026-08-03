@@ -8,7 +8,7 @@
 
 ## Objections
 
-1. **Home is message-dense.** Brand + eyebrow + Seek pain + ghosted/CV/degree + 8 weeks + graph + void + CTAs + meta stats + hero card — exceeds one-minute for ST1/ST2.
+1. **Home is message-dense.** Brand + eyebrow + Seek pain + ghosted/CV/degree + the Sprint + graph + void + CTAs + meta stats + hero card — exceeds one-minute for ST1/ST2.
 2. **How-it-works is a long spine.** Phase cards + tags + notes = SKIM for burned-out brains; they need one diagram + one CTA.
 3. **Builders is a novel.** Five full W1–W8 arcs = delight for ST4, abandonment for taxed brains who never scroll past Maya W3.
 4. **Nav overload.** How it works / Active squads / Builders / FAQ / Contact + dual CTAs — choice cost before comprehension.
@@ -21,10 +21,10 @@
 ## Delight / come-back-again
 
 1. **60-second home script:** Pain (ghosted) → Offer (8-wk online squad that ships) → Proof (first artifact ~W3) → Move (Apply) — cut hero meta to two numbers.
-2. **Skim layer on builders:** Collapsed “3 ships + stake” only; expand week arc on click — return visit when bandwidth frees (map: SKIM → revisit F4).
+2. **Skim layer on builders:** Collapsed “3 ships + stake” only; expand the arc on click — return visit when bandwidth frees (map: SKIM → revisit F4).
 3. **One-liner glossary chips:** Graph = show-up record · Pack = things you can open in an interview · Seat = held place with a buddy.
-4. **FAQ TL;DR row** at top: Cost · Job? · Visa · Online · Time/week — five answers, one screen.
-5. **Return hook:** Save-for-later / “email me the 8-week picture” — explicit map permission for SKIM → return when ST4.
+4. **FAQ TL;DR row** at top: Cost · Job? · Visa · Online · Hours — five answers, one screen.
+5. **Return hook:** Save-for-later / “email me the Sprint picture” — explicit map permission for SKIM → return when ST4.
 6. **How-it-works lite:** Four moves already on home — make that page a deep dive, not the first stop after hero.
 
 ---

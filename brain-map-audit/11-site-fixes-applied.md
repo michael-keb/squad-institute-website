@@ -1,17 +1,32 @@
-# Site fixes applied (post 10-round audit)
+# Site fixes — story stitch (post checklist pass)
 
-Implemented against priority stack in `10-gauntlet-return-loops.md`.
+Earlier pass bolted filter labels onto the page (strips, chips, TL;DR tiles). That passed a checklist and failed as a story.
 
-| Fix | Where |
-|---|---|
-| F1 first viewport: soon / cost / visa-shifts | `index.html` hero strip |
-| Anti-ghost + 5-day reply | home, apply, FAQ TL;DR, how-it-works |
-| Graph + hardship co-located | home strip, hero card, why cards, FAQ graph |
-| Persona / Master Gate doors | home chips + persona grid → builders anchors |
-| Secondary CTA = week-3 proof | home → `builders.html#maya` |
-| Truth labels (illustrative) | home squads, active-squads, builders |
-| FAQ 60-second answers | `faq.html` TL;DR block |
-| Soften identity threat | “Honesty is public”, “expensive to ignore” removed |
-| F4 compress (less is more) | Home → 60s script; cut F1 cards → one line; persona doors label-only; short how/why/CTA; FAQ TL;DR + how-it-works hero trimmed |
+**Current approach:** one narrative spine on home; apply / how-it-works / builders continue the same chapter, not restart as a brochure.
 
-Still open (needs product/ops, not copy alone): real repos, real reply automation, collapsed builders skim UI, ST1/ST2 landing variants as separate URLs.
+## Story spine (`index.html`)
+
+| Beat | Section | Map job (woven, not labelled) |
+|---|---|---|
+| Promise | Hero — brand + experience-loop headline | F1 desire + F2 structural frame |
+| Recognition | “The loop” | S1/S2/S6 named without deficit-blame |
+| Arc | Sprint timeline (no calendar labels) | F1 cost/reply · F3 anti-ghost · F5 pause · F4 one beat at a time |
+| Door | “Where your story starts” | G1 / P1–P5 |
+| Proof | Maya vignette | F6 anti–success-porn · F2 hardship co-located |
+| Rooms | Squad board (illustrative) | Desire object, truth-labelled |
+| Claim | Bridge + final CTA | F5 one move · trust before form |
+
+## Continuations
+
+- `apply.html` — “Next page of the story”; sidebar = next four beats
+- `how-it-works.html` — “From silent inbox to work you can open”
+- `the-shift.html` — S8 thesis page; 60s skim + deep read; ties orchestration to survival proof + G1
+- `builders.html` — chapters with pause/rough stretches kept in
+- Calendar-duration language removed sitewide (Sprint / year-long path / rough stretch)
+
+## Still open (ops, not copy)
+
+- Progressive apply (name + email first → soft seat)
+- Real reply automation + living ship feed
+- ST1/ST2 URL variants if traffic warrants
+- Replace illustrative people/repos when live

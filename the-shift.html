@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The shift — Agent orchestration · Squad Institute</title>
+<meta name="description" content="The future of work is agent orchestration across every role — not one tool, not one prompt. Why squads teach you to direct agents, review output, and ship work you still own.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#FF6B57;
+  --mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;cursor:pointer;border:none;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;margin:2.5px 0;transition:transform .2s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+
+.phero{
+  background:
+    radial-gradient(ellipse 80% 60% at 85% 20%, rgba(31,111,91,.35), transparent 55%),
+    linear-gradient(165deg, #12111a 0%, var(--ink) 45%, #1a2430 100%);
+  color:var(--bone);padding:80px 0 72px;position:relative;overflow:hidden;
+}
+.phero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:48px 48px;mask-image:linear-gradient(180deg,#000 50%,transparent);
+}
+.phero .wrap{position:relative;z-index:1;max-width:720px}
+.phero h1{font-size:clamp(34px,5vw,56px);color:#fff;font-weight:700;margin:20px 0 0;line-height:1.06;max-width:16em}
+.phero h1 .hl{color:var(--lime)}
+.phero .deck{font-size:clamp(17px,1.5vw,19px);color:#fff;font-weight:500;margin-top:22px;line-height:1.55;max-width:36em}
+.phero .sub{font-size:16px;color:var(--mute-d);margin-top:16px;line-height:1.6;max-width:38em}
+.phero-meta{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.phero-skim{
+  margin-top:28px;padding:18px 20px;border:1px solid var(--line-d);border-radius:12px;
+  background:rgba(255,255,255,.04);max-width:40em;
+}
+.phero-skim .sl{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);margin-bottom:10px}
+.phero-skim ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.phero-skim li{font-size:14.5px;color:var(--mute-d);line-height:1.45;padding-left:14px;position:relative}
+.phero-skim li::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:1px;background:var(--lime);transform:rotate(45deg)}
+.phero-skim li strong{color:#fff;font-weight:600}
+.phero-note{font-size:12.5px;color:var(--mute);margin-top:12px;font-family:'JetBrains Mono',monospace}
+.story-back{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--mute-d);margin-bottom:8px;transition:color .15s}
+.story-back:hover{color:#fff}
+.gloss{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.gchip{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);background:var(--bone);border:1px solid var(--line-l);border-radius:8px;padding:6px 10px;line-height:1.35}
+.gchip b{color:var(--ink);font-weight:600}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bone);background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:30px;padding:7px 14px;display:inline-flex;align-items:center;gap:8px}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--lime)}
+
+.prose-sec{padding:80px 0;background:var(--bone)}
+.prose-sec.alt{background:var(--bone-2)}
+.prose-inner{max-width:640px}
+.prose-sec h2{font-size:clamp(26px,3.2vw,38px);margin-top:16px}
+.prose{font-size:17px;color:var(--mute);line-height:1.65;margin-top:20px}
+.prose + .prose{margin-top:14px}
+.prose em{font-style:normal;color:var(--ink);font-weight:500}
+.prose strong{font-weight:600;color:var(--ink)}
+.prose ul{margin:16px 0 0 1.2em;line-height:1.65}
+.prose li{margin-top:8px;color:var(--mute)}
+.prose li strong{color:var(--ink)}
+
+.pull{
+  background:var(--ink);color:var(--bone);padding:72px 0;
+  border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d);
+  position:relative;
+}
+.pull::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--lime)}
+.pull-inner{max-width:640px;padding-left:8px}
+.pull blockquote{
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.8vw,32px);
+  font-weight:600;color:#fff;line-height:1.15;letter-spacing:-.02em;
+}
+.pull cite{display:block;margin-top:16px;font-size:14px;color:var(--mute-d);font-style:normal}
+
+.roles{padding:80px 0;background:var(--bone)}
+.roles-head{max-width:640px;margin-bottom:32px}
+.roles-head h2{font-size:clamp(26px,3.2vw,38px);margin-top:16px}
+.roles-head p{color:var(--mute);font-size:17px;margin-top:16px;line-height:1.55}
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.role{
+  background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:20px 18px;
+  transition:transform .18s,border-color .18s;
+}
+.role:hover{transform:translateY(-3px);border-color:rgba(31,111,91,.35)}
+.role .rk{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--violet);margin-bottom:8px}
+.role h3{font-size:16px;margin-bottom:8px;line-height:1.2}
+.role p{font-size:13.5px;color:var(--mute);line-height:1.5;margin:0}
+
+.stack{padding:80px 0;background:var(--bone-2)}
+.stack-inner{max-width:720px}
+.stack h2{font-size:clamp(26px,3.2vw,38px);margin-top:16px}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:32px;border:1px solid var(--line-l);border-radius:var(--r);overflow:hidden;background:#fff}
+.step{display:grid;grid-template-columns:56px 1fr;gap:0;border-bottom:1px solid var(--line-l)}
+.step:last-child{border-bottom:none}
+.step-n{
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);
+  background:var(--bone);display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--line-l);padding:20px 0;
+}
+.step-body{padding:20px 24px}
+.step-body h3{font-size:18px;margin-bottom:6px}
+.step-body p{font-size:14.5px;color:var(--mute);line-height:1.55;margin:0}
+
+.final{background:var(--ink);color:var(--bone);padding:88px 0;text-align:center}
+.final h2{font-size:clamp(28px,4vw,48px);color:#fff;max-width:16em;margin:18px auto 0}
+.final p{color:var(--mute-d);font-size:17px;margin:20px auto 0;max-width:32em;line-height:1.55}
+.final-cta{display:flex;gap:14px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+
+.foot{background:var(--ink);color:var(--mute-d);border-top:1px solid var(--line-d);padding:54px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot .brand{color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px}
+.foot-about{max-width:300px;font-size:13.5px;line-height:1.6}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:14px;font-weight:500}
+.foot-col a{display:block;font-size:14px;color:var(--mute-d);margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line-d);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px}
+.disc{max-width:680px;margin-top:14px;font-size:11.5px;color:#56555f;line-height:1.6}
+
+@media (max-width:920px){.role-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .role-grid{grid-template-columns:1fr}
+  .nav-cta > .btn{display:none}
+}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink)}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--lime)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="how-it-works.html">How it works</a>
+      <a href="the-shift.html" class="active">The shift</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="active-squads.html">Squads</a>
+      <a href="builders.html">Builders</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="phero on-dark">
+  <div class="wrap">
+    <a href="index.html" class="story-back on-dark">← Back to the story</a>
+    <span class="eyebrow">The shift</span>
+    <h1>The future of work is <span class="hl">agent orchestration</span> — across every single role.</h1>
+    <p class="deck">Not one tool. Not one prompt. Every job — marketing, engineering, product, sales, data — is becoming about directing agents, reviewing what they produce, and shipping work you still own.</p>
+    <p class="sub">This is structural, not personal: generic AI applications are flooding recruiters, and the degree alone isn’t the ticket anymore. Squads exist so you leave with <strong style="color:#fff;font-weight:600">proof you can orchestrate inside a role</strong> — not another certificate about “AI literacy.”</p>
+    <div class="phero-skim">
+      <div class="sl">In 60 seconds · if rent or visa is loud right now</div>
+      <ul>
+        <li><strong>What changed:</strong> employers want role-specific AI harness, not chat-window fluency.</li>
+        <li><strong>What you walk with:</strong> openable artifacts + squad references — same loop as the home page.</li>
+        <li><strong>What it costs at the door:</strong> applying and the Sprint aren’t a day-one fee · online · pause if life hits.</li>
+        <li><strong>One move:</strong> <a href="apply.html" style="color:var(--lime);text-decoration:underline;text-underline-offset:3px">claim a seat</a> — human reply within five business days.</li>
+      </ul>
+      <p class="phero-note">Deep read below · ~8 min · for when you have bandwidth</p>
+    </div>
+    <div class="phero-meta">
+      <span class="chip"><i></i>Every role</span>
+      <span class="chip"><i></i>You own the ship call</span>
+      <span class="chip"><i></i>Critique the artifact, not you</span>
+    </div>
+  </div>
+</header>
+
+<section class="prose-sec">
+  <div class="wrap">
+    <div class="prose-inner">
+      <span class="eyebrow">What changed</span>
+      <h2>Chat windows aren’t the skill. Orchestration is.</h2>
+      <p class="prose">Knowing how to open an AI tool is table stakes. What hiring managers are testing for now is whether you can <em>run a stack</em> inside a real role — set intents, chain agents, catch bad output, and ship artifacts you can defend in review.</p>
+      <p class="prose">That’s agent orchestration. It shows up differently in every craft, but the shape is the same: <strong>direct → review → ship → own.</strong></p>
+      <p class="prose">Recruiters are already drowning in generic AI-generated applications — same cover letter cadence, same buzzwords, no proof anyone can do the job. The market is separating people who can orchestrate inside a role from people who can only paste prompts. That’s not a verdict on you — it’s the shape of the inbox right now.</p>
+      <div class="gloss">
+        <span class="gchip"><b>Orchestration</b> = direct agents · review · ship · own</span>
+        <span class="gchip"><b>Harness</b> = AI inside your craft, not generic chat</span>
+        <span class="gchip"><b>Instrument</b> = tools + intents for your role</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pull on-dark">
+  <div class="wrap">
+    <div class="pull-inner">
+      <blockquote>“The degree gets you in the room. Role-specific harness is what keeps you in the job.”</blockquote>
+      <cite>— Structural, not personal: the bar moved for everyone (visa clock, shifts, or first-gen — same market)</cite>
+    </div>
+  </div>
+</section>
+
+<section class="roles">
+  <div class="wrap">
+    <div class="roles-head">
+      <span class="eyebrow">Every role</span>
+      <h2>Same orchestration pattern. Different craft.</h2>
+      <p>Agent orchestration isn’t an engineering-only story. It’s how work gets done across the squad — with human review on everything that ships.</p>
+    </div>
+    <div class="role-grid">
+      <div class="role">
+        <div class="rk">Marketing</div>
+        <h3>Variants, research, production</h3>
+        <p>Agents draft copy and summarise research. You own brand voice, honest claims, and what actually goes live.</p>
+      </div>
+      <div class="role">
+        <div class="rk">Engineering</div>
+        <h3>Scaffold, test, implement</h3>
+        <p>Agents pair on code. You own architecture, the diff, security review, and what merges.</p>
+      </div>
+      <div class="role">
+        <div class="rk">Business analyst</div>
+        <h3>Maps, edge cases, rules</h3>
+        <p>Agents draft process maps. You own stakeholder truth and whether the rules match the business.</p>
+      </div>
+      <div class="role">
+        <div class="rk">Product owner</div>
+        <h3>Breakdown, acceptance, ship call</h3>
+        <p>Agents suggest slices. You own prioritisation, non-goals, and what the squad builds this week.</p>
+      </div>
+      <div class="role">
+        <div class="rk">UX</div>
+        <h3>Explore, frame, validate</h3>
+        <p>Agents explore layout and copy options. You own research truth, usability, and design review.</p>
+      </div>
+      <div class="role">
+        <div class="rk">Sales</div>
+        <h3>Outreach, personalisation, CRM</h3>
+        <p>Agents draft talk tracks. You own integrity, tone, and evidence in the CRM — not vanity volume.</p>
+      </div>
+      <div class="role">
+        <div class="rk">Data</div>
+        <h3>Query, viz, definitions</h3>
+        <p>Agents draft queries and charts. You own metric truth, privacy limits, and accuracy before the squad relies on it.</p>
+      </div>
+      <div class="role" style="grid-column:span 2">
+        <div class="rk">Every pathway</div>
+        <h3>Instrument → Build → Review → Ship</h3>
+        <p>Same squad lifecycle on every track. AI assists in Instrument and Build. Humans review to a rubric. You keep the artifact.</p>
+      </div>
+    </div>
+    <p style="margin-top:28px"><a href="pathways.html" style="font-weight:600;color:var(--violet);font-size:15px">Explore each pathway interactively →</a></p>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="wrap">
+    <div class="stack-inner">
+      <span class="eyebrow">How squads teach it</span>
+      <h2>Real product work — not a prompt workshop.</h2>
+      <p class="prose" style="margin-top:16px">You don’t learn orchestration from a slide deck. You learn it on a live squad, with a buddy, shipping work a recruiter can open.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div class="step-body">
+            <h3>Instrument your role</h3>
+            <p>Set up the tools, intents, and agent steps for your craft — scoped to a real slice on a real product.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div class="step-body">
+            <h3>Build with assist</h3>
+            <p>Draft with agents. Speed up production. Never rubber-stamp output you haven’t read.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div class="step-body">
+            <h3>Review to a rubric</h3>
+            <p>Peer and mentor review — not the model grading itself. Critique the artifact, not the person.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">04</div>
+          <div class="step-body">
+            <h3>Ship work you own</h3>
+            <p>Leave with deliverables in a portfolio — proof you can orchestrate inside a role, not just talk about AI.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-sec alt">
+  <div class="wrap">
+    <div class="prose-inner">
+      <span class="eyebrow">Why this matters for you</span>
+      <h2>Experience you can show — in the stack employers actually want.</h2>
+      <p class="prose">The old loop still hurts: employers want local experience before they give you a seat. But the bar inside that seat has moved. They don’t just want a degree and a quiet inbox. They want someone who can <em>direct agents inside the role they’re hiring for</em> — and still ship.</p>
+      <p class="prose">Whatever’s behind you — visa, shifts, no family map, first failure, late switch — changes the <em>weight</em> on you, not whether the market moved. Squad Institute puts you on that work early: mentored squads, live products, human review on everything you submit. You leave with proof a recruiter can open — not another certificate.</p>
+      <p class="prose">Read more: <a href="blog/harnessing-ai-for-your-role.html" style="color:var(--violet);text-decoration:underline;text-underline-offset:3px">Harnessing AI for your role</a> · <a href="faq.html" style="color:var(--violet);text-decoration:underline;text-underline-offset:3px">FAQ on AI in the Sprint</a> · <a href="index.html#stakes" style="color:var(--violet);text-decoration:underline;text-underline-offset:3px">Pick your pressure on the home page</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="final on-dark">
+  <div class="wrap">
+    <span class="eyebrow">Your move</span>
+    <h2>Learn orchestration on a squad — not in a chat window.</h2>
+    <p>One move: claim a seat. A human replies within five business days. Or <a href="pathways.html" style="color:var(--lime);text-decoration:underline;text-underline-offset:3px">browse pathways first</a> if you’re still exploring.</p>
+    <div class="final-cta">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">Mentored work experience on startup squads — including agent orchestration inside every role. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="how-it-works.html">How it works</a>
+        <a href="the-shift.html">The shift</a>
+        <a href="pathways.html">Pathways</a>
+        <a href="active-squads.html">Active squads</a>
+        <a href="career-coaching.html">Career coaching</a>
+        <a href="builders.html">Builders</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="apply.html">Next cohort</a>
+        <a href="apply.html#eligibility">Check eligibility</a>
+        <a href="active-squads.html">Squads recruiting</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute provides work experience on startup squads (Sprint and optional longer path). Participation does not guarantee employment. Optional longer-path financial terms are in a separate written agreement. Visa eligibility depends on your individual conditions.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+</script>
+</body>
+</html>

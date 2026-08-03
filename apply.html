@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply — Real work experience · Squad Institute</title>
+<title>Claim a seat — Marketplace of startups · Squad Institute</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -212,14 +212,9 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <!-- HERO -->
 <header class="ahero on-dark">
   <div class="wrap">
-    <span class="eyebrow" id="applyEyebrow">Apply for work experience</span>
-    <h1 id="applyH1">On a startup squad.</h1>
-    <p id="applyLead">Real product work for your portfolio — not a course. We reply within <strong style="color:#fff;font-weight:600">five business days</strong>. Eight-week Sprint first; year-long path optional.</p>
-    <div class="chips">
-      <span class="chip"><i></i>100% online</span>
-      <span class="chip"><i></i>Reply in 5 business days</span>
-      <span class="chip"><i></i>8-week Sprint first</span>
-    </div>
+    <span class="eyebrow" id="applyEyebrow">Next page of the story</span>
+    <h1 id="applyH1">Claim the seat.</h1>
+    <p id="applyLead">You’ve seen the loop. This form is how it starts for you — tell us what’s on the line, and a <strong style="color:#fff;font-weight:600">human replies within five business days</strong> with a match, questions, or a straight no. Online Sprint. Not a day-one fee. Longer path only if you choose it later, in writing.</p>
   </div>
 </header>
 
@@ -230,6 +225,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
       <div>
         <form class="card" id="applyForm" novalidate>
+          <div class="fgroup" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <fieldset class="fset">
             <legend>About you</legend>
             <div class="frow">
@@ -307,12 +306,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
               <label for="path">Path <span class="req">*</span></label>
               <select id="path" name="Path" required>
                 <option value="">Select…</option>
-                <option value="seat">Work experience — 8-week Sprint on a startup squad</option>
+                <option value="seat">Startup seat — work experience Sprint</option>
                 <option value="coaching">Career coaching — I’m between jobs</option>
                 <option value="both">Both — steady me, then a seat</option>
               </select>
               <span class="err">Please choose a path.</span>
-              <p class="hint">Out of work? Start with coaching. Ready for the Sprint? Apply for a seat.</p>
+              <p class="hint">Out of work? Start with coaching. Ready to ship? Claim a seat. Same team either way.</p>
             </div>
             <div class="fgroup" data-field>
               <label for="track">Track <span class="req">*</span></label>
@@ -330,8 +329,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
               <span class="err">Please select a track.</span>
             </div>
             <div class="fgroup" data-field>
-              <label for="hours">Hours you can give per week <span class="req">*</span></label>
-              <select id="hours" name="Hours per week" required>
+              <label for="hours">Hours you can give <span class="req">*</span></label>
+              <select id="hours" name="Hours available" required>
                 <option value="">Select…</option>
                 <option>~5–8 hours</option>
                 <option>~10–15 hours</option>
@@ -362,7 +361,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
               <label for="why">What’s at stake if nothing lands soon? <span class="req">*</span></label>
               <textarea id="why" name="Stakes" required placeholder="Honest and private to us — rent, visa, family, career switch pressure, or just tired of silent applications. A few sentences."></textarea>
               <span class="err">A sentence or two is enough — it helps us place and support you.</span>
-              <p class="hint">Private to us — used to match you to the right squad. Not shared in squad chat.</p>
+              <p class="hint">We use this to hold you properly — not to judge you. It stays out of squad chat.</p>
             </div>
             <div class="fgroup" data-field>
               <label for="hear">How did you hear about us? <span class="opt">(optional)</span></label>
@@ -387,49 +386,50 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </div>
 
           <div class="submit-row">
-            <button type="submit" class="btn btn-primary">Claim this seat<span class="arw">→</span></button>
-            <span class="submit-note">Submitting opens a pre-filled email to contact@thesquadinstitute.com — hit send and you're done.</span>
+            <button type="submit" class="btn btn-primary" id="applySubmit">Claim this seat<span class="arw">→</span></button>
+            <span class="submit-note">Sent securely to our team — we reply within five business days.</span>
           </div>
+          <p class="mono" id="applyError" style="display:none;font-size:12.5px;color:var(--coral);margin-top:12px"></p>
         </form>
 
         <div class="success" id="successPanel">
           <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
-          <h2>Application ready to send.</h2>
-          <p>We've opened a pre-filled email — press send when you're ready. We reply within five business days.</p>
-          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Nothing opened? Email us directly at <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
+          <h2>Application received.</h2>
+          <p>We got it. A human on our team will reply within five business days. Check your inbox — we send a receipt there too.</p>
+          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Wrong email or no receipt? Write us at <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
         </div>
       </div>
 
       <!-- SIDEBAR -->
       <aside class="side">
         <div class="scard">
-          <h3>We reply to every application</h3>
-          <p class="mini" style="margin-bottom:0">A human gets back to you within five business days. What you share about your situation stays private. If life gets rough during the Sprint, tell us — we pause, we don’t remove you.</p>
+          <h3>Anti-ghost promise</h3>
+          <p class="mini" style="margin-bottom:0">A human replies within five business days. What you share about stakes stays private to care — never squad chat. Rough stretches later mean paused, not punished.</p>
         </div>
         <div class="scard">
           <h3>What happens next</h3>
           <div class="next">
             <div class="nitem">
               <span class="nnum">01</span>
-              <div><b>We review your application</b><p>Reply within five business days with next steps or questions.</p></div>
+              <div><b>We read your application</b><p>A human gets back to you within five business days — or the soft hold releases.</p></div>
             </div>
             <div class="nitem">
               <span class="nnum">02</span>
-              <div><b>Eligibility check</b><p>We confirm visa, hours, and squad fit before you start.</p></div>
+              <div><b>Pocket + eligibility</b><p>We walk through your state and runway — before we sell you anything.</p></div>
             </div>
             <div class="nitem">
               <span class="nnum">03</span>
-              <div><b>Join your squad</b><p>Your buddy welcomes you and scopes your first task.</p></div>
+              <div><b>Conditional seat + buddy</b><p>You’re held in a squad on the Sprint. Rough stretches are allowed.</p></div>
             </div>
             <div class="nitem">
               <span class="nnum">04</span>
-              <div><b>8-week Sprint</b><p>Year-long path only if you choose it — never required upfront.</p></div>
+              <div><b>Ship · then decide</b><p>Year or Venture terms only if you convert — never forced on apply day.</p></div>
             </div>
           </div>
         </div>
         <div class="scard visa">
-          <h3>Get the work experience that gets you hired.</h3>
-          <p><b>On a student or work visa? Apply anyway.</b> Employers want Australian experience — we’ll talk through your visa conditions early. If it’s not a fit, we say so straight away.</p>
+          <h3>On a student or work visa?</h3>
+          <p><b>Apply anyway.</b> Conditions differ a lot by visa type — we’ll talk it through with you early. If it’s not a fit, we’ll say so straight away.</p>
         </div>
         <div class="scard">
           <p class="mini">Not sure about something first? Read the <a href="faq.html">FAQ</a> or <a href="contact.html">ask us directly</a> — we'd rather you were sure before you apply.</p>
@@ -454,7 +454,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </svg>
           Squad Institute
         </div>
-        <p class="foot-about">Real work experience on startup squads — two portfolio pieces, a buddy, reply in five business days. Not a course.</p>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
       </div>
       <div class="foot-col">
         <h4>Program</h4>
@@ -480,10 +480,11 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
       <p>100% online</p>
     </div>
-    <p class="disc">Squad Institute provides work experience on startup squads (8-week Sprint, optional 52-week path). This is not employment and does not guarantee a job. Optional longer-path financial terms are in a separate written agreement — review it, and consider independent advice, before signing. Visa eligibility depends on your individual conditions.</p>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Equity and financial contributions are governed by a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
   </div>
 </footer>
 
+<script src="js/api-config.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   (function(){
@@ -525,34 +526,52 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     return ok;
   }
 
-  form.addEventListener('submit',function(e){
+  form.addEventListener('submit',async function(e){
     e.preventDefault();
     if(!validate()) return;
 
-    var fields=['fname','lname','email','phone','city','visa','stage','path','track','hours','skill','links','hear'];
-    var lines=[];
-    fields.forEach(function(id){
+    var btn=document.getElementById('applySubmit');
+    var errEl=document.getElementById('applyError');
+    if(errEl){ errEl.style.display='none'; errEl.textContent=''; }
+    if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
+
+    var fields={};
+    ['fname','lname','email','phone','city','visa','stage','path','track','hours','skill','links','hear'].forEach(function(id){
       var el=document.getElementById(id);
       if(el && el.value.trim()){
         var name=el.getAttribute('name')||id;
-        var val=el.tagName==='SELECT' && el.selectedOptions[0] ? el.selectedOptions[0].text : el.value.trim();
-        lines.push(name+': '+val);
+        fields[name]=el.tagName==='SELECT' && el.selectedOptions[0] ? el.selectedOptions[0].text : el.value.trim();
       }
     });
-    lines.push('');
-    lines.push('What’s at stake:');
-    lines.push(document.getElementById('why').value.trim());
 
     var pathEl=document.getElementById('path');
     var pathVal=pathEl ? pathEl.value : 'seat';
-    var prefix=pathVal==='coaching' ? 'Coaching request' : (pathVal==='both' ? 'Coaching + seat' : 'Seat application');
-    var subject=prefix+' — '+document.getElementById('fname').value.trim()+' '+document.getElementById('lname').value.trim();
-    var mailto='mailto:contact@thesquadinstitute.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+    var payload={
+      firstName: document.getElementById('fname').value.trim(),
+      lastName: document.getElementById('lname').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      path: pathVal,
+      stakes: document.getElementById('why').value.trim(),
+      fields: fields,
+      website: document.getElementById('website') ? document.getElementById('website').value : ''
+    };
 
-    window.location.href=mailto;
-    form.style.display='none';
-    success.style.display='block';
-    success.scrollIntoView({behavior:'smooth',block:'center'});
+    try{
+      var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
+      var res=await fetch(api+'/api/apply',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      var data=await res.json().catch(function(){ return {}; });
+      if(!res.ok) throw new Error(data.error||'Could not submit');
+      form.style.display='none';
+      success.style.display='block';
+      success.scrollIntoView({behavior:'smooth',block:'center'});
+    }catch(err){
+      if(errEl){ errEl.textContent=err.message||'Something went wrong. Email contact@thesquadinstitute.com'; errEl.style.display='block'; }
+      if(btn){ btn.disabled=false; btn.innerHTML='Claim this seat<span class="arw">→</span>'; }
+    }
   });
 
   (function(){
@@ -568,18 +587,9 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       var lead=document.getElementById('applyLead');
       if(eye) eye.textContent='Career coaching · between jobs';
       if(h1) h1.textContent='Tell us what’s on the line.';
-      if(lead) lead.innerHTML='You’re applying for <strong style="color:#fff;font-weight:600">career coaching</strong> — for when you’re between jobs. A human replies within <strong style="color:#fff;font-weight:600">five business days</strong>. You can join a squad later if you want.';
+      if(lead) lead.innerHTML='You’re asking for <strong style="color:#fff;font-weight:600">career coaching</strong> — same team as the marketplace, softer door when you’re out of work. A human replies in <strong style="color:#fff;font-weight:600">five business days</strong>. Seat later if you want it.';
       var btn=document.querySelector('#applyForm button[type=submit]');
       if(btn) btn.innerHTML='Book coaching<span class="arw">→</span>';
-    } else if((path==='migrant' || path==='visa') && pathEl){
-      var eyeM=document.getElementById('applyEyebrow');
-      var h1M=document.getElementById('applyH1');
-      var leadM=document.getElementById('applyLead');
-      var visaEl=document.getElementById('visa');
-      if(eyeM) eyeM.textContent='Migrants & visa holders';
-      if(h1M) h1M.textContent='Get the work experience that gets you hired.';
-      if(leadM) leadM.innerHTML='Australian employers ask for local experience — not another certificate. Eight weeks on a startup squad, two portfolio pieces, squad references. We reply within <strong style="color:#fff;font-weight:600">five business days</strong> and check visa eligibility early.';
-      if(visaEl && !visaEl.value) visaEl.value='Student visa (subclass 500)';
     }
     var track=params.get('track');
     var trackEl=document.getElementById('track');

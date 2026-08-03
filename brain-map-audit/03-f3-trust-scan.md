@@ -24,8 +24,8 @@
 2. **Show the anti-ghost:** “We reply in X days or your seat hold auto-releases” on apply success + FAQ.
 3. **Named trust objects:** One real mentor face/name, one real squad repo/demo link, one real (redacted) graph screenshot — even one of each beats six fake cards.
 4. **Dull money:** Keep FAQ pin about independent advice; add a one-page “What we never do” (no fake jobs, no wage theft, no charging for apply).
-5. **Peer-shaped voice:** Promote builders’ private pocket lines and rough weeks — trust via vulnerability, not polish.
-6. **Return hook:** Weekly “squad truth” email: *what shipped, what paused, open seats* — consistent, dull, checkable. Distrust drops when the feed doesn’t lie.
+5. **Peer-shaped voice:** Promote builders’ private pocket lines and rough stretches — trust via vulnerability, not polish.
+6. **Return hook:** Regular “squad truth” email: *what shipped, what paused, open seats* — consistent, dull, checkable. Distrust drops when the feed doesn’t lie.
 
 ---
 

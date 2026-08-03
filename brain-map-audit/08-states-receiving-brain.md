@@ -38,10 +38,10 @@
 4. **ST3 pack:** keep structural framing + care co-located with graph.
 5. **ST4 pack:** verifiable ships + active squads truth layer.
 6. **Return loops by state:**
-   - ST1: rent-week SMS with pause/WIP rules
+   - ST1: rent-pressure SMS with pause/WIP rules
    - ST2: “one move” card every 3 days
    - ST3: rejection-logged ritual
-   - ST4: weekly ship digest
+   - ST4: regular ship digest
 
 ---
 

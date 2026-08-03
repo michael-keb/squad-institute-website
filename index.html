@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Squad Institute — Mentored work experience that gets you hired</title>
-<meta name="description" content="Get mentored work experience on startup squads. Eight weeks, a dedicated buddy, two portfolio pieces. Not a course. Reply in five business days.">
+<title>Squad Institute — Work experience you can show</title>
+<meta name="description" content="Employers want experience you can’t get without a job. Join a startup squad with a buddy who coaches you. Leave with work a recruiter can open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -84,31 +84,85 @@ section{position:relative}
 .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
 
 /* ---------- hero ---------- */
-.hero{background:var(--ink);color:var(--bone);padding:84px 0 0;overflow:hidden}
+.hero{
+  background:
+    radial-gradient(ellipse 80% 60% at 85% 20%, rgba(31,111,91,.35), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(198,242,78,.08), transparent 50%),
+    linear-gradient(165deg, #12111a 0%, var(--ink) 45%, #1a2430 100%);
+  color:var(--bone);padding:88px 0 96px;overflow:hidden;position:relative;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:48px 48px;mask-image:linear-gradient(180deg,#000 40%,transparent);
+}
+.hero .wrap{position:relative;z-index:1;max-width:720px}
 .hero .btn-ghost{color:var(--bone);border-color:var(--line-d)}
 .hero .btn-ghost:hover{border-color:var(--bone)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
-.hero h1{font-size:clamp(38px,5.4vw,66px);font-weight:700;color:#fff;margin:22px 0 0}
+.hero h1{font-size:clamp(36px,5.2vw,62px);font-weight:700;color:#fff;margin:0}
 .hero h1 .hl{color:var(--lime)}
-.hero-sub{font-size:clamp(16px,1.5vw,18.5px);color:var(--mute-d);max-width:30em;margin-top:22px;line-height:1.55}
+.hero-sub{font-size:clamp(16px,1.5vw,18.5px);color:var(--mute-d);max-width:32em;margin-top:22px;line-height:1.55}
 .hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
-.hero-meta{display:flex;gap:26px;margin-top:28px;flex-wrap:wrap}
-.hero-meta .mi{display:flex;flex-direction:column;gap:3px}
-.hero-meta .mn{font-family:'Space Grotesk',sans-serif;font-size:23px;font-weight:600;color:#fff}
-.hero-meta .ml{font-size:12.5px;color:var(--mute-d)}
-.f1-line{
-  margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mute-d);
-  letter-spacing:.02em;line-height:1.7;
+
+/* ---------- shift teaser (links to full page) ---------- */
+.shift-teaser{
+  background:var(--ink-2);color:var(--bone);
+  border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d);
+  padding:28px 0;position:relative;
 }
-.f1-line b{color:var(--lime);font-weight:500}
-.gates{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.gates a{
-  font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:7px 11px;border-radius:8px;
-  border:1px solid var(--line-d);color:var(--mute-d);background:rgba(255,255,255,.03);
-  transition:border-color .15s,color .15s,background .15s;
+.shift-teaser::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--lime)}
+.shift-teaser-in{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+  padding-left:8px;
 }
-.gates a:hover{color:#fff;border-color:rgba(198,242,78,.45);background:rgba(198,242,78,.08);text-decoration:none}
-.persona-sec{padding:64px 0;background:var(--bone)}
+.shift-teaser-in p{font-size:15px;color:var(--mute-d);max-width:36em;line-height:1.5;margin:0}
+.shift-teaser-in p strong{color:#fff;font-weight:600}
+.shift-teaser-in a{font-size:14.5px;font-weight:600;color:var(--lime);white-space:nowrap}
+.shift-teaser-in a:hover{color:#d4f76a}
+.shift-teaser-in a .arw{display:inline-block;transition:transform .18s}
+.shift-teaser-in a:hover .arw{transform:translateX(3px)}
+
+/* ---------- story spine ---------- */
+.story{padding:88px 0;background:var(--bone)}
+.story-inner{max-width:640px}
+.story .eyebrow{margin-bottom:0}
+.story h2{font-size:clamp(28px,3.6vw,42px);margin-top:16px}
+.story-prose{font-size:17.5px;line-height:1.65;color:var(--mute);margin-top:22px}
+.story-prose + .story-prose{margin-top:16px}
+.story-prose em{font-style:normal;color:var(--ink);font-weight:500}
+
+.tales{padding:88px 0;background:var(--bone-2)}
+.tales-head{max-width:640px;margin-bottom:36px}
+.tales-head h2{font-size:clamp(28px,3.6vw,42px);margin-top:16px}
+.tales-head p{color:var(--mute);font-size:17px;margin-top:16px;line-height:1.55}
+.tales-list{display:flex;flex-direction:column;gap:0;max-width:720px}
+.tale{
+  padding:28px 0;border-top:1px solid var(--line-l);
+  scroll-margin-top:88px;
+}
+.tale:first-of-type{border-top:none;padding-top:0}
+.tale .tw{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet);letter-spacing:.08em;text-transform:uppercase}
+.tale h3{font-size:clamp(20px,2.4vw,26px);margin:10px 0 12px;max-width:22em;line-height:1.15}
+.tale .tp{font-size:16px;color:var(--mute);line-height:1.65;max-width:54ch}
+.tale .tp + .tp{margin-top:12px}
+.tale .tp em{font-style:normal;color:var(--ink);font-weight:500}
+.tale .tlink{
+  display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  font-size:14.5px;font-weight:600;color:var(--violet);
+}
+.tale .tlink:hover{color:var(--violet-soft)}
+.tale .tlink .arw{transition:transform .18s}
+.tale .tlink:hover .arw{transform:translateX(3px)}
+.migrant-banner{
+  grid-column:1/-1;background:var(--ink);color:#fff;border-radius:var(--r);
+  padding:28px 30px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;
+}
+.sec-head{max-width:640px;margin-bottom:8px}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px);margin-top:16px}
+.sec-head p{color:var(--mute);font-size:17px;margin-top:16px;line-height:1.55}
+
+.persona-sec{padding:88px 0;background:var(--bone)}
 .persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
 .persona{
   display:block;background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:18px 16px;
@@ -118,84 +172,52 @@ section{position:relative}
 .persona .pk{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--violet);margin-bottom:8px}
 .persona h3{font-size:16px;margin-bottom:6px;line-height:1.2}
 .persona p{font-size:13px;color:var(--mute);line-height:1.45;margin:0}
-.persona.coach{border-style:dashed;background:var(--bone)}
-.migrant-banner{
-  grid-column:1/-1;background:var(--ink);color:#fff;border-radius:var(--r);
-  padding:28px 30px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;
-}
+.persona.coach{border-style:dashed;background:var(--bone);grid-column:1/-1}
 .migrant-banner h3{font-size:clamp(22px,3vw,28px);color:#fff;margin:8px 0 10px;max-width:560px;line-height:1.15}
 .migrant-banner p{font-size:14.5px;color:var(--mute-d);max-width:560px;line-height:1.55;margin:0}
 .migrant-banner .eyebrow{color:var(--lime)}
 .migrant-banner .eyebrow::before{background:var(--lime)}
 .migrant-banner .btn-primary{background:var(--lime);color:var(--ink);box-shadow:none}
 .migrant-banner .btn-primary:hover{background:#d4f76a;color:var(--ink)}
-@media (max-width:920px){
-  .persona-grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:640px){
-  .persona-grid{grid-template-columns:1fr}
-}
+
+.vignette{padding:88px 0;background:var(--ink);color:var(--bone)}
+.vignette-inner{max-width:640px;margin-top:28px}
+.vignette h2{font-size:clamp(28px,3.6vw,42px);color:#fff;margin-top:16px;max-width:16em}
+.vignette .vp{font-size:17px;color:var(--mute-d);margin-top:18px;line-height:1.65;max-width:38em}
+.vignette .vp em{font-style:normal;color:#fff;font-weight:500}
+.vignette .vp + .vp{margin-top:14px}
+.v-note{margin-top:28px;font-size:14px;color:var(--mute);line-height:1.55}
+.v-note a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+
+.bridge{padding:72px 0;background:var(--bone-2);border-top:1px solid var(--line-l)}
+.bridge-inner{max-width:640px}
+.bridge h2{font-size:clamp(26px,3.2vw,36px);margin-top:16px}
+.bridge p{font-size:17px;color:var(--mute);margin-top:16px;line-height:1.6}
+.bridge .hero-cta{margin-top:28px}
 
 .reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
 .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}.d5{animation-delay:.41s}
 @keyframes rise{to{opacity:1;transform:none}}
 
-/* hero squad preview card */
-.hero-card{
-  background:linear-gradient(180deg,var(--ink-2),#191822);
-  border:1px solid var(--line-d);border-radius:18px;padding:20px;
-  box-shadow:0 40px 80px -40px rgba(0,0,0,.7);
-}
-.hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.hc-id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
 .pill{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;font-weight:500}
 .pill .dot{width:6px;height:6px;border-radius:50%}
-.pill.build{background:rgba(110,86,248,.16);color:var(--violet-soft)}
+.pill.build{background:rgba(42,155,122,.16);color:var(--violet-soft)}
 .pill.build .dot{background:var(--violet-soft)}
 .pill.ship{background:rgba(198,242,78,.14);color:var(--lime)}
 .pill.ship .dot{background:var(--lime)}
-.pill.recruit{background:rgba(255,107,87,.16);color:var(--coral)}
+.pill.recruit{background:rgba(232,93,76,.16);color:var(--coral)}
 .pill.recruit .dot{background:var(--coral)}
 .dot.pulse{animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hc-row{display:flex;align-items:center;gap:13px;padding:12px 0;border-top:1px solid var(--line-d)}
 .crest{width:38px;height:38px;border-radius:9px;flex-shrink:0}
-.hc-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#fff}
-.hc-desc{font-size:12.5px;color:var(--mute-d);margin-top:1px}
-.hc-mem{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-d)}
 
-/* hero strip */
-.strip{background:var(--ink);border-top:1px solid var(--line-d);padding:0 0 0}
-.strip-in{display:flex;align-items:center;gap:34px;padding:20px 0;flex-wrap:wrap;justify-content:center}
-.strip span{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mute-d);display:inline-flex;align-items:center;gap:9px}
-.strip span b{color:var(--bone);font-weight:500}
-.strip .sep{width:5px;height:5px;border-radius:50%;background:var(--violet);display:inline-block}
-
-/* ---------- generic section ---------- */
-.sec{padding:96px 0}
-.sec-head{max-width:640px;margin-bottom:54px}
-.sec-head h2{font-size:clamp(28px,3.6vw,44px);margin-top:16px}
-.sec-head p{color:var(--mute);font-size:17px;margin-top:16px;line-height:1.55}
-
-/* ---------- journey ---------- */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-l);border:1px solid var(--line-l);border-radius:var(--r);overflow:hidden}
-.step{background:var(--bone);padding:28px 24px 30px;display:flex;flex-direction:column;min-height:200px;transition:background .2s}
-.step:hover{background:var(--bone-2)}
-.step-n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);font-weight:500}
-.step h3{font-size:20px;margin:18px 0 10px}
-.step p{font-size:14.5px;color:var(--mute);line-height:1.5}
-.step .ic{margin-top:auto;padding-top:18px}
-.step .ic svg{width:26px;height:26px;stroke:var(--ink);stroke-width:1.6;fill:none}
-
-/* ---------- why real ---------- */
-.why{background:var(--ink);color:var(--bone);padding:96px 0}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
-.why-card{background:var(--ink-2);border:1px solid var(--line-d);border-radius:var(--r);padding:30px 26px;transition:transform .2s,border-color .2s}
-.why-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.24)}
-.why-card .wic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-.why-card .wic svg{width:21px;height:21px;stroke-width:1.7;fill:none}
-.why-card h3{font-size:19px;color:#fff;margin-bottom:9px}
-.why-card p{font-size:14.5px;color:var(--mute-d);line-height:1.55}
+@media (max-width:920px){
+  .persona-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .persona-grid{grid-template-columns:1fr}
+  .persona.coach{grid-column:auto}
+}
 
 /* ---------- squads board ---------- */
 .board{background:var(--ink);color:var(--bone);padding:30px 0 100px;border-top:1px solid var(--line-d)}
@@ -274,19 +296,14 @@ details[open] summary{padding-bottom:8px}
 
 /* ---------- responsive ---------- */
 @media (max-width:920px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
-  .hero{padding-top:60px}
-  .steps{grid-template-columns:repeat(2,1fr)}
-  .why-grid{grid-template-columns:1fr}
+  .hero{padding:64px 0 72px}
   .squads{grid-template-columns:repeat(2,1fr)}
   .model-grid{grid-template-columns:1fr;gap:40px}
-  }
+}
 @media (max-width:640px){
   .wrap{padding:0 20px}
-  .sec,.why,.board,.model,.faq,.final{padding-top:64px;padding-bottom:64px}
-  .steps{grid-template-columns:1fr}
+  .story,.tales,.persona-sec,.vignette,.bridge,.board,.model,.faq,.final{padding-top:64px;padding-bottom:64px}
   .squads{grid-template-columns:1fr}
-  .hero-meta{gap:20px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -352,6 +369,7 @@ details[open] summary{padding-bottom:8px}
     </a>
     <div class="nav-links" id="navlinks">
             <a href="how-it-works.html">How it works</a>
+      <a href="the-shift.html">The shift</a>
       <a href="pathways.html">Pathways</a>
       <a href="active-squads.html">Squads</a>
       <a href="builders.html">Builders</a>
@@ -367,150 +385,146 @@ details[open] summary{padding-bottom:8px}
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — the promise -->
 <header class="hero on-dark" id="top">
   <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow reveal d2">Mentored work experience · not a course</span>
-        <h1 class="reveal d3">Get the work experience<br><span class="hl">that gets you hired.</span></h1>
-        <p class="hero-sub reveal d4">Eight weeks on a startup squad building a real product. A dedicated buddy coaches you — scoped tasks, feedback on your work, two reviewed deliverables for your portfolio. Human reply within five business days.</p>
-        <div class="hero-cta reveal d5">
-          <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
-          <a href="how-it-works.html" class="btn btn-ghost">How it works</a>
-        </div>
-      </div>
-
-      <!-- hero squad preview -->
-      <div class="hero-card reveal d5" aria-hidden="true">
-        <div class="hc-top">
-          <span class="hc-id">What you get</span>
-          <span class="pill recruit"><span class="dot pulse"></span>8-week Sprint</span>
-        </div>
-        <div class="hc-row" style="border-top:none;flex-direction:column;align-items:stretch;gap:10px">
-          <div class="hc-name" style="font-size:15px">Mentored work on a real squad</div>
-          <div class="hc-desc">A buddy welcomes you, scopes your first task, and reviews every deliverable. You’re coached through real product work — not watching videos alone.</div>
-          <div class="hc-desc" style="font-size:12.5px;line-height:1.55;color:var(--mute-d);margin-top:6px">
-            Leave with two portfolio pieces + squad references.<br>
-            Optional 52-week path if you want to stay longer.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- strip -->
-  <div class="strip">
-    <div class="wrap strip-in">
-      <span><b>Mentored</b> — buddy on your squad</span>
-      <i class="sep"></i>
-      <span><b>Eight weeks</b> of real product work</span>
-      <i class="sep"></i>
-      <span><b>Two deliverables</b> for your portfolio</span>
-      <i class="sep"></i>
-      <span><b>Not a course</b> — coached work experience</span>
+    <h1 class="reveal d3">Employers want experience<br>you can’t get <span class="hl">without a job.</span></h1>
+    <p class="hero-sub reveal d4">So we put you on a real startup squad — with a buddy who coaches you — until you have work a recruiter can open.</p>
+    <div class="hero-cta reveal d5">
+      <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <a href="#stories" class="btn btn-ghost">Read their stories</a>
     </div>
   </div>
 </header>
 
-<!-- PERSONA DOORS -->
+<!-- The shift — teaser -->
+<section class="shift-teaser on-dark">
+  <div class="wrap">
+    <div class="shift-teaser-in">
+      <p><strong>The bar moved:</strong> role-specific agent orchestration, not one prompt — that’s why squads teach direct · review · ship. <a href="the-shift.html">Read why <span class="arw">→</span></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- The loop -->
+<section class="story" id="gap">
+  <div class="wrap">
+    <div class="story-inner">
+      <span class="eyebrow">The loop</span>
+      <h2>You’ve done the degree. The inbox still goes quiet.</h2>
+      <p class="story-prose">Not because you’re the problem. Because the market asks for <em>local experience</em> before it gives you a seat — then ghosts the applications that don’t have it.</p>
+      <p class="story-prose">Visa clocks. Rent pressure. Shifts that make unpaid internships impossible. Family watching. A career switch you can’t explain with another certificate.</p>
+      <p class="story-prose">Squad Institute exists for that loop: mentored work on a live product, so the next application has something real to show.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Soft doors for skim brains — then full stories -->
 <section class="persona-sec" id="stakes">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Who this is for</span>
-      <h2>Mentored work experience.<br>Different starting points.</h2>
-      <p>Eight weeks on a startup squad — a buddy coaches you through real work. We match the conversation to what’s on the line for you.</p>
+      <span class="eyebrow">Jump to your pressure</span>
+      <h2>If you only have a minute, pick the line that sounds like you.</h2>
+      <p>Same Sprint. Different stakes. Coaching if you’re between jobs and not ready to ship yet.</p>
     </div>
     <div class="persona-grid">
       <div class="migrant-banner">
         <div>
           <span class="eyebrow">Migrants &amp; visa holders</span>
           <h3>When every job asks for local experience.</h3>
-          <p>Mentored work on a startup squad — a buddy coaches you through real product work. Two portfolio pieces and squad references before your visa clock runs out.</p>
+          <p>We check eligibility with you early — not after you’ve invested hope. Two things you can open before the clock runs out.</p>
         </div>
-        <a href="apply.html?path=migrant" class="btn btn-primary">Apply now<span class="arw">→</span></a>
+        <a href="apply.html?path=migrant" class="btn btn-primary">Check visa fit<span class="arw">→</span></a>
       </div>
-      <a class="persona" href="builders.html#maya"><div class="pk">Migrant · on a visa</div><h3>Get the work experience that gets you hired</h3><p>Visa deadline, family sacrifice, “need local experience” on every job ad. You need proof recruiters can open — not another empty month.</p></a>
-      <a class="persona" href="builders.html#aisha"><div class="pk">Working while studying</div><h3>Job + rent + study</h3><p>No cushion, no unpaid internship. One wrong bet and you fall back. Hours have to fit real life.</p></a>
-      <a class="persona" href="builders.html#noah"><div class="pk">First in family</div><h3>No career map at home</h3><p>No one to ask how interviews work. Achievement guilt both ways. You’re building the path yourself.</p></a>
-      <a class="persona" href="builders.html#priya"><div class="pk">Recent graduate</div><h3>Applications going silent</h3><p>Degree done, inbox quiet, LinkedIn says everyone else got hired. You need work you can open.</p></a>
-      <a class="persona" href="builders.html#liam"><div class="pk">Career changer</div><h3>Proving the switch</h3><p>Mortgage, kids, sunk cost on your mind. You need receipts — not another “passion pivot” story.</p></a>
-      <a class="persona coach" href="career-coaching.html"><div class="pk">Between jobs</div><h3>Out of work right now</h3><p>Start with coaching to stabilise. Join a squad when you’re ready.</p></a>
+      <a class="persona" href="#story-maya"><div class="pk">Migrant · on a visa</div><h3>Visa deadline</h3><p>Need local experience before the clock runs out.</p></a>
+      <a class="persona" href="#story-aisha"><div class="pk">Working while studying</div><h3>Job + rent + study</h3><p>Hours have to fit real life — not an unpaid full-time filter.</p></a>
+      <a class="persona" href="#story-noah"><div class="pk">First in family</div><h3>No career map at home</h3><p>Building the path yourself, without a family playbook.</p></a>
+      <a class="persona" href="#story-priya"><div class="pk">Recent graduate</div><h3>Applications going silent</h3><p>Degree done. Need work you can open in an interview.</p></a>
+      <a class="persona" href="#story-liam"><div class="pk">Career changer</div><h3>Proving the switch</h3><p>Receipts for the move — not another pivot story.</p></a>
+      <a class="persona coach" href="career-coaching.html"><div class="pk">Between jobs</div><h3>Out of work right now</h3><p>Stabilise first with coaching. Join a squad when you’re ready.</p></a>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="sec" id="how">
+<!-- Personable stories — brain-matched stakes, not process steps -->
+<section class="tales" id="stories">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">How it works</span>
-      <h2>Mentored work experience in four steps.</h2>
+    <div class="tales-head">
+      <span class="eyebrow">People, not a process map</span>
+      <h2>Same market pressure. Different weight on each person.</h2>
+      <p>These are illustrative Sprint stories — rough stretches left in. If one of them sounds like the week you’re having, that’s your door.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <span class="step-n">01</span>
-        <h3>Browse squads</h3>
-        <p>See startup teams, what they’re building, and which spots are open.</p>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M8 14h8"/></svg></div>
-      </div>
-      <div class="step">
-        <span class="step-n">02</span>
-        <h3>Get matched + coached</h3>
-        <p>We reply within five business days and assign a buddy — your coach on the squad for the whole Sprint.</p>
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 5-5M21 20c0-3-2.5-5-5-5"/></svg></div>
-      </div>
-      <div class="step">
-        <span class="step-n">03</span>
-        <h3>8-week mentored Sprint</h3>
-        <p>Do real product work with your buddy coaching you through. Complete two reviewed deliverables.</p>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M8 9l-2 3 2 3M16 9l2 3-2 3"/></svg></div>
-      </div>
-      <div class="step">
-        <span class="step-n">04</span>
-        <h3>Leave with proof</h3>
-        <p>Portfolio, squad references, and a participation record. Optional 52-week path if you want to stay.</p>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 6"/></svg></div>
-      </div>
+
+    <div class="tales-list">
+      <article class="tale" id="story-maya">
+        <div class="tw">Maya · visa clock · family already paid for the move</div>
+        <h3>She didn’t need another course. She needed something a recruiter could open before the clock ran out.</h3>
+        <p class="tp">Every listing said <em>local experience</em>. Going home empty wasn’t a soft landing — it was the nightmare her parents had funded against. She took a backend seat on Kelpie. Buddy scoped the first task the same day.</p>
+        <p class="tp">Midway, rent hit. She paused two days — said so out loud, didn’t vanish. She left with a route sketch and an offline fallback. Not a highlight reel. Proof before the clock.</p>
+        <a class="tlink" href="builders.html#maya">Maya’s full chapter <span class="arw">→</span></a>
+      </article>
+
+      <article class="tale" id="story-aisha">
+        <div class="tw">Aisha · retail shifts · no unpaid-internship cushion</div>
+        <h3>She applied after a double shift. If it couldn’t fit real life, it wasn’t for her.</h3>
+        <p class="tp">Working-class filter, plain: she couldn’t freeze her wages for a full-time “opportunity.” Her buddy scoped a three-hour slice and said it out loud — <em>the squad fits around shifts, not the other way round.</em></p>
+        <p class="tp">She shipped a quote-to-invoice wire, then GST line items. Almost took more retail hours; kept the survival job. Left with a pack she could open — and two people from the shop floor she referred in.</p>
+        <a class="tlink" href="builders.html#aisha">Aisha’s full chapter <span class="arw">→</span></a>
+      </article>
+
+      <article class="tale" id="story-noah">
+        <div class="tw">Noah · first in family through uni · no map at the dinner table</div>
+        <h3>He didn’t know what “good” looked like. Nobody at home had done this either.</h3>
+        <p class="tp">First-gen isn’t laziness — it’s walking a corridor with no handrail. He said he didn’t know what to ask. Buddy answer: seat first, one move, tools later. Belonging before the toll.</p>
+        <p class="tp">Bug-bash notes. Then a regression pack. Family achievement guilt stayed private. The artifact was on trial — not him. Still no inherited playbook. He has a trail now.</p>
+        <a class="tlink" href="builders.html#noah">Noah’s full chapter <span class="arw">→</span></a>
+      </article>
+
+      <article class="tale" id="story-priya">
+        <div class="tw">Priya · degree done · inbox goes quiet · friends say she’s “fine”</div>
+        <h3>On paper she was fine. In the applications, silence felt like a verdict.</h3>
+        <p class="tp">It wasn’t. Credential inflation plus ghosting is a market shape — not a character flaw. She named the fear in intake: <em>why am I behind?</em> Buddy scoped a listing card the same afternoon. No pep talk. A task with a name on it.</p>
+        <p class="tp">Two reviewed ships. A LinkedIn spike she didn’t chase. She isn’t “sorted.” She has two openable things and a seat she didn’t quit.</p>
+        <a class="tlink" href="builders.html#priya">Priya’s full chapter <span class="arw">→</span></a>
+      </article>
+
+      <article class="tale" id="story-liam">
+        <div class="tw">Liam · left hospitality · age on the CV · mortgage in the rear-view</div>
+        <h3>“Have I risked too much, too late?” — he needed evidence, not another pivot story.</h3>
+        <p class="tp">Career change hits different when the sunk cost is real. He said the fear out loud. Prior ops experience counted — it wasn’t erased for being the wrong industry stamp. First ship: member renewals. Reworked once under a clear bar.</p>
+        <p class="tp">Comparison hit mid-sprint. Lead line that stuck: critique the artifact, not your age. He left with a waitlist he built and a signal pack. The switch has receipts now.</p>
+        <a class="tlink" href="builders.html#liam">Liam’s full chapter <span class="arw">→</span></a>
+      </article>
+    </div>
+
+    <div class="hero-cta" style="margin-top:36px">
+      <a href="apply.html" class="btn btn-primary">Claim a seat for your version<span class="arw">→</span></a>
+      <a href="how-it-works.html" class="btn btn-ghost">How a seat actually works</a>
     </div>
   </div>
 </section>
 
-<!-- WHY REAL -->
-<section class="why on-dark">
+<!-- One longer pull — continuous prose, no step numbers -->
+<section class="vignette on-dark" id="proof">
   <div class="wrap">
-    <div class="sec-head" style="margin-bottom:0">
-      <span class="eyebrow">Why this works</span>
-      <h2 style="color:#fff">Coached.<br>Not a course.<br>Not alone.</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="wic" style="background:rgba(198,242,78,.14)"><svg viewBox="0 0 24 24" stroke="#C6F24E"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="10" r="2.5"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5M14 19c0-2 1-3.5 3-3.5"/></svg></div>
-        <h3>A buddy coaches you</h3>
-        <p>Someone on your squad welcomes you, scopes your tasks, and reviews your work — week by week. Mentored work experience, not self-paced videos.</p>
-      </div>
-      <div class="why-card">
-        <div class="wic" style="background:rgba(31,111,91,.25)"><svg viewBox="0 0 24 24" stroke="#2A9B7A"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>Real work employers can open</h3>
-        <p>Two reviewed deliverables on a startup squad — portfolio pieces and references that answer “where’s your experience?”</p>
-      </div>
-      <div class="why-card">
-        <div class="wic" style="background:rgba(232,93,76,.15)"><svg viewBox="0 0 24 24" stroke="#E85D4C"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 2 4-6"/></svg></div>
-        <h3>We reply — and we stay human</h3>
-        <p>Five business days on applications. Life gets rough? Tell us and we pause — we don’t drop you mid-Sprint.</p>
-      </div>
+    <span class="eyebrow">What it feels like when it lands</span>
+    <div class="vignette-inner">
+      <h2>Maya’s week wasn’t a ladder. It was a clock, a rent notice, and one person who answered.</h2>
+      <p class="vp">She didn’t join for “growth.” She joined because every job ad wanted local experience she couldn’t invent, and family had already paid for the move. A human replied. A buddy scoped work the same day — not a lecture, a task with her name on it.</p>
+      <p class="vp">When rent hit, she said so. The Sprint paused. Nobody scored her as a flake. She came back and finished an offline fallback a recruiter could actually open. Illustrative — the shape is what matters: <em>proof before the clock, with life allowed to interrupt.</em></p>
+      <p class="v-note"><a href="builders.html">Read the other builders</a> — or <a href="apply.html">claim the seat</a> for your version.</p>
     </div>
   </div>
 </section>
 
-<!-- SQUADS BOARD -->
+<!-- The rooms -->
 <section class="board on-dark" id="squads">
   <div class="wrap">
     <div class="board-head">
       <div>
-        <span class="eyebrow">Startup squads</span>
-        <h2>Pick a team. Apply for a spot.</h2>
-        <p>Each squad is a small team building a real product. Examples below — not a live feed yet.</p>
+        <span class="eyebrow">The rooms</span>
+        <h2>This is what a squad looks like.</h2>
+        <p>Small teams, real products, open seats. Examples for now — not a live feed. The point is the work you’d join, not a highlight reel.</p>
       </div>
       <div class="legend">
         <span><i class="dot" style="background:#2A9B7A"></i>Building</span>
@@ -527,7 +541,7 @@ details[open] summary{padding-bottom:8px}
           <div><div class="sq-name">Tollgate</div><div class="sq-desc">Invoicing for solo tradies — quote to paid.</div></div>
         </div>
         <div class="sq-people">
-          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AishaK&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Aisha K.</div><div class="sp-d">Retail shifts + rent · <b>GST line items</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AishaK&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Aisha K.</div><div class="sp-d">Working on <b>GST line items</b></div></div></div>
           <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MarcusT&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Marcus T.</div><div class="sp-d">Working on <b>Stripe paid status</b></div></div></div>
         </div>
         <div class="sq-foot"><span class="tag">React</span><span class="tag">Node</span></div>
@@ -539,7 +553,7 @@ details[open] summary{padding-bottom:8px}
           <div><div class="sq-name">Harbour</div><div class="sq-desc">Allied-health booking · 2 seats open.</div></div>
         </div>
         <div class="sq-people">
-          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=PriyaS&backgroundColor=ff7fb6" alt=""><div><div class="sp-n">Priya S.</div><div class="sp-d">Silent inbox → <b>listing cards</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=PriyaS&backgroundColor=ff7fb6" alt=""><div><div class="sp-n">Priya S.</div><div class="sp-d">Working on <b>listing cards</b></div></div></div>
           <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=ElenaV&backgroundColor=1f6f5b" alt=""><div><div class="sp-n">Elena V.</div><div class="sp-d">Working on <b>booking journey</b></div></div></div>
         </div>
         <div class="sq-foot"><span class="tag">Next.js</span><span class="tag">2 seats</span></div>
@@ -551,7 +565,7 @@ details[open] summary{padding-bottom:8px}
           <div><div class="sq-name">Kelpie</div><div class="sq-desc">Last-mile routes for regional drivers.</div></div>
         </div>
         <div class="sq-people">
-          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Maya R.</div><div class="sp-d">On a visa · building <b>hireable proof</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Maya R.</div><div class="sp-d">Working on <b>offline fallback</b></div></div></div>
           <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=SamO&backgroundColor=2a9b7a" alt=""><div><div class="sp-n">Sam O.</div><div class="sp-d">Working on <b>break-window reviews</b></div></div></div>
         </div>
         <div class="sq-foot"><span class="tag">Python</span><span class="tag">Maps</span></div>
@@ -563,7 +577,7 @@ details[open] summary{padding-bottom:8px}
           <div><div class="sq-name">Ledger</div><div class="sq-desc">Bookkeeping copilot for small firms.</div></div>
         </div>
         <div class="sq-people">
-          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=NoahP&backgroundColor=ff6b57" alt=""><div><div class="sp-n">Noah P.</div><div class="sp-d">First in family · <b>regression pack</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=NoahP&backgroundColor=ff6b57" alt=""><div><div class="sp-n">Noah P.</div><div class="sp-d">Working on <b>regression pack</b></div></div></div>
           <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=HannahB&backgroundColor=52c4ff" alt=""><div><div class="sp-n">Hannah B.</div><div class="sp-d">Working on <b>bank-match rules</b></div></div></div>
         </div>
         <div class="sq-foot"><span class="tag">TypeScript</span></div>
@@ -575,7 +589,7 @@ details[open] summary{padding-bottom:8px}
           <div><div class="sq-name">Sandbar</div><div class="sq-desc">Membership &amp; rostering for sports clubs.</div></div>
         </div>
         <div class="sq-people">
-          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=LiamT&backgroundColor=ffb54a" alt=""><div><div class="sp-n">Liam T.</div><div class="sp-d">Career switch · <b>renewals + waitlist</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=LiamT&backgroundColor=ffb54a" alt=""><div><div class="sp-n">Liam T.</div><div class="sp-d">Working on <b>renewals + waitlist</b></div></div></div>
           <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=AmiraH&backgroundColor=ff6b57" alt=""><div><div class="sp-n">Amira H.</div><div class="sp-d">Working on <b>mobile roster UI</b></div></div></div>
         </div>
         <div class="sq-foot"><span class="tag">Rails</span><span class="tag">React</span></div>
@@ -593,20 +607,35 @@ details[open] summary{padding-bottom:8px}
         <div class="sq-foot"><span class="tag">Go</span><span class="tag">3 seats</span></div>
       </div>
     </div>
-    <p class="mono" style="margin-top:26px;font-size:12px;color:#56555f">Illustrative squads and people — for layout only.</p>
-    <div style="margin-top:28px"><a href="active-squads.html" class="btn btn-ghost">See all open spots<span class="arw">→</span></a></div>
+    <p class="mono" style="margin-top:26px;font-size:12px;color:#56555f">Illustrative squads and people — labelled until live repos ship.</p>
+    <div style="margin-top:28px"><a href="active-squads.html" class="btn btn-ghost">See open spots<span class="arw">→</span></a></div>
+  </div>
+</section>
+
+<!-- Claim -->
+<section class="bridge" id="claim">
+  <div class="wrap">
+    <div class="bridge-inner">
+      <span class="eyebrow">What happens next</span>
+      <h2>Claiming a seat is the next page — not a sales funnel.</h2>
+      <p>You tell us your situation. A human replies within five business days. If it’s a fit, you get a buddy and a first task. If life gets rough later, we pause with you. The Sprint isn’t sold as a day-one fee; longer-path numbers only appear if you choose to convert — in writing.</p>
+      <div class="hero-cta">
+        <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+        <a href="faq.html" class="btn btn-ghost">Money, visa, hours</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="final on-dark" id="apply">
   <div class="wrap">
-    <span class="eyebrow">Ready to apply?</span>
-    <h2>Get mentored work experience.</h2>
-    <p>Eight weeks on a startup squad — coached, not left alone. We reply within five business days.</p>
+    <span class="eyebrow">Your move</span>
+    <h2>Break the experience loop.</h2>
+    <p>A squad. Work you can show. A human on the other end of the form.</p>
     <div class="hero-cta">
       <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
-      <a href="builders.html" class="btn btn-ghost">Read builder stories</a>
+      <a href="builders.html#maya" class="btn btn-ghost">Start with Maya’s chapter</a>
     </div>
   </div>
 </section>
@@ -625,12 +654,13 @@ details[open] summary{padding-bottom:8px}
           </svg>
           Squad Institute
         </div>
-        <p class="foot-about">Mentored work experience on startup squads — a buddy coaches you, two portfolio pieces, reply in five business days. Not a course.</p>
+        <p class="foot-about">Mentored work experience on startup squads — so the market stops asking for experience you can’t get without a job. Not a course.</p>
       </div>
       <div class="foot-col">
         <h4>Program</h4>
         <a href="how-it-works.html">How it works</a>
-      <a href="pathways.html">Pathways</a>
+        <a href="the-shift.html">The shift</a>
+        <a href="pathways.html">Pathways</a>
         <a href="active-squads.html">Active squads</a>
         <a href="career-coaching.html">Career coaching</a>
         <a href="builders.html">Builders</a>
@@ -651,7 +681,7 @@ details[open] summary{padding-bottom:8px}
       <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
       <p>100% online</p>
     </div>
-    <p class="disc">Squad Institute provides work experience on startup squads (8-week Sprint, optional 52-week path). This is not employment and does not guarantee a job. Optional longer-path financial terms are in a separate written agreement — review it, and consider independent advice, before signing. Visa eligibility depends on your individual conditions.</p>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience (Sprint and optional longer Venture paths). Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Longer-path financial contributions are under a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
   </div>
 </footer>
 
@@ -678,7 +708,7 @@ details[open] summary{padding-bottom:8px}
         if(e.isIntersecting){ e.target.style.transition='opacity .6s ease, transform .6s ease'; e.target.style.opacity=1; e.target.style.transform='none'; io.unobserve(e.target); }
       });
     }, {threshold:.12});
-    document.querySelectorAll('.step, .why-card, .squad, .fact, details, .sec-head').forEach(function(el){
+    document.querySelectorAll('.tale, .squad, .persona, .sec-head, .tales-head, .story-inner, .bridge-inner, .vignette-inner').forEach(function(el){
       el.style.opacity=0; el.style.transform='translateY(18px)'; io.observe(el);
     });
   }

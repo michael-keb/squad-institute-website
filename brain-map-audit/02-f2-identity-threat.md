@@ -13,7 +13,7 @@
 3. **“Make you expensive to ignore”** — empowering for some; for burned-out grads it can sound like *you’re currently worthless*.
 4. **Eligibility: “We’d rather place you well than take everyone”** — correct ops; F2 hears *you might not be good enough to enter*.
 5. **“Some foundation to contribute”** (FAQ eng) — classic deficit framing for career changers and first-gens who already feel behind.
-6. **Engagement graph with PAUSED · rough week** helps F2 — but home hero card may be skimmed as productivity porn before the care language lands.
+6. **Engagement graph with PAUSED · rough stretch** helps F2 — but home hero card may be skimmed as productivity porn before the care language lands.
 7. **Apply form: “What’s on the line if nothing lands”** — powerful and threatening; can spike shame (family/visa) without a soft container (“private to care, not to the squad feed”).
 
 ---
@@ -21,10 +21,10 @@
 ## Delight / come-back-again
 
 1. **Keep / amplify:** “You’re not the glitch” + structural naming (ATS, ghosting, unpaid filters) — this is the site’s strongest F2 pass.
-2. **Pair every accountability line with care:** “Rough week = paused (not scored as flake) · Vanish gets a human ping, not a public roast.” Put that adjacent to “absence is public.”
+2. **Pair every accountability line with care:** “Rough stretch = paused (not scored as flake) · Vanish gets a human ping, not a public roast.” Put that adjacent to “absence is public.”
 3. **Artifact on trial, not the person** — already in builders (Noah W6); lift that sentence onto how-it-works Review step.
 4. **Rejection logged — not eaten alone** (strip) — expand into a micro-story: “log the ghost → buddy sees → next move shrinks.”
-5. **Return hook:** After a rejected application elsewhere, send/share “not the glitch” card + one builders arc with a rough week — identity repair that brings them back without selling hard.
+5. **Return hook:** After a rejected application elsewhere, send/share “not the glitch” card + one builders arc with a rough stretch — identity repair that brings them back without selling hard.
 6. **Soften gate language:** “We match seats so you don’t burn another unpaid month in the wrong room” instead of “rather not take everyone.”
 
 ---

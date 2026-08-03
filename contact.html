@@ -211,9 +211,9 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <!-- HERO -->
 <header class="chero on-dark">
   <div class="wrap">
-    <span class="eyebrow">Contact</span>
-    <h1>Talk to a human.</h1>
-    <p>Questions about squads, visas, coaching, or partnerships — a real person replies within two business days.</p>
+    <span class="eyebrow">Contact · we don’t ghost</span>
+    <h1>Talk to a human — we answer everything.</h1>
+    <p>Questions about the marketplace, seats, visas, partnerships, or anything else — send them through. A real person replies within two business days.</p>
   </div>
 </header>
 
@@ -245,7 +245,11 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div>
         <form class="card" id="contactForm" novalidate>
           <h2>Send us a message</h2>
-          <p class="sub">Fill this in and we'll open a pre-filled email in your mail app — press send and it's on its way.</p>
+          <p class="sub">We’ll send this straight to our team — no mail app needed.</p>
+          <div class="fgroup" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" tabindex="-1" autocomplete="off">
+          </div>
 
           <div class="frow">
             <div class="fgroup">
@@ -281,16 +285,17 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </div>
 
           <div class="submit-row">
-            <button type="submit" class="btn btn-primary">Send message<span class="arw">→</span></button>
+            <button type="submit" class="btn btn-primary" id="contactSubmit">Send message<span class="arw">→</span></button>
             <span class="submit-note">Goes to contact@thesquadinstitute.com</span>
           </div>
+          <p class="mono" id="contactError" style="display:none;font-size:12.5px;color:var(--coral);margin-top:12px"></p>
         </form>
 
         <div class="success" id="successPanel">
           <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
-          <h2>Message ready to send.</h2>
-          <p>We've opened a pre-filled email in your mail app — press send and we'll get back to you within two business days.</p>
-          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Nothing opened? Email us directly at <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
+          <h2>Message sent.</h2>
+          <p>We got it — we’ll get back to you within two business days.</p>
+          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Need to follow up? <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
         </div>
       </div>
 
@@ -332,7 +337,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </svg>
           Squad Institute
         </div>
-        <p class="foot-about">Real work experience on startup squads — two portfolio pieces, a buddy, reply in five business days. Not a course.</p>
+        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
       </div>
       <div class="foot-col">
         <h4>Program</h4>
@@ -358,10 +363,11 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
       <p>100% online</p>
     </div>
-    <p class="disc">Squad Institute provides work experience on startup squads (8-week Sprint, optional 52-week path). This is not employment and does not guarantee a job. Optional longer-path financial terms are in a separate written agreement — review it, and consider independent advice, before signing. Visa eligibility depends on your individual conditions.</p>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors. Equity and financial contributions are governed by a separate written agreement; review it, and consider independent advice, before signing. Eligibility for some applicants depends on individual visa conditions.</p>
   </div>
 </footer>
 
+<script src="js/api-config.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   (function(){
@@ -380,7 +386,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   var form=document.getElementById('contactForm');
   var success=document.getElementById('successPanel');
 
-  form.addEventListener('submit',function(e){
+  form.addEventListener('submit',async function(e){
     e.preventDefault();
     var ok=true, firstBad=null;
     form.querySelectorAll('.fgroup').forEach(function(g){ g.classList.remove('invalid'); });
@@ -390,17 +396,35 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     });
     if(!ok){ firstBad.focus(); firstBad.scrollIntoView({behavior:'smooth',block:'center'}); return; }
 
-    var name=document.getElementById('name').value.trim();
-    var email=document.getElementById('email').value.trim();
-    var topic=document.getElementById('topic').value;
-    var msg=document.getElementById('message').value.trim();
-    var body='Name: '+name+'\nEmail: '+email+'\nTopic: '+topic+'\n\n'+msg;
-    var mailto='mailto:contact@thesquadinstitute.com?subject='+encodeURIComponent('[Website] '+topic+' — '+name)+'&body='+encodeURIComponent(body);
+    var btn=document.getElementById('contactSubmit');
+    var errEl=document.getElementById('contactError');
+    if(errEl){ errEl.style.display='none'; errEl.textContent=''; }
+    if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
 
-    window.location.href=mailto;
-    form.style.display='none';
-    success.style.display='block';
-    success.scrollIntoView({behavior:'smooth',block:'center'});
+    var payload={
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      topic: document.getElementById('topic').value,
+      message: document.getElementById('message').value.trim(),
+      website: document.getElementById('website') ? document.getElementById('website').value : ''
+    };
+
+    try{
+      var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
+      var res=await fetch(api+'/api/contact',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      var data=await res.json().catch(function(){ return {}; });
+      if(!res.ok) throw new Error(data.error||'Could not send');
+      form.style.display='none';
+      success.style.display='block';
+      success.scrollIntoView({behavior:'smooth',block:'center'});
+    }catch(err){
+      if(errEl){ errEl.textContent=err.message||'Something went wrong. Email contact@thesquadinstitute.com'; errEl.style.display='block'; }
+      if(btn){ btn.disabled=false; btn.innerHTML='Send message<span class="arw">→</span>'; }
+    }
   });
 </script>
 </body>

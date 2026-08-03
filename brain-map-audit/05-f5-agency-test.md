@@ -20,12 +20,12 @@
 
 ## Delight / come-back-again
 
-1. **One primary CTA everywhere:** “Apply for a seat” — secondary always “See one builder’s week 3 ship” (concrete, controllable view).
+1. **One primary CTA everywhere:** “Apply for a seat” — secondary always “See one builder’s first ship ship” (concrete, controllable view).
 2. **Progressive apply:** Name + email + track first → unlock rest after “we held a soft seat” — agency early.
 3. **Pre-apply one move:** “Steal this: write ‘done means…’ for one portfolio gap” downloadable/card — they act *before* trusting you fully.
 4. **Per-squad action:** “Ask about this open seat” → prefilled contact with SQ-id (Harbour recruiting) — one controllable ask.
 5. **ST2 landing variant:** Headline: “One move. Not another program essay.” Button: Start 3-field apply.
-6. **Return hook:** Day-2 message: “Your only job today: open the buddy hello window or reply ‘rough week’” — restores agency, brings them back into pocket/signup later.
+6. **Return hook:** Day-2 message: “Your only job today: open the buddy hello window or reply ‘rough stretch’” — restores agency, brings them back into pocket/signup later.
 
 ---
 

@@ -15,7 +15,7 @@
 - Objection: “If this isn’t work rights–safe, one click ruins me.”
 
 ### P2 Chloe (no cushion)
-- Unclear hours/week and tool costs on home.
+- Unclear hours available and tool costs on home.
 - “Absence is public” scares people who must take extra shifts.
 - Objection: “Another unpaid thing dressed as opportunity” (S4).
 
@@ -42,7 +42,7 @@
 2. **P1:** Visa check CTA + Maya card in first scroll.
 3. **P2:** “Fits retail/shift life · WIP=1 · pause without red-shame” badge on Sprint offer.
 4. **P3:** “No family map? Start here” → glossary + Noah arc + buddy-before-tools.
-5. **P4:** One-page “what you can show at week 3 / 7 / 8” for justifying investment.
+5. **P4:** One-page “what you can show at first ship / near finish / finish” for justifying investment.
 6. **P5:** Explicit career-changer path on apply track chooser + Liam story link.
 7. **Return hook:** Persona-matched drip (visa / shifts / first-gen / justify / switch) — same product, different stakes language.
 

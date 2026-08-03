@@ -32,7 +32,7 @@
 1. **One-shot pitch fatigue** — if the whole doctrine is spent on first visit, no reason to return.
 2. **No living feed** — static HTML with “live” cues that don’t update = trust decay on revisit.
 3. **Apply black hole** — submit without human rhythm = confirmed ghosting.
-4. **Comparison hangover** — remembered only the Venture convert, not the pause week.
+4. **Comparison hangover** — remembered only the Venture convert, not the pause.
 5. **Unresolved money fear** — bookmark FAQ, never reopen.
 6. **No personal stake remembered** — site doesn’t echo *their* gate (visa/shifts/map).
 
@@ -40,12 +40,12 @@
 
 ## Delight / come-back-again system (design)
 
-### Loop A — Proof drip (weekly)
-- Smallest ship of the week + one paused/rough honesty  
+### Loop A — Proof drip (regular)
+- Smallest ship of the period + one paused/rough honesty  
 - Passes F3 + F6; pulls SKIM back when bandwidth frees (map SKIM→F4)
 
 ### Loop B — Seat pulse (while applying)
-- Soft seat hold countdown + buddy name + “reply if rough week”  
+- Soft seat hold countdown + buddy name + “reply if rough stretch”  
 - Passes F5 + F2 care
 
 ### Loop C — Rejection ritual (always-on)
@@ -74,7 +74,7 @@
 
 ## Top delights to ship for return
 
-1. Weekly smallest-ship + rough-week email/page  
+1. Regular smallest-ship + rough-stretch email/page  
 2. Soft seat + human reply clock after apply  
 3. Builders collapsed skim / expand deep  
 4. ST1/ST2 hero variants  
