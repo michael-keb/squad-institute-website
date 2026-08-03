@@ -117,6 +117,16 @@ section{position:relative}
 .persona h3{font-size:16px;margin-bottom:6px;line-height:1.2}
 .persona p{font-size:13px;color:var(--mute);line-height:1.45;margin:0}
 .persona.coach{border-style:dashed;background:var(--bone)}
+.migrant-banner{
+  grid-column:1/-1;background:var(--ink);color:#fff;border-radius:var(--r);
+  padding:28px 30px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;
+}
+.migrant-banner h3{font-size:clamp(22px,3vw,28px);color:#fff;margin:8px 0 10px;max-width:560px;line-height:1.15}
+.migrant-banner p{font-size:14.5px;color:var(--mute-d);max-width:560px;line-height:1.55;margin:0}
+.migrant-banner .eyebrow{color:var(--lime)}
+.migrant-banner .eyebrow::before{background:var(--lime)}
+.migrant-banner .btn-primary{background:var(--lime);color:var(--ink);box-shadow:none}
+.migrant-banner .btn-primary:hover{background:#d4f76a;color:var(--ink)}
 @media (max-width:920px){
   .persona-grid{grid-template-columns:1fr 1fr}
 }
@@ -411,7 +421,15 @@ details[open] summary{padding-bottom:8px}
       <p>Same 8-week Sprint on a startup squad — we match the conversation to what’s actually on the line for you.</p>
     </div>
     <div class="persona-grid">
-      <a class="persona" href="builders.html#maya"><div class="pk">International student</div><h3>Visa deadline</h3><p>Family paid for the move. Failure isn’t a gap year — it’s going home. You need proof before the clock runs out.</p></a>
+      <div class="migrant-banner">
+        <div>
+          <span class="eyebrow">Migrants &amp; visa holders</span>
+          <h3>Get the work experience that gets you hired.</h3>
+          <p>Employers ask for Australian work experience — not another certificate. Eight weeks on a startup squad gives you two portfolio pieces and squad references recruiters can actually open, before your visa clock runs out.</p>
+        </div>
+        <a href="apply.html?path=migrant" class="btn btn-primary">Apply now<span class="arw">→</span></a>
+      </div>
+      <a class="persona" href="builders.html#maya"><div class="pk">Migrant · on a visa</div><h3>Get the work experience that gets you hired</h3><p>Visa deadline, family sacrifice, “need local experience” on every job ad. You need proof recruiters can open — not another empty month.</p></a>
       <a class="persona" href="builders.html#aisha"><div class="pk">Working while studying</div><h3>Job + rent + study</h3><p>No cushion, no unpaid internship. One wrong bet and you fall back. Hours have to fit real life.</p></a>
       <a class="persona" href="builders.html#noah"><div class="pk">First in family</div><h3>No career map at home</h3><p>No one to ask how interviews work. Achievement guilt both ways. You’re building the path yourself.</p></a>
       <a class="persona" href="builders.html#priya"><div class="pk">Recent graduate</div><h3>Applications going silent</h3><p>Degree done, inbox quiet, LinkedIn says everyone else got hired. You need work you can open.</p></a>
@@ -532,7 +550,7 @@ details[open] summary{padding-bottom:8px}
           <div><div class="sq-name">Kelpie</div><div class="sq-desc">Last-mile routes for regional drivers.</div></div>
         </div>
         <div class="sq-people">
-          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Maya R.</div><div class="sp-d">Visa clock · <b>offline fallback</b></div></div></div>
+          <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=MayaR&backgroundColor=c6f24e" alt=""><div><div class="sp-n">Maya R.</div><div class="sp-d">On a visa · building <b>hireable proof</b></div></div></div>
           <div class="sq-person"><img src="https://api.dicebear.com/7.x/notionists/svg?seed=SamO&backgroundColor=2a9b7a" alt=""><div><div class="sp-n">Sam O.</div><div class="sp-d">Working on <b>break-window reviews</b></div></div></div>
         </div>
         <div class="sq-foot"><span class="tag">Python</span><span class="tag">Maps</span></div>

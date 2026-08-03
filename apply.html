@@ -428,8 +428,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </div>
         </div>
         <div class="scard visa">
-          <h3>On a student or work visa?</h3>
-          <p><b>Apply anyway.</b> Conditions differ a lot by visa type — we’ll talk it through with you early. If it’s not a fit, we’ll say so straight away.</p>
+          <h3>Get the work experience that gets you hired.</h3>
+          <p><b>On a student or work visa? Apply anyway.</b> Employers want Australian experience — we’ll talk through your visa conditions early. If it’s not a fit, we say so straight away.</p>
         </div>
         <div class="scard">
           <p class="mini">Not sure about something first? Read the <a href="faq.html">FAQ</a> or <a href="contact.html">ask us directly</a> — we'd rather you were sure before you apply.</p>
@@ -571,6 +571,15 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       if(lead) lead.innerHTML='You’re applying for <strong style="color:#fff;font-weight:600">career coaching</strong> — for when you’re between jobs. A human replies within <strong style="color:#fff;font-weight:600">five business days</strong>. You can join a squad later if you want.';
       var btn=document.querySelector('#applyForm button[type=submit]');
       if(btn) btn.innerHTML='Book coaching<span class="arw">→</span>';
+    } else if((path==='migrant' || path==='visa') && pathEl){
+      var eyeM=document.getElementById('applyEyebrow');
+      var h1M=document.getElementById('applyH1');
+      var leadM=document.getElementById('applyLead');
+      var visaEl=document.getElementById('visa');
+      if(eyeM) eyeM.textContent='Migrants & visa holders';
+      if(h1M) h1M.textContent='Get the work experience that gets you hired.';
+      if(leadM) leadM.innerHTML='Australian employers ask for local experience — not another certificate. Eight weeks on a startup squad, two portfolio pieces, squad references. We reply within <strong style="color:#fff;font-weight:600">five business days</strong> and check visa eligibility early.';
+      if(visaEl && !visaEl.value) visaEl.value='Student visa (subclass 500)';
     }
     var track=params.get('track');
     var trackEl=document.getElementById('track');
