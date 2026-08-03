@@ -212,13 +212,13 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <!-- HERO -->
 <header class="ahero on-dark">
   <div class="wrap">
-    <span class="eyebrow" id="applyEyebrow">Marketplace of startups · claim your seat</span>
-    <h1 id="applyH1">Tell us which chair you want.</h1>
-    <p id="applyLead">You’re asking into a startup squad for real work experience — not a course brochure. Soft seat held. The <strong style="color:#fff;font-weight:600">Sprint</strong> comes first. A human replies in <strong style="color:#fff;font-weight:600">five business days</strong> — or we release the hold.</p>
+    <span class="eyebrow" id="applyEyebrow">Apply for a squad spot</span>
+    <h1 id="applyH1">Tell us which squad you want.</h1>
+    <p id="applyLead">One application for real startup work experience — not a course. We reply within <strong style="color:#fff;font-weight:600">five business days</strong>. The 8-week Sprint comes first; the year-long path is optional.</p>
     <div class="chips">
       <span class="chip"><i></i>100% online</span>
       <span class="chip"><i></i>Reply in 5 business days</span>
-      <span class="chip"><i></i>Sprint first · year optional</span>
+      <span class="chip"><i></i>8-week Sprint first</span>
     </div>
   </div>
 </header>
@@ -312,7 +312,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
                 <option value="both">Both — steady me, then a seat</option>
               </select>
               <span class="err">Please choose a path.</span>
-              <p class="hint">Out of work? Start with coaching. Ready to ship? Claim a seat. Same team either way.</p>
+              <p class="hint">Out of work? Start with coaching. Ready for the Sprint? Apply for a seat.</p>
             </div>
             <div class="fgroup" data-field>
               <label for="track">Track <span class="req">*</span></label>
@@ -362,7 +362,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
               <label for="why">What’s at stake if nothing lands soon? <span class="req">*</span></label>
               <textarea id="why" name="Stakes" required placeholder="Honest and private to us — rent, visa, family, career switch pressure, or just tired of silent applications. A few sentences."></textarea>
               <span class="err">A sentence or two is enough — it helps us place and support you.</span>
-              <p class="hint">We use this to hold you properly — not to judge you. It stays out of squad chat.</p>
+              <p class="hint">Private to us — used to match you to the right squad. Not shared in squad chat.</p>
             </div>
             <div class="fgroup" data-field>
               <label for="hear">How did you hear about us? <span class="opt">(optional)</span></label>
@@ -395,7 +395,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="success" id="successPanel">
           <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
           <h2>Application ready to send.</h2>
-          <p>We've opened a pre-filled email — press send when you're ready. We reply within five business days. If we miss that window, the soft seat hold releases — we don’t leave you hanging.</p>
+          <p>We've opened a pre-filled email — press send when you're ready. We reply within five business days.</p>
           <p class="mono" style="font-size:12.5px;color:#9B9AA6">Nothing opened? Email us directly at <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
         </div>
       </div>
@@ -403,27 +403,27 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <!-- SIDEBAR -->
       <aside class="side">
         <div class="scard">
-          <h3>Anti-ghost promise</h3>
-          <p class="mini" style="margin-bottom:0">A human replies within five business days. What you share about stakes stays private to care — never squad chat. Rough weeks later mean paused, not punished.</p>
+          <h3>We reply to every application</h3>
+          <p class="mini" style="margin-bottom:0">A human gets back to you within five business days. What you share about your situation stays private. If life gets rough during the Sprint, tell us — we pause, we don’t remove you.</p>
         </div>
         <div class="scard">
           <h3>What happens next</h3>
           <div class="next">
             <div class="nitem">
               <span class="nnum">01</span>
-              <div><b>We read your application</b><p>A human gets back to you within five business days — or the soft hold releases.</p></div>
+              <div><b>We review your application</b><p>Reply within five business days with next steps or questions.</p></div>
             </div>
             <div class="nitem">
               <span class="nnum">02</span>
-              <div><b>Pocket + eligibility</b><p>We walk through your state and runway — before we sell you anything.</p></div>
+              <div><b>Eligibility check</b><p>We confirm visa, hours, and squad fit before you start.</p></div>
             </div>
             <div class="nitem">
               <span class="nnum">03</span>
-              <div><b>Conditional seat + buddy</b><p>You’re held in a squad for the Sprint. Rough weeks are allowed.</p></div>
+              <div><b>Join your squad</b><p>Your buddy welcomes you and scopes your first task.</p></div>
             </div>
             <div class="nitem">
               <span class="nnum">04</span>
-              <div><b>Ship · then decide</b><p>Year or Venture terms only if you convert — never forced on apply day.</p></div>
+              <div><b>8-week Sprint</b><p>Year-long path only if you choose it — never required upfront.</p></div>
             </div>
           </div>
         </div>
@@ -454,7 +454,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </svg>
           Squad Institute
         </div>
-        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+        <p class="foot-about">Work experience on startup squads — real product work, a buddy, two portfolio pieces. Not a course.</p>
       </div>
       <div class="foot-col">
         <h4>Program</h4>
@@ -568,7 +568,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       var lead=document.getElementById('applyLead');
       if(eye) eye.textContent='Career coaching · between jobs';
       if(h1) h1.textContent='Tell us what’s on the line.';
-      if(lead) lead.innerHTML='You’re asking for <strong style="color:#fff;font-weight:600">career coaching</strong> — same team as the marketplace, softer door when you’re out of work. A human replies in <strong style="color:#fff;font-weight:600">five business days</strong>. Seat later if you want it.';
+      if(lead) lead.innerHTML='You’re applying for <strong style="color:#fff;font-weight:600">career coaching</strong> — for when you’re between jobs. A human replies within <strong style="color:#fff;font-weight:600">five business days</strong>. You can join a squad later if you want.';
       var btn=document.querySelector('#applyForm button[type=submit]');
       if(btn) btn.innerHTML='Book coaching<span class="arw">→</span>';
     }

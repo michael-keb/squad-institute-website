@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Squad Institute — Marketplace of startups for work experience</title>
-<meta name="description" content="A marketplace of startups for work experience. Claim a seat on a real squad, ship real work, leave with proof you can open. Human reply in five days.">
+<meta name="description" content="Work experience on startup squads. Apply for an open spot, complete an 8-week Sprint with two deliverables, and leave with a portfolio. Human reply in five days.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,16 +107,18 @@ section{position:relative}
 }
 .gates a:hover{color:#fff;border-color:rgba(198,242,78,.45);background:rgba(198,242,78,.08);text-decoration:none}
 .persona-sec{padding:64px 0;background:var(--bone)}
-.persona-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:24px}
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
 .persona{
-  display:block;background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:16px 14px;
+  display:block;background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:18px 16px;
   transition:transform .18s,border-color .18s;
 }
 .persona:hover{transform:translateY(-3px);border-color:rgba(31,111,91,.35);text-decoration:none}
-.persona .pk{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);margin-bottom:6px}
-.persona h3{font-size:15px;margin-bottom:0}
+.persona .pk{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--violet);margin-bottom:8px}
+.persona h3{font-size:16px;margin-bottom:6px;line-height:1.2}
+.persona p{font-size:13px;color:var(--mute);line-height:1.45;margin:0}
+.persona.coach{border-style:dashed;background:var(--bone)}
 @media (max-width:920px){
-  .persona-grid{grid-template-columns:1fr 1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
   .persona-grid{grid-template-columns:1fr}
@@ -359,35 +361,27 @@ details[open] summary{padding-bottom:8px}
     <div class="hero-grid">
       <div>
         <p class="brand-hero reveal d1" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,42px);color:#fff;letter-spacing:-.03em;margin:0">Squad Institute</p>
-        <span class="eyebrow reveal d2" style="margin-top:18px">Marketplace of startups · seats waiting</span>
-        <h1 class="reveal d3">Stop refreshing Seek.<br><span class="hl">Come get chosen.</span></h1>
-        <p class="hero-sub reveal d4">A marketplace of startups that want you on the build — real work experience, a seat with a crew, proof you can open.</p>
-        <p class="f1-line reveal d4"><b>Your seat</b> held soft · <b>Ship</b> real work · Human in <b>5 days</b></p>
+        <span class="eyebrow reveal d2" style="margin-top:18px">Work experience on real startup squads</span>
+        <h1 class="reveal d3">Join a squad.<br><span class="hl">Build work you can show.</span></h1>
+        <p class="hero-sub reveal d4">Pick a startup team, apply for an open spot, and spend eight weeks doing real product work — with a buddy, two portfolio pieces, and a human reply within five business days.</p>
         <div class="hero-cta reveal d5">
           <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
-          <a href="builders.html#maya" class="btn btn-ghost">Taste a ship</a>
-        </div>
-        <div class="gates reveal d5" aria-label="What’s behind you">
-          <a href="builders.html#maya">Visa →</a>
-          <a href="builders.html#aisha">Shifts →</a>
-          <a href="builders.html#noah">First-gen →</a>
-          <a href="builders.html#priya">Justify →</a>
-          <a href="builders.html#liam">Switch →</a>
+          <a href="active-squads.html" class="btn btn-ghost">Browse squads</a>
         </div>
       </div>
 
       <!-- hero squad preview -->
       <div class="hero-card reveal d5" aria-hidden="true">
         <div class="hc-top">
-          <span class="hc-id">// seat held for you</span>
-          <span class="pill recruit"><span class="dot pulse"></span>open</span>
+          <span class="hc-id">Example squad</span>
+          <span class="pill recruit"><span class="dot pulse"></span>2 spots open</span>
         </div>
         <div class="hc-row" style="border-top:none;flex-direction:column;align-items:stretch;gap:10px">
-          <div class="hc-name" style="font-size:15px">Harbour · wants one more</div>
-          <div class="hc-desc">Priya’s already on listing cards. Elena’s wiring the booking journey. There’s a chair with your name almost on it.</div>
-          <div class="hc-desc" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;line-height:1.8;color:var(--mute-d);margin-top:6px">
-            Soft hold · buddy hello · reply in 5 days<br>
-            Rough week? We pause you — we don’t drop you.
+          <div class="hc-name" style="font-size:15px">Harbour — allied-health booking app</div>
+          <div class="hc-desc">Priya is building listing cards. Elena is designing the booking flow. The team has two open spots for engineering or UX.</div>
+          <div class="hc-desc" style="font-size:12.5px;line-height:1.55;color:var(--mute-d);margin-top:6px">
+            Apply → we reply within 5 business days.<br>
+            Need a break? Tell us — we pause your sprint, we don’t remove you.
           </div>
         </div>
       </div>
@@ -397,13 +391,13 @@ details[open] summary{padding-bottom:8px}
   <!-- strip -->
   <div class="strip">
     <div class="wrap strip-in">
-      <span><b>Wanted</b> on a real squad</span>
+      <span><b>Browse</b> startup squads</span>
       <i class="sep"></i>
-      <span><b>Chosen</b> into a startup seat</span>
+      <span><b>Apply</b> for an open spot</span>
       <i class="sep"></i>
-      <span><b>Shipping</b> real work</span>
+      <span><b>Build</b> real product work</span>
       <i class="sep"></i>
-      <span><b>Leaving</b> with proof that opens</span>
+      <span><b>Leave</b> with a portfolio</span>
     </div>
   </div>
 </header>
@@ -411,17 +405,18 @@ details[open] summary{padding-bottom:8px}
 <!-- PERSONA DOORS -->
 <section class="persona-sec" id="stakes">
   <div class="wrap">
-    <div class="sec-head" style="margin-bottom:0">
-      <span class="eyebrow">We already know the weather</span>
-      <h2>Come as you are. We’ll hold the seat.</h2>
+    <div class="sec-head">
+      <span class="eyebrow">Who this is for</span>
+      <h2>Same program. Different pressure behind you.</h2>
+      <p>We match how we talk to what’s actually on the line — visa, rent, family, or a career switch. Pick the one that sounds like you.</p>
     </div>
     <div class="persona-grid">
-      <a class="persona" href="builders.html#maya"><div class="pk">visa</div><h3>Visa clock</h3></a>
-      <a class="persona" href="builders.html#aisha"><div class="pk">no cushion</div><h3>Shifts + rent</h3></a>
-      <a class="persona" href="builders.html#noah"><div class="pk">first-gen</div><h3>No family map</h3></a>
-      <a class="persona" href="builders.html#priya"><div class="pk">justify</div><h3>First real failure</h3></a>
-      <a class="persona" href="builders.html#liam"><div class="pk">switch</div><h3>Career change</h3></a>
-      <a class="persona" href="career-coaching.html"><div class="pk">between jobs</div><h3>Out of work</h3></a>
+      <a class="persona" href="builders.html#maya"><div class="pk">International student</div><h3>Visa deadline</h3><p>Family paid for the move. You need proof before time runs out.</p></a>
+      <a class="persona" href="builders.html#aisha"><div class="pk">Working while studying</div><h3>Job + rent + study</h3><p>Unpaid internships aren’t an option. The hours have to fit real life.</p></a>
+      <a class="persona" href="builders.html#noah"><div class="pk">First in family</div><h3>No career map at home</h3><p>No one to ask how any of this works. You’re building the path yourself.</p></a>
+      <a class="persona" href="builders.html#priya"><div class="pk">Recent graduate</div><h3>Applications going silent</h3><p>Degree done, inbox quiet. You need work you can actually show.</p></a>
+      <a class="persona" href="builders.html#liam"><div class="pk">Career changer</div><h3>Proving the switch</h3><p>Left one field for another. You need evidence the move was right.</p></a>
+      <a class="persona coach" href="career-coaching.html"><div class="pk">Between jobs</div><h3>Out of work right now</h3><p>Start with coaching to stabilise. Join a squad when you’re ready.</p></a>
     </div>
   </div>
 </section>
@@ -430,32 +425,32 @@ details[open] summary{padding-bottom:8px}
 <section class="sec" id="how">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">The pull</span>
-      <h2>See them. Want in. Sit down. Ship.</h2>
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps. Plain English.</h2>
     </div>
     <div class="steps">
       <div class="step">
         <span class="step-n">01</span>
-        <h3>Fall for a squad</h3>
-        <p>Browse the marketplace — startups with faces, work in flight, seats that still want someone.</p>
+        <h3>Browse squads</h3>
+        <p>See startup teams, what they’re building, and which spots are open.</p>
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M8 14h8"/></svg></div>
       </div>
       <div class="step">
         <span class="step-n">02</span>
-        <h3>Ask for the chair</h3>
-        <p>One application. Soft seat held. A buddy already waiting to say hello. Human reply in five days.</p>
+        <h3>Apply</h3>
+        <p>One form. We reply within five business days and match you to a squad and buddy.</p>
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 5-5M21 20c0-3-2.5-5-5-5"/></svg></div>
       </div>
       <div class="step">
         <span class="step-n">03</span>
-        <h3>Feel the work</h3>
-        <p>Inside a real product. Two ships. Something you can open — and show.</p>
+        <h3>8-week Sprint</h3>
+        <p>Do real product work with your squad. Complete two reviewed deliverables.</p>
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M8 9l-2 3 2 3M16 9l2 3-2 3"/></svg></div>
       </div>
       <div class="step">
         <span class="step-n">04</span>
-        <h3>Leave desirable</h3>
-        <p>A pack recruiters can open. Optional longer Venture if you want to stay — never forced on day one.</p>
+        <h3>Leave with proof</h3>
+        <p>Portfolio, squad references, and a participation record. Optional 52-week path if you want to stay.</p>
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 6"/></svg></div>
       </div>
     </div>
@@ -466,24 +461,24 @@ details[open] summary{padding-bottom:8px}
 <section class="why on-dark">
   <div class="wrap">
     <div class="sec-head" style="margin-bottom:0">
-      <span class="eyebrow">Why it pulls</span>
-      <h2 style="color:#fff">Belonging first.<br>Proof next.</h2>
+      <span class="eyebrow">Why this works</span>
+      <h2 style="color:#fff">Real teams.<br>Real work.<br>Real reply.</h2>
     </div>
     <div class="why-grid">
       <div class="why-card">
         <div class="wic" style="background:rgba(31,111,91,.25)"><svg viewBox="0 0 24 24" stroke="#2A9B7A"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>The market ghosted you</h3>
-        <p>ATS, silence, unpaid filters — not a verdict on you. We start from that weather.</p>
+        <h3>Not another course</h3>
+        <p>You join a startup squad and build product work — the kind recruiters can actually open.</p>
       </div>
       <div class="why-card">
         <div class="wic" style="background:rgba(198,242,78,.14)"><svg viewBox="0 0 24 24" stroke="#C6F24E"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 2 4-6"/></svg></div>
-        <h3>We don’t flirt then vanish</h3>
-        <p>Rough week = paused, not red. Go quiet and a human pings you. The work gets reviewed — not your worth.</p>
+        <h3>We reply — and we stay human</h3>
+        <p>Five business days on applications. If life gets rough, tell us and we pause — we don’t drop you.</p>
       </div>
       <div class="why-card">
         <div class="wic" style="background:rgba(232,93,76,.15)"><svg viewBox="0 0 24 24" stroke="#E85D4C"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="10" r="2.5"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5M14 19c0-2 1-3.5 3-3.5"/></svg></div>
-        <h3>Someone wants you there</h3>
-        <p>Buddy + soft seat. You’re not browsing a brochure — you’re being held for a crew.</p>
+        <h3>A buddy on your squad</h3>
+        <p>Someone is assigned to welcome you, scope your first task, and review your work.</p>
       </div>
     </div>
   </div>
@@ -495,8 +490,8 @@ details[open] summary{padding-bottom:8px}
     <div class="board-head">
       <div>
         <span class="eyebrow">Who’s already building</span>
-        <h2>Find the squad you can’t ignore.</h2>
-        <p>Illustrative board until live repos wire in — people, work in flight, seats that still want someone.</p>
+        <h2>Startup squads you can join.</h2>
+        <p>Each squad is a small team building a real product. Examples below — not a live feed yet.</p>
       </div>
       <div class="legend">
         <span><i class="dot" style="background:#2A9B7A"></i>Building</span>
@@ -579,20 +574,20 @@ details[open] summary{padding-bottom:8px}
         <div class="sq-foot"><span class="tag">Go</span><span class="tag">3 seats</span></div>
       </div>
     </div>
-    <p class="mono" style="margin-top:26px;font-size:12px;color:#56555f">// Illustrative people &amp; work — not a live headcount feed.</p>
-    <div style="margin-top:28px"><a href="active-squads.html" class="btn btn-ghost">See every seat that’s open<span class="arw">→</span></a></div>
+    <p class="mono" style="margin-top:26px;font-size:12px;color:#56555f">Illustrative squads and people — for layout only.</p>
+    <div style="margin-top:28px"><a href="active-squads.html" class="btn btn-ghost">See all open spots<span class="arw">→</span></a></div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="final on-dark" id="apply">
   <div class="wrap">
-    <span class="eyebrow">Don’t leave it on the tab</span>
-    <h2>Your seat won’t wait forever.</h2>
-    <p>Proof you can open. A human answers in five days — or we release the hold.</p>
+    <span class="eyebrow">Ready to apply?</span>
+    <h2>Pick a squad. Send one form.</h2>
+    <p>We reply within five business days. The 8-week Sprint comes first — the year-long path is optional.</p>
     <div class="hero-cta">
       <a href="apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
-      <a href="builders.html" class="btn btn-ghost">See who already shipped</a>
+      <a href="builders.html" class="btn btn-ghost">Read builder stories</a>
     </div>
   </div>
 </section>
@@ -611,7 +606,7 @@ details[open] summary{padding-bottom:8px}
           </svg>
           Squad Institute
         </div>
-        <p class="foot-about">A marketplace of startups for work experience — a seat in a squad, work you can ship, a graph recruiters can open. Not a course.</p>
+        <p class="foot-about">Work experience on startup squads — real product work, a buddy, two portfolio pieces. Not a course.</p>
       </div>
       <div class="foot-col">
         <h4>Program</h4>
