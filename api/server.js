@@ -11,6 +11,8 @@ const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL?.trim() || "contact@thesquadi
 const FROM_NAME = process.env.SENDGRID_FROM_NAME?.trim() || "Squad Institute";
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL?.trim() || "contact@thesquadinstitute.com";
 const SEND_RECEIPT = process.env.SEND_APPLICANT_RECEIPT === "true";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN?.trim();
+const GITHUB_ISSUES_REPO = process.env.GITHUB_ISSUES_REPO?.trim() || "michael-keb/SquadInstitute-Platform";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -26,7 +28,6 @@ app.use(express.json({ limit: "32kb" }));
 app.use(
   cors({
     origin(origin, cb) {
-      // Reflect allowed origins only — never throw (throws break preflight as 500).
       if (!origin || ALLOWED_ORIGINS.length === 0 || ALLOWED_ORIGINS.includes(origin)) {
         return cb(null, true);
       }
@@ -45,14 +46,15 @@ app.use(
   }),
 );
 
-function mailProvider() {
-  if (SENDGRID_API_KEY && FROM_EMAIL && TO_EMAIL) return "sendgrid";
-  if (TO_EMAIL) return "formsubmit";
-  return null;
+function mailProviders() {
+  const providers = [];
+  if (GITHUB_TOKEN && GITHUB_ISSUES_REPO) providers.push("github");
+  if (SENDGRID_API_KEY && FROM_EMAIL && TO_EMAIL) providers.push("sendgrid");
+  return providers;
 }
 
 function configured() {
-  return Boolean(mailProvider());
+  return mailProviders().length > 0;
 }
 
 function esc(s) {
@@ -66,59 +68,80 @@ function linesToHtml(lines) {
   return lines.map((l) => `<p style="margin:0 0 6px">${esc(l)}</p>`).join("");
 }
 
-async function sendViaFormSubmit({ subject, text, replyTo, name }) {
-  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(TO_EMAIL)}`, {
+async function sendViaSendgrid({ to, subject, text, html, replyTo }) {
+  await sgMail.send({
+    to,
+    from: { email: FROM_EMAIL, name: FROM_NAME },
+    replyTo: replyTo || undefined,
+    subject,
+    text,
+    html,
+  });
+}
+
+async function createGithubIssue({ title, body, labels }) {
+  const res = await fetch(`https://api.github.com/repos/${GITHUB_ISSUES_REPO}/issues`, {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
       "Content-Type": "application/json",
-      Accept: "application/json",
+      "User-Agent": "squad-institute-website-api",
     },
-    body: JSON.stringify({
-      name: name || replyTo || "Website",
-      email: replyTo || TO_EMAIL,
-      _replyto: replyTo || undefined,
-      _subject: subject,
-      _template: "table",
-      _captcha: "false",
-      message: text,
-    }),
+    body: JSON.stringify({ title, body, labels }),
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const err = new Error(data.message || data.error || `FormSubmit HTTP ${res.status}`);
+    const err = new Error(data.message || `GitHub HTTP ${res.status}`);
     err.response = { body: data };
     throw err;
   }
   return data;
 }
 
-async function sendMail({ to, subject, text, html, replyTo, name }) {
-  const provider = mailProvider();
-  if (provider === "sendgrid") {
-    await sgMail.send({
-      to,
-      from: { email: FROM_EMAIL, name: FROM_NAME },
-      replyTo: replyTo || undefined,
-      subject,
-      text,
-      html,
-    });
-    return;
+async function deliver({ subject, text, html, replyTo, name, issueTitle, issueBody, labels }) {
+  const providers = mailProviders();
+  const errors = [];
+  const delivered = [];
+
+  if (providers.includes("github")) {
+    try {
+      const issue = await createGithubIssue({
+        title: issueTitle || subject,
+        body: issueBody || text,
+        labels,
+      });
+      delivered.push({ provider: "github", url: issue.html_url });
+    } catch (err) {
+      console.error("GitHub issue error:", err?.response?.body || err);
+      errors.push(err.message || "github failed");
+    }
   }
-  if (provider === "formsubmit") {
-    // FormSubmit always delivers to CONTACT_TO_EMAIL (activation required once).
-    await sendViaFormSubmit({ subject, text, replyTo, name });
-    return;
+
+  if (providers.includes("sendgrid")) {
+    try {
+      await sendViaSendgrid({ to: TO_EMAIL, subject, text, html, replyTo });
+      delivered.push({ provider: "sendgrid" });
+    } catch (err) {
+      console.error("SendGrid error:", err?.response?.body || err);
+      errors.push(err.message || "sendgrid failed");
+    }
   }
-  throw new Error("No mail provider configured");
+
+  if (!delivered.length) {
+    throw new Error(errors.join("; ") || "No mail provider succeeded");
+  }
+  return delivered;
 }
 
 app.get("/health", (_req, res) => {
-  const provider = mailProvider();
+  const providers = mailProviders();
   res.json({
     ok: true,
-    mail: provider || "missing",
-    sendgrid: provider === "sendgrid" ? "configured" : "missing SENDGRID_API_KEY",
+    mail: providers.length ? providers.join("+") : "missing",
+    sendgrid: providers.includes("sendgrid") ? "configured" : "missing SENDGRID_API_KEY",
+    github: providers.includes("github") ? "configured" : "missing GITHUB_TOKEN",
   });
 });
 
@@ -140,19 +163,31 @@ app.post("/api/contact", async (req, res) => {
   const subject = `[Website] ${topic.trim()} — ${name.trim()}`;
   const text = [`Name: ${name.trim()}`, `Email: ${email.trim()}`, `Topic: ${topic.trim()}`, "", message.trim()].join("\n");
   const html = linesToHtml(text.split("\n"));
+  const issueBody = [
+    `**From:** ${name.trim()} \`<${email.trim()}>\``,
+    `**Topic:** ${topic.trim()}`,
+    `**Source:** https://thesquadinstitute.com/contact.html`,
+    "",
+    message.trim(),
+    "",
+    "---",
+    `_Reply-to: ${email.trim()}_`,
+  ].join("\n");
 
   try {
-    await sendMail({
-      to: TO_EMAIL,
+    const delivered = await deliver({
       subject,
       text,
       html,
       replyTo: email.trim(),
       name: name.trim(),
+      issueTitle: subject,
+      issueBody,
+      labels: ["website-contact"],
     });
-    res.json({ ok: true, provider: mailProvider() });
+    res.json({ ok: true, delivered });
   } catch (err) {
-    console.error("Contact mail error:", err?.response?.body || err);
+    console.error("Contact deliver error:", err);
     res.status(502).json({ error: "Could not send message. Email us at contact@thesquadinstitute.com" });
   }
 });
@@ -190,19 +225,31 @@ app.post("/api/apply", async (req, res) => {
   lines.push("", "What's at stake:", stakes.trim());
   const text = lines.join("\n");
   const html = linesToHtml(lines);
+  const issueBody = [
+    `**Applicant:** ${fname} ${lname} \`<${applicantEmail}>\``,
+    `**Path:** ${pathVal}`,
+    `**Source:** https://thesquadinstitute.com/apply.html`,
+    "",
+    ...lines.map((l) => (l ? l : "")),
+    "",
+    "---",
+    `_Reply-to: ${applicantEmail}_`,
+    "_SLA: reply within five business days._",
+  ].join("\n");
 
   try {
-    await sendMail({
-      to: TO_EMAIL,
+    const delivered = await deliver({
       subject,
       text,
       html,
       replyTo: applicantEmail,
       name: `${fname} ${lname}`,
+      issueTitle: `[Apply] ${subject}`,
+      issueBody,
+      labels: ["website-apply"],
     });
 
-    // Receipt emails need SendGrid (FormSubmit can't send as Squad Institute).
-    if (SEND_RECEIPT && mailProvider() === "sendgrid") {
+    if (SEND_RECEIPT && mailProviders().includes("sendgrid")) {
       const receiptText = [
         `Hi ${fname},`,
         "",
@@ -213,18 +260,21 @@ app.post("/api/apply", async (req, res) => {
         "— Squad Institute",
         "contact@thesquadinstitute.com",
       ].join("\n");
-      await sendMail({
-        to: applicantEmail,
-        subject: "We received your application — Squad Institute",
-        text: receiptText,
-        html: linesToHtml(receiptText.split("\n")),
-        name: "Squad Institute",
-      });
+      try {
+        await sendViaSendgrid({
+          to: applicantEmail,
+          subject: "We received your application — Squad Institute",
+          text: receiptText,
+          html: linesToHtml(receiptText.split("\n")),
+        });
+      } catch (err) {
+        console.error("Receipt send failed (non-fatal):", err?.response?.body || err);
+      }
     }
 
-    res.json({ ok: true, provider: mailProvider() });
+    res.json({ ok: true, delivered });
   } catch (err) {
-    console.error("Apply mail error:", err?.response?.body || err);
+    console.error("Apply deliver error:", err);
     res.status(502).json({ error: "Could not submit application. Email us at contact@thesquadinstitute.com" });
   }
 });
@@ -232,5 +282,5 @@ app.post("/api/apply", async (req, res) => {
 app.use((_req, res) => res.status(404).json({ error: "Not found" }));
 
 app.listen(PORT, () => {
-  console.log(`Squad Institute website API on :${PORT} (mail: ${mailProvider() || "NOT CONFIGURED"})`);
+  console.log(`Squad Institute website API on :${PORT} (mail: ${mailProviders().join("+") || "NOT CONFIGURED"})`);
 });

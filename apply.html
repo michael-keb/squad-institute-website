@@ -567,7 +567,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
       var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
       var res=await fetch(api+'/api/apply',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
         body:JSON.stringify(payload)
       });
       var data=await res.json().catch(function(){ return {}; });
@@ -576,7 +576,13 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
       success.style.display='block';
       success.scrollIntoView({behavior:'smooth',block:'center'});
     }catch(err){
-      if(errEl){ errEl.textContent=err.message||'Something went wrong. Email contact@thesquadinstitute.com'; errEl.style.display='block'; }
+      var mail='mailto:contact@thesquadinstitute.com?subject='+encodeURIComponent('Seat application — '+(payload.firstName||'')+' '+(payload.lastName||''))+
+        '&body='+encodeURIComponent((payload.stakes||'')+'\n\nEmail: '+(payload.email||''));
+      if(errEl){
+        errEl.innerHTML=(err.message||'Something went wrong.')+
+          ' <a href="'+mail+'" style="color:inherit;text-decoration:underline;font-weight:600">Open email instead →</a>';
+        errEl.style.display='block';
+      }
       if(btn){ btn.disabled=false; btn.innerHTML='Claim this seat<span class="arw">→</span>'; }
     }
   });
