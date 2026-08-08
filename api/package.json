@@ -1,0 +1,16 @@
+{
+  "name": "squad-institute-website-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0"
+  }
+}

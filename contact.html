@@ -270,12 +270,12 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
             <label for="topic">What's it about? <span class="req">*</span></label>
             <select id="topic" required>
               <option value="">Select…</option>
-              <option>Applying to the program</option>
-              <option>Eligibility / visa question</option>
-              <option>Money, equity or the agreement</option>
-              <option>Partnering or mentoring</option>
-              <option>Media enquiry</option>
-              <option>Something else</option>
+              <option value="Applying to the program">Applying to the program</option>
+              <option value="Eligibility / visa question">Eligibility / visa question</option>
+              <option value="Money, equity or the agreement">Money, equity or the agreement</option>
+              <option value="Partnering or mentoring">Partnering or mentoring</option>
+              <option value="Media enquiry">Media enquiry</option>
+              <option value="Something else">Something else</option>
             </select>
             <span class="err">Please pick a topic so we can route it to the right person.</span>
           </div>
@@ -389,6 +389,23 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
   var form=document.getElementById('contactForm');
   var success=document.getElementById('successPanel');
 
+  function mailtoFallback(payload){
+    var subject=encodeURIComponent('[Website] '+payload.topic+' — '+payload.name);
+    var body=encodeURIComponent(
+      'Name: '+payload.name+'\nEmail: '+payload.email+'\nTopic: '+payload.topic+'\n\n'+payload.message
+    );
+    return 'mailto:contact@thesquadinstitute.com?subject='+subject+'&body='+body;
+  }
+
+  function showContactError(msg, payload){
+    var errEl=document.getElementById('contactError');
+    if(!errEl) return;
+    var link=mailtoFallback(payload);
+    errEl.innerHTML=(msg||'Could not send right now.')+
+      ' <a href="'+link+'" style="color:inherit;text-decoration:underline;font-weight:600">Open email instead →</a>';
+    errEl.style.display='block';
+  }
+
   form.addEventListener('submit',async function(e){
     e.preventDefault();
     var ok=true, firstBad=null;
@@ -407,7 +424,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
     var btn=document.getElementById('contactSubmit');
     var errEl=document.getElementById('contactError');
     if(errEl){ errEl.style.display='none'; errEl.textContent=''; }
-    if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
+    if(btn){ btn.disabled=true; btn.setAttribute('aria-busy','true'); btn.innerHTML='Sending…'; }
 
     var payload={
       name: document.getElementById('name').value.trim(),
@@ -421,17 +438,17 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
       var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
       var res=await fetch(api+'/api/contact',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
         body:JSON.stringify(payload)
       });
       var data=await res.json().catch(function(){ return {}; });
-      if(!res.ok) throw new Error(data.error||'Could not send');
+      if(!res.ok) throw new Error(data.error||('Could not send (HTTP '+res.status+')'));
       form.style.display='none';
       success.style.display='block';
       success.scrollIntoView({behavior:'smooth',block:'center'});
     }catch(err){
-      if(errEl){ errEl.textContent=err.message||'Something went wrong. Email contact@thesquadinstitute.com'; errEl.style.display='block'; }
-      if(btn){ btn.disabled=false; btn.innerHTML='Send message<span class="arw">→</span>'; }
+      showContactError(err.message||'Something went wrong.', payload);
+      if(btn){ btn.disabled=false; btn.removeAttribute('aria-busy'); btn.innerHTML='Send message<span class="arw">→</span>'; }
     }
   });
 </script>
