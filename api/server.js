@@ -45,8 +45,14 @@ app.use(
   }),
 );
 
+function mailProvider() {
+  if (SENDGRID_API_KEY && FROM_EMAIL && TO_EMAIL) return "sendgrid";
+  if (TO_EMAIL) return "formsubmit";
+  return null;
+}
+
 function configured() {
-  return Boolean(SENDGRID_API_KEY && FROM_EMAIL && TO_EMAIL);
+  return Boolean(mailProvider());
 }
 
 function esc(s) {
@@ -60,21 +66,59 @@ function linesToHtml(lines) {
   return lines.map((l) => `<p style="margin:0 0 6px">${esc(l)}</p>`).join("");
 }
 
-async function sendMail({ to, subject, text, html, replyTo }) {
-  await sgMail.send({
-    to,
-    from: { email: FROM_EMAIL, name: FROM_NAME },
-    replyTo: replyTo || undefined,
-    subject,
-    text,
-    html,
+async function sendViaFormSubmit({ subject, text, replyTo, name }) {
+  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(TO_EMAIL)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name: name || replyTo || "Website",
+      email: replyTo || TO_EMAIL,
+      _replyto: replyTo || undefined,
+      _subject: subject,
+      _template: "table",
+      _captcha: "false",
+      message: text,
+    }),
   });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error(data.message || data.error || `FormSubmit HTTP ${res.status}`);
+    err.response = { body: data };
+    throw err;
+  }
+  return data;
+}
+
+async function sendMail({ to, subject, text, html, replyTo, name }) {
+  const provider = mailProvider();
+  if (provider === "sendgrid") {
+    await sgMail.send({
+      to,
+      from: { email: FROM_EMAIL, name: FROM_NAME },
+      replyTo: replyTo || undefined,
+      subject,
+      text,
+      html,
+    });
+    return;
+  }
+  if (provider === "formsubmit") {
+    // FormSubmit always delivers to CONTACT_TO_EMAIL (activation required once).
+    await sendViaFormSubmit({ subject, text, replyTo, name });
+    return;
+  }
+  throw new Error("No mail provider configured");
 }
 
 app.get("/health", (_req, res) => {
+  const provider = mailProvider();
   res.json({
     ok: true,
-    sendgrid: configured() ? "configured" : "missing SENDGRID_API_KEY",
+    mail: provider || "missing",
+    sendgrid: provider === "sendgrid" ? "configured" : "missing SENDGRID_API_KEY",
   });
 });
 
@@ -104,10 +148,11 @@ app.post("/api/contact", async (req, res) => {
       text,
       html,
       replyTo: email.trim(),
+      name: name.trim(),
     });
-    res.json({ ok: true });
+    res.json({ ok: true, provider: mailProvider() });
   } catch (err) {
-    console.error("SendGrid contact error:", err?.response?.body || err);
+    console.error("Contact mail error:", err?.response?.body || err);
     res.status(502).json({ error: "Could not send message. Email us at contact@thesquadinstitute.com" });
   }
 });
@@ -153,9 +198,11 @@ app.post("/api/apply", async (req, res) => {
       text,
       html,
       replyTo: applicantEmail,
+      name: `${fname} ${lname}`,
     });
 
-    if (SEND_RECEIPT) {
+    // Receipt emails need SendGrid (FormSubmit can't send as Squad Institute).
+    if (SEND_RECEIPT && mailProvider() === "sendgrid") {
       const receiptText = [
         `Hi ${fname},`,
         "",
@@ -171,12 +218,13 @@ app.post("/api/apply", async (req, res) => {
         subject: "We received your application — Squad Institute",
         text: receiptText,
         html: linesToHtml(receiptText.split("\n")),
+        name: "Squad Institute",
       });
     }
 
-    res.json({ ok: true });
+    res.json({ ok: true, provider: mailProvider() });
   } catch (err) {
-    console.error("SendGrid apply error:", err?.response?.body || err);
+    console.error("Apply mail error:", err?.response?.body || err);
     res.status(502).json({ error: "Could not submit application. Email us at contact@thesquadinstitute.com" });
   }
 });
@@ -184,5 +232,5 @@ app.post("/api/apply", async (req, res) => {
 app.use((_req, res) => res.status(404).json({ error: "Not found" }));
 
 app.listen(PORT, () => {
-  console.log(`Squad Institute website API on :${PORT} (SendGrid: ${configured() ? "ready" : "NOT CONFIGURED"})`);
+  console.log(`Squad Institute website API on :${PORT} (mail: ${mailProvider() || "NOT CONFIGURED"})`);
 });
