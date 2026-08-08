@@ -406,6 +406,49 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
     errEl.style.display='block';
   }
 
+  async function apiHasSendgrid(api){
+    try{
+      var h=await fetch(api+'/health',{headers:{Accept:'application/json'}});
+      var data=await h.json();
+      return data && data.sendgrid==='configured';
+    }catch(_){ return false; }
+  }
+
+  async function sendViaApi(api, payload){
+    var res=await fetch(api+'/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    var data=await res.json().catch(function(){ return {}; });
+    if(!res.ok) throw new Error(data.error||('Could not send (HTTP '+res.status+')'));
+    return data;
+  }
+
+  // FormSubmit must run in the browser (checks Origin). Used until SendGrid is set on the API.
+  async function sendViaFormSubmit(payload){
+    var res=await fetch('https://formsubmit.co/ajax/contact@thesquadinstitute.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        _replyto: payload.email,
+        _subject: '[Website] '+payload.topic+' — '+payload.name,
+        _template: 'table',
+        _captcha: 'false',
+        topic: payload.topic,
+        message: payload.message
+      })
+    });
+    var data=await res.json().catch(function(){ return {}; });
+    if(String(data.success)==='false' || data.error){
+      throw new Error(data.message||data.error||'Could not send');
+    }
+    if(!res.ok) throw new Error(data.message||('Could not send (HTTP '+res.status+')'));
+    return data;
+  }
+
   form.addEventListener('submit',async function(e){
     e.preventDefault();
     var ok=true, firstBad=null;
@@ -433,16 +476,19 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
       message: document.getElementById('message').value.trim(),
       website: document.getElementById('website') ? document.getElementById('website').value : ''
     };
+    if(payload.website){
+      form.style.display='none';
+      success.style.display='block';
+      return;
+    }
 
     try{
       var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
-      var res=await fetch(api+'/api/contact',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(payload)
-      });
-      var data=await res.json().catch(function(){ return {}; });
-      if(!res.ok) throw new Error(data.error||('Could not send (HTTP '+res.status+')'));
+      if(await apiHasSendgrid(api)){
+        await sendViaApi(api, payload);
+      }else{
+        await sendViaFormSubmit(payload);
+      }
       form.style.display='none';
       success.style.display='block';
       success.scrollIntoView({behavior:'smooth',block:'center'});
