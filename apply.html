@@ -398,7 +398,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
           <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
           <h2>Application received.</h2>
           <p>We got it. We’ll reply within five business days. Check your inbox — we send a receipt there too.</p>
-          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Wrong email or no receipt? Write us at <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
+          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Wrong email or no receipt? Write us at <a href="mailto:career@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">career@thesquadinstitute.com</a></p>
         </div>
       </div>
 
@@ -475,7 +475,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
-        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+        <a href="mailto:career@thesquadinstitute.com">career@thesquadinstitute.com</a>
       </div>
     </div>
     <div class="foot-bot">
@@ -486,7 +486,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
   </div>
 </footer>
 
-<script src="js/api-config.js"></script>
+<script src="js/form-mail.js"></script>
 <script src="js/custom-select.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
@@ -564,19 +564,34 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
     };
 
     try{
-      var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
-      var res=await fetch(api+'/api/apply',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(payload)
-      });
-      var data=await res.json().catch(function(){ return {}; });
-      if(!res.ok) throw new Error(data.error||'Could not submit');
+      if(payload.website){
+        form.style.display='none';
+        success.style.display='block';
+        return;
+      }
+      if(!window.SI_FORM_MAIL) throw new Error('Mail helper not loaded.');
+      var lines=[];
+      Object.keys(fields).forEach(function(k){ lines.push(k+': '+fields[k]); });
+      lines.push('', "What's at stake:", payload.stakes);
+      var prefix=pathVal==='coaching'?'Coaching request':pathVal==='both'?'Coaching + seat':'Seat application';
+      await SI_FORM_MAIL.send(
+        {
+          name: payload.firstName+' '+payload.lastName,
+          email: payload.email,
+          path: pathVal,
+          message: lines.join('\n')
+        },
+        {
+          subject: prefix+' — '+payload.firstName+' '+payload.lastName,
+          replyTo: payload.email
+        }
+      );
       form.style.display='none';
       success.style.display='block';
       success.scrollIntoView({behavior:'smooth',block:'center'});
     }catch(err){
-      var mail='mailto:contact@thesquadinstitute.com?subject='+encodeURIComponent('Seat application — '+(payload.firstName||'')+' '+(payload.lastName||''))+
+      var mailTo=(window.SI_FORM_MAIL&&SI_FORM_MAIL.to)||'career@thesquadinstitute.com';
+      var mail='mailto:'+mailTo+'?subject='+encodeURIComponent('Seat application — '+(payload.firstName||'')+' '+(payload.lastName||''))+
         '&body='+encodeURIComponent((payload.stakes||'')+'\n\nEmail: '+(payload.email||''));
       if(errEl){
         errEl.innerHTML=(err.message||'Something went wrong.')+

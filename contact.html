@@ -288,7 +288,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
 
           <div class="submit-row">
             <button type="submit" class="btn btn-primary" id="contactSubmit">Send message<span class="arw">→</span></button>
-            <span class="submit-note">Goes to contact@thesquadinstitute.com</span>
+            <span class="submit-note">Goes to career@thesquadinstitute.com</span>
           </div>
           <p class="mono" id="contactError" style="display:none;font-size:12.5px;color:var(--coral);margin-top:12px"></p>
         </form>
@@ -297,7 +297,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
           <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
           <h2>Message sent.</h2>
           <p>We got it — we’ll get back to you within two business days.</p>
-          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Need to follow up? <a href="mailto:contact@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">contact@thesquadinstitute.com</a></p>
+          <p class="mono" style="font-size:12.5px;color:#9B9AA6">Need to follow up? <a href="mailto:career@thesquadinstitute.com" style="color:#1F6F5B;text-decoration:underline">career@thesquadinstitute.com</a></p>
         </div>
       </div>
 
@@ -305,7 +305,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
       <aside class="side">
         <div class="scard">
           <h3>Email</h3>
-          <p><a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a></p>
+          <p><a href="mailto:career@thesquadinstitute.com">career@thesquadinstitute.com</a></p>
         </div>
         <div class="scard">
           <h3>Response times</h3>
@@ -369,7 +369,7 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
   </div>
 </footer>
 
-<script src="js/api-config.js"></script>
+<script src="js/form-mail.js"></script>
 <script src="js/custom-select.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
@@ -388,13 +388,14 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
 
   var form=document.getElementById('contactForm');
   var success=document.getElementById('successPanel');
+  var MAIL_TO=(window.SI_FORM_MAIL&&SI_FORM_MAIL.to)||'career@thesquadinstitute.com';
 
   function mailtoFallback(payload){
     var subject=encodeURIComponent('[Website] '+payload.topic+' — '+payload.name);
     var body=encodeURIComponent(
       'Name: '+payload.name+'\nEmail: '+payload.email+'\nTopic: '+payload.topic+'\n\n'+payload.message
     );
-    return 'mailto:contact@thesquadinstitute.com?subject='+subject+'&body='+body;
+    return 'mailto:'+MAIL_TO+'?subject='+subject+'&body='+body;
   }
 
   function showContactError(msg, payload){
@@ -440,14 +441,19 @@ select:not(.cs-native){appearance:none;background-image:url("data:image/svg+xml,
     }
 
     try{
-      var api=(window.SI_API||'https://squad-institute-api.onrender.com').replace(/\/$/,'');
-      var res=await fetch(api+'/api/contact',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(payload)
-      });
-      var data=await res.json().catch(function(){ return {}; });
-      if(!res.ok) throw new Error(data.error||('Could not send (HTTP '+res.status+')'));
+      if(!window.SI_FORM_MAIL) throw new Error('Mail helper not loaded.');
+      await SI_FORM_MAIL.send(
+        {
+          name: payload.name,
+          email: payload.email,
+          topic: payload.topic,
+          message: payload.message
+        },
+        {
+          subject: '[Website] '+payload.topic+' — '+payload.name,
+          replyTo: payload.email
+        }
+      );
       form.style.display='none';
       success.style.display='block';
       success.scrollIntoView({behavior:'smooth',block:'center'});

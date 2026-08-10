@@ -32,13 +32,12 @@ Open `http://localhost:3000` (or the port `serve` prints).
 ## Launch checklist
 
 - [ ] Host `website/` on your domain (Render static — see root `render.yaml`)
-- [ ] Deploy **squad-institute-api** on Render and set **`SENDGRID_API_KEY`** (see [`../website-api/README.md`](../website-api/README.md))
-- [ ] SendGrid: verify domain or single sender for `contact@thesquadinstitute.com`
+- [ ] Forms use **FormSubmit** → `career@thesquadinstitute.com` (activate via the first email FormSubmit sends)
 - [ ] DNS: website CNAME + keep Mailgun MX for inbound mail
 - [ ] Test `/apply.html` and `/contact.html` submit on production
 - [ ] Keep **illustrative** labels until live repos / real people are linked
 - [ ] Honour **5 business day** apply reply SLA — this is the trust product
-- [ ] Confirm `contact@thesquadinstitute.com` inbox receives SendGrid notifications
+- [ ] Confirm `career@thesquadinstitute.com` receives FormSubmit notifications
 - [ ] Optional: replace Dicebear avatars with real opt-in photos
 
 ## Design system
