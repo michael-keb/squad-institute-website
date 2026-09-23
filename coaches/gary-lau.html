@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gary Lau — Career coach · Squad Institute</title>
+<meta name="description" content="Gary Lau — Sydney career coach for burnout, pivots, and leadership. Twenty years in corporate finance, then a pivot of his own. Book coaching through Squad Institute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16151C;--ink-2:#1E1D26;--bone:#F3F2EC;--bone-2:#EAE9E1;
+  --violet:#1F6F5B;--violet-soft:#2A9B7A;--lime:#C6F24E;--coral:#E85D4C;
+  --sky:#52C4FF;--mute:#6B6A75;--mute-d:#9B9AA6;
+  --line-d:rgba(255,255,255,.12);--line-l:rgba(0,0,0,.12);
+  --maxw:1180px;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bone);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.04;letter-spacing:-.025em;font-weight:600}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--violet);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--violet);transform:rotate(45deg)}
+.on-dark .eyebrow{color:var(--lime)}
+.on-dark .eyebrow::before{background:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;border:none;cursor:pointer;transition:transform .18s,background .18s,box-shadow .18s;white-space:nowrap}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.18) inset}
+.btn-primary:hover{background:var(--violet-soft);transform:translateY(-2px);box-shadow:0 10px 28px -10px var(--violet)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-l)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.on-dark .btn-ghost{color:var(--bone);border-color:var(--line-d)}
+.on-dark .btn-ghost:hover{border-color:var(--bone)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(3px)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,242,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-l)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);flex-shrink:0;z-index:2}
+.brandmark{width:30px;height:30px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;min-width:0}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mute);transition:color .15s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:2}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;border-radius:8px}
+.menu-btn:hover{background:rgba(0,0,0,.05)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s,opacity .2s;margin:2.5px 0}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer-cta{display:none}
+.nav-sub{font-size:13px;opacity:.85}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    position:absolute;top:68px;left:0;right:0;
+    background:var(--bone);padding:8px 0 20px;gap:0;
+    border-bottom:1px solid var(--line-l);
+    box-shadow:0 18px 40px -28px rgba(0,0,0,.45);
+    z-index:40;max-height:calc(100vh - 68px);overflow-y:auto;
+  }
+  .nav-links.open > a{padding:14px 28px;border-bottom:1px solid var(--line-l);font-size:16px;color:var(--ink);white-space:normal}
+  .nav-links.open > a.active{color:var(--violet);font-weight:600}
+  .nav-links.open > a.nav-sub{padding-left:42px;font-size:15px;font-weight:500}
+  .nav-links.open .nav-drawer-cta{display:block;padding:18px 28px 6px}
+  .nav-links.open .nav-drawer-cta .btn{width:100%;justify-content:center}
+  .nav-links.open .nav-drawer-cta a{border-bottom:none;padding:0}
+}
+@media (max-width:640px){
+  .nav-cta > .btn{display:none}
+  .wrap{padding-left:20px;padding-right:20px}
+  .nav-links.open a,.nav-links.open .nav-drawer-cta{padding-left:20px;padding-right:20px}
+  .nav-links.open a.nav-sub{padding-left:36px!important}
+}
+
+.crumb{padding:22px 0 0;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.crumb a{color:var(--violet);text-decoration:underline;text-underline-offset:3px}
+.crumb a:hover{color:var(--ink)}
+
+.profile{
+  padding:36px 0 110px;
+  background:
+    radial-gradient(ellipse 55% 70% at 0% 40%, rgba(31,111,91,.38), transparent 58%),
+    radial-gradient(ellipse 40% 50% at 100% 10%, rgba(198,242,78,.08), transparent 50%),
+    var(--ink);
+  color:var(--bone);
+  min-height:calc(100vh - 68px);
+}
+.profile .wrap{padding-top:8px}
+.coach{
+  display:grid;grid-template-columns:280px minmax(0,1fr);gap:40px 52px;align-items:start;
+  margin-top:28px;
+}
+.coach-media{
+  position:relative;width:100%;
+  animation:coachIn .8s cubic-bezier(.2,.7,.3,1) both;
+}
+.coach-media::before{
+  content:"";position:absolute;inset:14px -12px -12px 14px;border-radius:18px;
+  background:linear-gradient(145deg,rgba(31,111,91,.65),rgba(198,242,78,.18));
+  z-index:0;
+}
+.coach-photo{
+  position:relative;z-index:1;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 12%;
+  border-radius:16px;display:block;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 24px 48px -24px rgba(0,0,0,.7);
+}
+.coach-body{min-width:0;padding-top:8px;animation:coachIn .8s .12s cubic-bezier(.2,.7,.3,1) both}
+.coach-meta{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--lime);margin:0;
+}
+.coach h1{
+  font-size:clamp(36px,4.2vw,52px);margin-top:12px;color:#fff;letter-spacing:-.03em;font-weight:700;
+}
+.brand-hero{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,3vw,32px);
+  color:#fff;letter-spacing:-.03em;margin:0 0 18px;
+}
+.coach-loc{font-size:15px;color:var(--mute-d);margin-top:10px}
+.coach-lead{
+  font-size:clamp(16px,1.4vw,18px);color:var(--mute-d);line-height:1.55;margin-top:22px;max-width:34em;
+}
+.coach-bio{
+  font-size:15.5px;color:var(--mute-d);line-height:1.6;margin-top:14px;max-width:34em;
+}
+.coach-focus{
+  list-style:none;display:flex;flex-direction:column;gap:11px;margin:26px 0 0;padding:0;max-width:30em;
+}
+.coach-focus li{
+  font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--bone);
+  display:flex;gap:12px;align-items:flex-start;line-height:1.45;
+}
+.coach-focus li span{color:var(--lime);font-weight:500;flex-shrink:0}
+.coach-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+@keyframes coachIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+.foot{background:var(--ink);color:var(--mute-d);padding:56px 0 28px;border-top:1px solid var(--line-d)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+.foot .brand{color:#fff}
+.foot-about{font-size:14px;line-height:1.55;margin-top:14px;max-width:28em}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute-d);margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;color:var(--bone);margin-bottom:8px;opacity:.85}
+.foot-col a:hover{opacity:1;color:var(--lime)}
+.foot-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--line-d);font-size:13px}
+.disc{font-size:12px;line-height:1.5;margin-top:18px;color:var(--mute-d);opacity:.75;max-width:70em}
+
+@media (max-width:920px){
+  .coach{grid-template-columns:1fr;gap:28px}
+  .coach-media{max-width:240px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .coach-media{max-width:200px}
+  .coach-media::before{inset:10px -8px -8px 10px}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .coach-media,.coach-body{animation:none}
+}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible,.profile :focus-visible{outline-color:var(--lime)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="../index.html" class="brand">
+      <svg class="brandmark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+        <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+        <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+        <rect x="16" y="16" width="12" height="12" rx="3" fill="#16151C"/>
+      </svg>
+      Squad Institute
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="../how-it-works.html">How it works</a>
+      <a href="../pathways.html">Pathways</a>
+      <a href="../active-squads.html">Squads</a>
+      <a href="../career-coaching.html#coaches">Coaches</a>
+      <a href="gary-lau.html" class="nav-sub active">Gary Lau</a>
+      <a href="../builders.html">Builders</a>
+      <a href="../faq.html">FAQ</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contact.html">Contact</a>
+      <div class="nav-drawer-cta"><a href="../apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a></div>
+    </div>
+    <div class="nav-cta">
+      <a href="../apply.html" class="btn btn-primary">Claim a seat<span class="arw">→</span></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<main class="profile on-dark">
+  <div class="wrap">
+    <p class="crumb">
+      <a href="../career-coaching.html">Career coaching</a>
+      <span aria-hidden="true">/</span>
+      <a href="../career-coaching.html#coaches">Coaches</a>
+      <span aria-hidden="true">/</span>
+      <span>Gary Lau</span>
+    </p>
+
+    <article class="coach">
+      <div class="coach-media">
+        <img class="coach-photo" src="../images/coaches/gary-lau.jpg" alt="Gary Lau, career coach" width="683" height="1024">
+      </div>
+      <div class="coach-body">
+        <p class="brand-hero">Squad Institute</p>
+        <p class="coach-meta">Career coach</p>
+        <h1>Gary Lau</h1>
+        <p class="coach-loc">Sydney · tech, finance, data &amp; AI</p>
+        <p class="coach-lead">Twenty years in corporate finance, then a pivot of his own. Gary holds the between-jobs brain — burnout, redirection, and leadership — without treating you like a résumé to fix.</p>
+        <p class="coach-bio">Most coaching jumps straight to the résumé and negotiation script. Gary starts with who you actually are, what’s holding you back, and what you want work to look like — then builds the practical next move. Four-week programs for clarity and momentum, not a to-do list that fades in a fortnight.</p>
+        <ul class="coach-focus" aria-label="Coaching focus">
+          <li><span>01</span> Overcoming burnout without the pep-talk fog</li>
+          <li><span>02</span> Career pivots for grads, mid-career &amp; execs</li>
+          <li><span>03</span> Leadership confidence — then the practical next move</li>
+        </ul>
+        <div class="coach-cta">
+          <a href="../apply.html?path=coaching" class="btn btn-primary">Book coaching<span class="arw">→</span></a>
+          <a href="https://careercoachingsydney.com/about/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">More about Gary</a>
+          <a href="../career-coaching.html#coaches" class="btn btn-ghost">All coaches</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg class="brandmark" viewBox="0 0 30 30" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="3" fill="#1F6F5B"/>
+            <rect x="16" y="2" width="12" height="12" rx="3" fill="#C6F24E"/>
+            <rect x="2" y="16" width="12" height="12" rx="3" fill="#E85D4C"/>
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#2A2935"/>
+          </svg>
+          Squad Institute
+        </div>
+        <p class="foot-about">A marketplace of startups for work experience — plus coaching for when you’re between jobs. Not a course.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="../how-it-works.html">How it works</a>
+        <a href="../pathways.html">Pathways</a>
+        <a href="../active-squads.html">Active squads</a>
+        <a href="../career-coaching.html">Career coaching</a>
+        <a href="../career-coaching.html#coaches">Coaches</a>
+        <a href="gary-lau.html">Gary Lau</a>
+        <a href="../builders.html">Builders</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Apply</h4>
+        <a href="../apply.html?path=coaching">Book coaching</a>
+        <a href="../apply.html">Claim a seat</a>
+        <a href="../apply.html#eligibility">Check eligibility</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@thesquadinstitute.com">contact@thesquadinstitute.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div>
+        <p>© <span id="yr"></span> Squad Institute. All rights reserved. · <a href="../privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></p>
+        <p>Elnakeeb Pty Ltd. ABN 83 608 539 886</p>
+      </div>
+      <p>100% online</p>
+    </div>
+    <p class="disc">Squad Institute is a marketplace of startups for work experience, with optional career coaching for people between jobs. Participation does not guarantee employment, income or any specific outcome — results depend on your effort, market conditions and other factors.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  (function(){
+    var mb=document.getElementById('menuBtn'), nl=document.getElementById('navlinks');
+    if(!mb||!nl) return;
+    function setOpen(on){
+      nl.classList.toggle('open', on);
+      mb.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    }
+    mb.addEventListener('click', function(){ setOpen(!nl.classList.contains('open')); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    window.addEventListener('resize', function(){ if(window.innerWidth>1040) setOpen(false); });
+  })();
+</script>
+</body>
+</html>

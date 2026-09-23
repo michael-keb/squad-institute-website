@@ -182,6 +182,15 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 :focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
 .on-dark :focus-visible{outline-color:var(--lime)}
+
+.nav-sub{font-size:13px;opacity:.85}
+@media (max-width:1040px){
+  .nav-links.open > a.nav-sub{padding-left:42px;font-size:15px;font-weight:500}
+}
+@media (max-width:640px){
+  .nav-links.open a.nav-sub{padding-left:36px!important}
+}
+
 </style>
 </head>
 <body>
@@ -202,6 +211,8 @@ a{color:inherit;text-decoration:none}
       <a href="the-shift.html" class="active">The shift</a>
       <a href="pathways.html">Pathways</a>
       <a href="active-squads.html">Squads</a>
+      <a href="career-coaching.html#coaches">Coaches</a>
+      <a href="coaches/gary-lau.html" class="nav-sub">Gary Lau</a>
       <a href="builders.html">Builders</a>
       <a href="faq.html">FAQ</a>
       <a href="blog.html">Blog</a>
@@ -404,6 +415,7 @@ a{color:inherit;text-decoration:none}
         <a href="pathways.html">Pathways</a>
         <a href="active-squads.html">Active squads</a>
         <a href="career-coaching.html">Career coaching</a>
+        <a href="career-coaching.html#coaches">Coaches</a>
         <a href="builders.html">Builders</a>
         <a href="faq.html">FAQ</a>
       </div>
